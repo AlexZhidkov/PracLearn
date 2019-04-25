@@ -17,12 +17,14 @@ import { UniversityTodoComponent } from './university-todo/university-todo.compo
 import { ReviewStudentEoiComponent } from './review-student-eoi/review-student-eoi.component';
 import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
+import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
   { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'student/profile', component: ProfileStudentComponent }, // canActivate: [AuthService] },
+  { path: 'student/self-sourced', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
+  { path: 'student', component: StudentComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/:id', component: ProjectComponent },

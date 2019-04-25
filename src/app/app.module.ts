@@ -51,6 +51,7 @@ import { EventStoreService } from './services/event-store.service';
 import { ReviewStudentEoiComponent } from './review-student-eoi/review-student-eoi.component';
 import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
+import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { HomeComponent } from './home/home.component';
     UniversityTodoComponent,
     ReviewStudentEoiComponent,
     EventsViewerComponent,
-    HomeComponent
+    HomeComponent,
+    SelfSourcedProjectComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
