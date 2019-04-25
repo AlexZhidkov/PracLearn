@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>list</mat-icon>
+    </div>
+    <mat-card-title>To Do</mat-card-title>
+    <mat-card-subtitle>New items to complete</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let todo of todos | async" routerLink="/university/todo/{{todo.id}}">
+      <h4 mat-line>{{ todo.title }}</h4>
+      <p mat-line> {{todo.eoiBusiness?.title}} </p>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-card>

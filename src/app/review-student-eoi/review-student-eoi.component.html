@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>inbox</mat-icon>
+    </div>
+    <mat-card-title>{{ eoi?.student.name }}</mat-card-title>
+    <mat-card-subtitle>Please action</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <pre>{{eoi | json}}</pre>
+  <mat-card-actions>
+    <button mat-button (click)="inviteForInterview()">Invite for Interview</button>
+    <button mat-button (click)="rejectEoiStudent()">Reject</button>
+  </mat-card-actions>
+</mat-card>

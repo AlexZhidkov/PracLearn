@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <markdown [data]="(project | async)?.title"></markdown>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <markdown [data]="(project | async)?.description"></markdown>
+  <mat-card-actions>
+    <div>
+      <button mat-raised-button color="accent" (click)="storeProjectUrl(projectId)"
+        routerLink="/student/eoi/{{projectId}}/{{(project | async)?.businessId}}/true">Apply</button>
+      <button mat-icon-button>
+        <mat-icon aria-label="Edit" routerLink="/projectEdit/{{projectId}}">edit</mat-icon>
+      </button>
+    </div>
+    <mat-hint>
+      Apply for the project, and get the chance to add this experience to your resume, we just need to ask a couple of
+      questions to make sure you’re eligible.
+    </mat-hint>
+  </mat-card-actions>
+</mat-card>

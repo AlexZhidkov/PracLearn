@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>list</mat-icon>
+    </div>
+    <mat-card-title>Events Log</mat-card-title>
+    <mat-card-subtitle>Expand to see Event details</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let event of events | async">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ event.event }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <pre>{{event | json}}</pre>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

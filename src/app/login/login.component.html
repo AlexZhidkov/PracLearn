@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Sign in to use application</mat-card-subtitle>
+  </mat-card-header>
+
+  <div *ngIf="showUserPrimaryRoleSelector">
+    I'm a
+    <mat-button-toggle-group name="userPrimaryRole" [(ngModel)]="userPrimaryRole" aria-label="User Category"
+      (ngModelChange)="updateUserPrimaryRole($event)">
+      <mat-button-toggle value="student">Student</mat-button-toggle>
+      <mat-button-toggle value="business">Business</mat-button-toggle>
+      <mat-button-toggle value="university">University</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div *ngIf="userPrimaryRole==='student'" class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="University" [(ngModel)]="studentUniversity">
+    </mat-form-field>
+    <h4>Please chose your faculty</h4>
+    <mat-form-field>
+      <mat-label>Faculty</mat-label>
+      <mat-select [(ngModel)]="faculty">
+        <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+          {{faculty}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button class="facebook-block-button" (click)="login('facebook')">
+    <span> Sign In With Facebook </span>
+  </button>
+  <button mat-raised-button class="google-block-button" (click)="login('google')">
+    <img class="google-icon" alt="Google &quot;G&quot; Logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+    <span> Sign In With Google </span>
+  </button>
+</mat-card>

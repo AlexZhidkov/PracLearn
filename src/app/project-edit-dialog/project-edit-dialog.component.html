@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Edit Project</h1>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput name="title" placeholder="Title" [ngModel]="(project|async)?.title"
+      (ngModelChange)="projectDoc.update({title: $event})">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" rows="10" [ngModel]="(project | async)?.description"
+      (ngModelChange)="projectDoc.update({description: $event})"></textarea>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon aria-label="Close">done</mat-icon>
+    </button>
+  </div>

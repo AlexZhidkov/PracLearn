@@ -1,0 +1,91 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$mat-wil-accent: (
+    50 : #f5e7ef,
+    100 : #e6c4d7,
+    200 : #d69dbd,
+    300 : #c575a2,
+    400 : #b8588e,
+    500 : #ac3a7a,
+    600 : #a53472,
+    700 : #9b2c67,
+    800 : #92255d,
+    900 : #82184a,
+    A100 : #ffbad8,
+    A200 : #ff87bc,
+    A400 : #ff549f,
+    A700 : #ff3b90,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+$mat-wil-primary: (
+    50 : #efebf4,
+    100 : #d7cee4,
+    200 : #bcadd2,
+    300 : #a18cc0,
+    400 : #8c74b3,
+    500 : #785ba5,
+    600 : #70539d,
+    700 : #654993,
+    800 : #5b408a,
+    900 : #482f79,
+    A100 : #d6c2ff,
+    A200 : #b38fff,
+    A400 : #915cff,
+    A700 : #8042ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$wil-app-primary: mat-palette($mat-wil-primary);
+$wil-app-accent:  mat-palette($mat-wil-accent, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$wil-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$wil-app-theme: mat-light-theme($wil-app-primary, $wil-app-accent, $wil-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($wil-app-theme);

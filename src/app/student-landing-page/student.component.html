@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>build</mat-icon>
+    </div>
+    <mat-card-title>Projects</mat-card-title>
+    <mat-card-subtitle>Show your interest in a project</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-nav-list>
+    <mat-list-item routerLink="/business/eoi/self-sourced/true">
+      Self sourced project
+    </mat-list-item>
+  </mat-nav-list>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let project of projects | async" routerLink="/student/{{project.id}}">
+      {{ project.title }}
+    </mat-list-item>
+  </mat-nav-list>
+  <button mat-fab>
+    <mat-icon aria-label="Add" (click)="addNewProject()">add</mat-icon>
+  </button>
+</mat-card>

@@ -1,0 +1,283 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<ng-template [ngIf]="smallScreen" [ngIfElse]="bigScreen">
+  <mat-vertical-stepper linear #stepper *ngIf="!isLoading">
+    <mat-step [stepControl]="jobFormGroup">
+      <form [formGroup]="jobFormGroup">
+        <ng-template matStepLabel>Job</ng-template>
+        <div class="form-container">
+          <p>
+            If there was one thing you could do in your business, but you simply don't have time for it, what would it
+            be?
+          </p>
+          <p>
+            It can't be something that the business does every day e.g generate more business or reduce costs.
+            For example, you might like to do research on a new product line to sell.
+          </p>
+          <mat-form-field>
+            <mat-select placeholder="Choose previously submitted to clone" #eoiSelector>
+              <mat-option *ngFor="let eoi of previouslySubmittedEois | async" [value]="eoi">
+                {{eoi.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button (click)="CloneFromEoi(eoiSelector.value)">Clone</button>
+
+          <mat-form-field>
+            <input matInput placeholder="Job Title" formControlName="jobTitleCtrl" required
+              (ngModelChange)="eoiDoc.update({title: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Description" formControlName="jobDescriptionCtrl" required
+              (ngModelChange)="eoiDoc.update({description: $event})">
+                </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <p>What tasks or skills do you think this might require?</p>
+            <textarea matInput rows="10" formControlName="skillsCtrl" (ngModelChange)="eoiDoc.update({skills: $event})">
+            </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <p>Does the student need a clearance for any work to be conducted?</p>>
+            <textarea matInput rows="10" formControlName="clearanceCtrl"
+              (ngModelChange)="eoiDoc.update({clearance: $event})">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="employerFormGroup">
+      <form [formGroup]="employerFormGroup">
+        <ng-template matStepLabel>Business</ng-template>
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="nameCtrl" required
+              (ngModelChange)="eoiDoc.update({name: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Website" formControlName="websiteCtrl"
+              (ngModelChange)="eoiDoc.update({website: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Primary contact" formControlName="primaryContactCtrl" required
+              (ngModelChange)="eoiDoc.update({primaryContact: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Address" formControlName="addressCtrl"
+              (ngModelChange)="eoiDoc.update({address: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Tell us about your business. What makes you unique?"
+              formControlName="aboutCtrl" required (ngModelChange)="eoiDoc.update({about: $event})">
+            </textarea>
+            <mat-hint>
+              Please provide some brief background about the organization and its core business.
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="datesFormGroup">
+      <form [formGroup]="datesFormGroup">
+        <ng-template matStepLabel>Dates</ng-template>
+        <div class="form-container">
+          <mat-form-field>
+            <mat-select placeholder="What dates would you like this placement to start and end?"
+              formControlName="datesCtrl" (ngModelChange)="eoiDoc.update({dates: $event})">
+              <mat-option *ngFor="let semester of semesters" [value]="semester.dates">
+                {{semester.dates}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h4>If you'd like a shorter placement, the time required is 120 hours for an undergraduate.</h4>
+          <h4>Longer placements are 240 hours and are completed by postgraduates.</h4>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="supervisorFormGroup">
+      <form [formGroup]="supervisorFormGroup">
+        <ng-template matStepLabel>Supervisor</ng-template>
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="supervisorCtrl" required
+              (ngModelChange)="eoiDoc.update({supervisor: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Title / Role in organisation" formControlName="supervisorRoleCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorRole: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Experience" formControlName="supervisorExperienceCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorExperience: $event})">
+            </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Phone" formControlName="supervisorPhoneCtrl" required
+              (ngModelChange)="eoiDoc.update({supervisorPhone: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="supervisorEmailCtrl" required
+              (ngModelChange)="eoiDoc.update({supervisorEmail: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="eoiDoc.update({isNew: true})">Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</ng-template>
+
+<ng-template #bigScreen>
+  <mat-horizontal-stepper #stepper *ngIf="!isLoading">
+    <mat-step [stepControl]="jobFormGroup">
+      <form [formGroup]="jobFormGroup">
+        <ng-template matStepLabel>Job</ng-template>
+        <div class="form-container">
+          <p>
+            If there was one thing you could do in your business, but you simply don't have time for it, what would it
+            be?
+          </p>
+          <p>
+            It can't be something that the business does every day e.g generate more business or reduce costs.
+            For example, you might like to do research on a new product line to sell.
+          </p>
+          <mat-form-field>
+            <mat-select placeholder="Choose previously submitted to clone" #eoiSelector>
+              <mat-option *ngFor="let eoi of previouslySubmittedEois | async" [value]="eoi">
+                {{eoi.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button (click)="CloneFromEoi(eoiSelector.value)">Clone</button>
+
+          <mat-form-field>
+            <input matInput placeholder="Job Title" formControlName="jobTitleCtrl" required
+              (ngModelChange)="eoiDoc.update({title: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Description" formControlName="jobDescriptionCtrl" required
+              (ngModelChange)="eoiDoc.update({description: $event})">
+            </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="What tasks or skills do you think this might require?"
+              formControlName="skillsCtrl" (ngModelChange)="eoiDoc.update({skills: $event})">
+              </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Does the student need a clearance for any work to be conducted?"
+              formControlName="clearanceCtrl" (ngModelChange)="eoiDoc.update({clearance: $event})">
+                </textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="employerFormGroup">
+      <form [formGroup]="employerFormGroup">
+        <ng-template matStepLabel>Business</ng-template>
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="nameCtrl" required
+              (ngModelChange)="eoiDoc.update({name: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Website" formControlName="websiteCtrl"
+              (ngModelChange)="eoiDoc.update({website: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Primary contact" formControlName="primaryContactCtrl" required
+              (ngModelChange)="eoiDoc.update({primaryContact: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Address" formControlName="addressCtrl"
+              (ngModelChange)="eoiDoc.update({address: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Tell us about your business. What makes you unique?"
+              formControlName="aboutCtrl" required (ngModelChange)="eoiDoc.update({about: $event})">
+          </textarea>
+            <mat-hint>
+              Please provide some brief background about the organization and its core business.
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="datesFormGroup">
+      <form [formGroup]="datesFormGroup">
+        <ng-template matStepLabel>Dates</ng-template>
+        <div class="form-container">
+          <mat-form-field>
+            <mat-select placeholder="What dates would you like this placement to start and end?"
+              formControlName="datesCtrl" (ngModelChange)="eoiDoc.update({dates: $event})">
+              <mat-option *ngFor="let semester of semesters" [value]="semester.dates">
+                {{semester.dates}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h4>If you'd like a shorter placement, the time required is 120 hours for an undergraduate.</h4>
+          <h4>Longer placements are 240 hours and are completed by postgraduates.</h4>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="supervisorFormGroup">
+      <form [formGroup]="supervisorFormGroup">
+        <ng-template matStepLabel>Supervisor</ng-template>
+        <div class="form-container">
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="supervisorCtrl" required
+              (ngModelChange)="eoiDoc.update({supervisor: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Title / Role in organisation" formControlName="supervisorRoleCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorRole: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput rows="10" placeholder="Experience" formControlName="supervisorExperienceCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorExperience: $event})">
+          </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Phone" formControlName="supervisorPhoneCtrl" required
+              (ngModelChange)="eoiDoc.update({supervisorPhone: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="supervisorEmailCtrl" required
+              (ngModelChange)="eoiDoc.update({supervisorEmail: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="submitEoi()">Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</ng-template>

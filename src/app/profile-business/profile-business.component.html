@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>build</mat-icon>
+    </div>
+    <mat-card-title>Submitted EOIs</mat-card-title>
+    <mat-card-subtitle>Choose one to view or edit</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-list>
+    <mat-list-item *ngFor="let eoi of eois | async" routerLink="/business/eoi/{{eoi.id}}">
+      {{ eoi.title }}
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>group</mat-icon>
+    </div>
+    <mat-card-title>Applications</mat-card-title>
+    <mat-card-subtitle>Choose one to view</mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-list>
+    <mat-list-item *ngFor="let eoi of eoiStudents | async" routerLink="/reviewStudentEoi/{{user.uid}}/{{eoi.id}}">
+      {{ eoi.student.name }}
+    </mat-list-item>
+  </mat-list>
+</mat-card>

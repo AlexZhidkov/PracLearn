@@ -1,0 +1,50 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+.form-container > * {
+    width: 100%;
+  }
+  
+.facebook-block-button {
+    display: block;
+    width: 100%;
+    padding: 0px 8px 0px 8px;
+    margin: 16px 0px 16px 0px;
+    font-size: 16px;
+    text-align: center;
+    height: 40px;
+    background-color: #3b5998;
+}
+
+.facebook-block-button span{
+    color: white;
+    margin: 14px;
+}
+
+.google-block-button {
+    display: block;
+    width: 100%;
+    padding: 0px 8px 0px 8px;
+    margin: 16px 0px 16px 0px;
+    font-size: 16px;
+    text-align: center;
+    height: 40px;
+}
+
+.google-block-button .google-icon {
+    width: 18px;
+    height: 18px;
+    padding-right: 24px;
+}
+
+.facebook-block-button .facebook-icon {
+    width: 18px;
+    height: 18px;
+    padding-right: 16px;
+    color: #3b5998;
+    background-color: white;
+    padding: 2px 5px 0px 10px;
+    border-radius: 2px; 
+}
