@@ -8,6 +8,15 @@
   </mat-card-header>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <pre>{{todo | json}}</pre>
+  <h4>Please chose faculty for this project</h4>
+  <mat-form-field>
+    <mat-label>Faculty</mat-label>
+    <mat-select [(ngModel)]="faculty">
+      <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+        {{faculty}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-card-actions>
     <button mat-button (click)="approveEoiBusiness()">Approve</button>
     <button mat-button (click)="rejectEoiBusiness()">Reject</button>

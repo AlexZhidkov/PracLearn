@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { EventStoreService } from '../services/event-store.service';
 import { UserProfile } from '../model/user-profile';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-university-todo',
@@ -15,14 +16,19 @@ export class UniversityTodoComponent implements OnInit {
   isLoading: boolean;
   private todoDoc: AngularFirestoreDocument<any>;
   todo: any;
+  faculties: string[];
+  faculty: string;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               public afs: AngularFirestore,
-              private eventStoreService: EventStoreService
+              private eventStoreService: EventStoreService,
+              private dataService: DataService
   ) { }
 
   ngOnInit() {
+    this.faculties = this.dataService.getFaculties();
+
     this.user = JSON.parse(localStorage.getItem('user'));
     this.todoId = this.route.snapshot.paramMap.get('id');
     this.todoDoc = this.afs.doc<any>('universities/uwa/todo/' + this.todoId);
@@ -33,6 +39,7 @@ export class UniversityTodoComponent implements OnInit {
   }
 
   approveEoiBusiness() {
+    this.todo.eoiBusiness.faculty = this.faculty;
     this.todo.eoiBusiness.approvedByUniOn = new Date();
     this.afs.collection<any>('projects')
       .add(this.todo.eoiBusiness)
