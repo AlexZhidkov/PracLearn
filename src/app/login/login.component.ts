@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   studentUniversity: string;
 
   constructor(public authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private dataService: DataService) { }
 
   ngOnInit() {
     this.userPrimaryRole = localStorage.getItem('userPrimaryRole');
@@ -23,12 +25,7 @@ export class LoginComponent implements OnInit {
     this.faculty = localStorage.getItem('faculty');
     this.showUserPrimaryRoleSelector = !Boolean(this.userPrimaryRole);
 
-    this.faculties = [
-      'Business, Operations/Consulting',
-      'Marketing',
-      'Accounting',
-      'Human Resources'
-    ];
+    this.faculties = this.dataService.getFaculties();
   }
 
   updateUserPrimaryRole(role: string) {
