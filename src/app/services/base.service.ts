@@ -1,4 +1,4 @@
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, QueryFn } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseEntity } from '../model/base-entity';
@@ -10,8 +10,8 @@ export abstract class BaseService<T extends BaseEntity> {
     constructor(protected afs: AngularFirestore) { }
 
     // set collection should always be called first
-    setCollection(path: string) {
-        this.collection = this.afs.collection(path);
+    setCollection(path: string, queryFn?: QueryFn) {
+        this.collection = this.afs.collection(path, queryFn);
     }
 
     get(identifier: string): Observable<T> {
