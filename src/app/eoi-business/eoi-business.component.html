@@ -38,7 +38,7 @@
             </textarea>
           </mat-form-field>
           <mat-form-field>
-            <p>Does the student need a clearance for any work to be conducted?</p>>
+            <p>Does the student need a clearance for any work to be conducted?</p>
             <textarea matInput rows="10" formControlName="clearanceCtrl"
               (ngModelChange)="eoiDoc.update({clearance: $event})">
             </textarea>
@@ -134,7 +134,7 @@
         </div>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="eoiDoc.update({isNew: true})">Submit</button>
+          <button mat-button (click)="submitEoi()">Submit</button>
         </div>
       </form>
     </mat-step>
