@@ -144,5 +144,10 @@
       }
     }
   },
-  "defaultProject": "prac-learn"
+  "defaultProject": "prac-learn",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
