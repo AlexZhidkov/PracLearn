@@ -15,9 +15,12 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./self-sourced-project.component.scss']
 })
 export class SelfSourcedProjectComponent implements OnInit {
+  smallScreen: boolean;
   user: UserProfile;
   eoiDoc: AngularFirestoreDocument<any>;
   eoi: Observable<any>;
+
+  isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
