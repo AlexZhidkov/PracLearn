@@ -1,22 +1,8 @@
 .form-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 }
 
 .form-container > * {
-  width: 50%;
-  margin-bottom: 1.2em;;
+  width: 100%;
 }
-
-.form-title, .main-title{
-
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.main-title{
-  text-align: center;
-}
-
