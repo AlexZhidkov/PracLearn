@@ -8,15 +8,19 @@ import * as JSZip from 'jszip';
 import * as docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
 
+
 @Component({
   selector: 'app-self-sourced-project',
   templateUrl: './self-sourced-project.component.html',
   styleUrls: ['./self-sourced-project.component.scss']
 })
 export class SelfSourcedProjectComponent implements OnInit {
+  smallScreen: boolean;
   user: UserProfile;
   eoiDoc: AngularFirestoreDocument<any>;
   eoi: Observable<any>;
+
+  isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -97,3 +101,4 @@ export class SelfSourcedProjectComponent implements OnInit {
     });
   }
 }
+

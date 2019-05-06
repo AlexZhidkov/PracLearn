@@ -1,4 +1,225 @@
-<p>
-  Form goes here
-</p>
-<button mat-raised-button (click)="generateDocument()">Download Document</button>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<ng-template [ngIf]="smallScreen" [ngIfElse]="bigScreen">
+  <h2 class="main-title">Student Placement Arrangement</h2>
+  <div class="form-container host-intitution-form">
+    <h3 class="form-title">Host Institution</h3>
+    <mat-form-field>
+      <input matInput placeholder="Institution Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Address: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="ABN: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container student-form">
+    <h3 class="form-title">Student</h3>
+    <mat-form-field>
+      <input matInput placeholder="Student Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Student ID: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Telephone: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container course-form">
+    <h3 class="form-title">Course</h3>
+    <mat-form-field>
+      <input matInput placeholder="Course Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Major Discipline Area: ">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </div>
+
+  <div class="form-container placement-duration-form">
+    <h3 class="form-title">Placement Duration</h3>
+    <!-- [Duration must allow for a minimum of 100 hours to be completed] -->
+    <mat-form-field>
+      <input matInput placeholder="Start Date: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="End Date: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container placement-location-form">
+    <h3 class="form-title">Placement Location</h3>
+    <mat-form-field>
+      <input matInput placeholder="If different to host institution’s address: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container host-supervisor-form">
+    <h3 class="form-title">Host Supervisor</h3>
+    <mat-form-field>
+      <input matInput placeholder="Host Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Telephone: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container project-outline-form">
+    <h3 class="form-title">Project Outline</h3>
+    <mat-form-field>
+      <input matInput placeholder="Project Name: ">
+      <mat-hint>If any</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Background: ">
+      <mat-hint>information about the organisation, business and/or industry</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Skills and experience desired: ">
+      <mat-hint>e.g. organisational skills, marketing</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Student Level Undergraduate (2nd year onwards), Postgraduate students, or both: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Placement / project details: ">
+      <mat-hint> e.g., key tasks, description of the position, responsibilities etc</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Deliverables: ">
+      <mat-hint>If applicable</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Learning outcomes: ">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="generateDocument()">Download Document</button>
+</ng-template>
+
+<ng-template #bigScreen>
+  <h2 class="main-title">Student Placement Arrangement</h2>
+  <div class="form-container host-intitution-form">
+    <h3 class="form-title">Host Institution</h3>
+    <mat-form-field>
+      <input matInput placeholder="Institution Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Address: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="ABN: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container student-form">
+    <h3 class="form-title">Student</h3>
+    <mat-form-field>
+      <input matInput placeholder="Student Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Student ID: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Telephone: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container course-form">
+    <h3 class="form-title">Course</h3>
+    <mat-form-field>
+      <input matInput placeholder="Course Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Major Discipline Area: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container placement-duration-form">
+    <h3 class="form-title">Placement Duration</h3>
+    <!-- [Duration must allow for a minimum of 100 hours to be completed] -->
+    <mat-form-field>
+      <input matInput placeholder="Start Date: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="End Date: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container placement-location-form">
+    <h3 class="form-title">Placement Location</h3>
+    <mat-form-field>
+      <input matInput placeholder="If different to host institution’s address: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container host-supervisor-form">
+    <h3 class="form-title">Host Supervisor</h3>
+    <mat-form-field>
+      <input matInput placeholder="Host Name: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Title: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Telephone: ">
+    </mat-form-field>
+  </div>
+
+  <div class="form-container project-outline-form">
+    <h3 class="form-title">Project Outline</h3>
+    <mat-form-field>
+      <input matInput placeholder="Project Name: ">
+      <mat-hint>If any</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Background: ">
+      <mat-hint>information about the organisation, business and/or industry</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Skills and experience desired: ">
+      <mat-hint>e.g. organisational skills, marketing</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Student Level Undergraduate (2nd year onwards), Postgraduate students, or both: ">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Placement / project details: ">
+      <mat-hint> e.g., key tasks, description of the position, responsibilities etc</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Deliverables: ">
+      <mat-hint>If applicable</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Learning outcomes: ">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="generateDocument()">Download Document</button>
+</ng-template>
