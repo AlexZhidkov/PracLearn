@@ -7,6 +7,7 @@ import * as JSZipUtils from 'jszip-utils';
 import * as JSZip from 'jszip';
 import * as docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -20,11 +21,17 @@ export class SelfSourcedProjectComponent implements OnInit {
   eoiDoc: AngularFirestoreDocument<any>;
   eoi: Observable<any>;
 
-  isLoading: boolean;
+  isLoading = true;
+
+  hostInstitutionFormGroup: FormGroup;
+  studentFormGroup: FormGroup;
+  courseFormGroup: FormGroup;
+  placementFormGroup: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private afs: AngularFirestore,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -56,7 +63,31 @@ export class SelfSourcedProjectComponent implements OnInit {
   }
 
   bindFormControls() {
-    // ToDo: implement similar to others
+    this.eoi = this.eoiDoc.valueChanges();
+    this.eoi.subscribe(r => {
+      this.isLoading = false;
+      this.hostInstitutionFormGroup = this.formBuilder.group({
+        hostNameCtrl: [r.hostName],
+        hostAddressCtrl: [r.hostAddress],
+        hostAbnCtrl: [r.hostAbn],
+      });
+      this.studentFormGroup = this.formBuilder.group({
+        studentNameCtrl: [r.studentName],
+        studentIdCtrl: [r.studentId],
+        studentPhoneCtrl: [r.studentPhone],
+        studentEmailCtrl: [r.studentEmail],
+      });
+      this.courseFormGroup = this.formBuilder.group({
+        courseNameCtrl: [r.courseName],
+        courseTitleCtrl: [r.courseTitle],
+        majorDisciplineAreaCtrl: [r.majorDisciplineArea],
+      });
+      this.placementFormGroup = this.formBuilder.group({
+        startDateCtrl: [r.startDate],
+        endDateCtrl: [r.endDate],
+        locationCtrl: [r.location],
+      });
+    });
   }
 
   loadFile(url, callback) {
@@ -101,4 +132,3 @@ export class SelfSourcedProjectComponent implements OnInit {
     });
   }
 }
-
