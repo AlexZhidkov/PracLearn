@@ -19,6 +19,18 @@
             <input matInput placeholder="ABN" formControlName="hostAbnCtrl"
               (ngModelChange)="eoiDoc.update({hostAbn: $event})">
           </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Supervisor Title" formControlName="supervisorTitleCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorTitle: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Supervisor Phone" formControlName="supervisorPhoneCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorPhone: $event})">
+          </mat-form-field>
         </div>
         <div>
           <button mat-button matStepperNext>Next</button>
@@ -32,6 +44,10 @@
           <mat-form-field>
             <input matInput placeholder="Student Name" formControlName="studentNameCtrl"
               (ngModelChange)="eoiDoc.update({studentName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Student Title" formControlName="studentTitleCtrl"
+              (ngModelChange)="eoiDoc.update({studentTitle: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Student ID" formControlName="studentIdCtrl"
@@ -59,10 +75,6 @@
           <mat-form-field>
             <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
               (ngModelChange)="eoiDoc.update({courseName: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Title" formControlName="courseTitleCtrl"
-              (ngModelChange)="eoiDoc.update({courseTitle: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
@@ -95,6 +107,51 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="projectOutlineFormGroup">
+      <form [formGroup]="projectOutlineFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Project Outline</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Project Name" formControlName="projectNameCtrl"
+              (ngModelChange)="eoiDoc.update({projectName: $event})">
+            <mat-hint>if any</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Project Background" formControlName="projectBackgroundCtrl"
+              (ngModelChange)="eoiDoc.update({projectBackground: $event})">
+            <mat-hint>information about the organisation, business and/or industry</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Skills And Experience" formControlName="skillsAndExperienceCtrl"
+              (ngModelChange)="eoiDoc.update({location: $skillsAndExperience})">
+            <mat-hint>e.g. organisational skills, marketing</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Student Level" formControlName="studentLevelCtrl"
+              (ngModelChange)="eoiDoc.update({studentLevel: $event})">
+            <mat-hint>Undergraduate (2nd year onwards), Postgraduate students, or both</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Placement/Project Details" formControlName="placementDetailsCtrl"
+              (ngModelChange)="eoiDoc.update({placementDetails: $event})">
+            <mat-hint>e.g., key tasks, description of the position, responsibilities etc</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Deliverables" formControlName="deliverablesCtrl"
+              (ngModelChange)="eoiDoc.update({deliverables: $event})">
+            <mat-hint>If applicable</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Learning Outcomes" formControlName="learningOutcomesCtrl"
+              (ngModelChange)="eoiDoc.update({learningOutcomes: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="submit()">Submit</button>
         </div>
       </form>
     </mat-step>

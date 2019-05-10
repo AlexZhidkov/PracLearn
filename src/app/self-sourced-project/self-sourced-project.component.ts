@@ -27,6 +27,7 @@ export class SelfSourcedProjectComponent implements OnInit {
   studentFormGroup: FormGroup;
   courseFormGroup: FormGroup;
   placementFormGroup: FormGroup;
+  projectOutlineFormGroup: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -70,16 +71,19 @@ export class SelfSourcedProjectComponent implements OnInit {
         hostNameCtrl: [r.hostName],
         hostAddressCtrl: [r.hostAddress],
         hostAbnCtrl: [r.hostAbn],
+        supervisorNameCtrl: [r.supervisorName],
+        supervisorTitleCtrl: [r.supervisorTitle],
+        supervisorPhoneCtrl: [r.supervisorPhone],
       });
       this.studentFormGroup = this.formBuilder.group({
         studentNameCtrl: [r.studentName],
+        studentTitleCtrl: [r.studentTitle],
         studentIdCtrl: [r.studentId],
         studentPhoneCtrl: [r.studentPhone],
         studentEmailCtrl: [r.studentEmail],
       });
       this.courseFormGroup = this.formBuilder.group({
         courseNameCtrl: [r.courseName],
-        courseTitleCtrl: [r.courseTitle],
         majorDisciplineAreaCtrl: [r.majorDisciplineArea],
       });
       this.placementFormGroup = this.formBuilder.group({
@@ -87,7 +91,20 @@ export class SelfSourcedProjectComponent implements OnInit {
         endDateCtrl: [r.endDate],
         locationCtrl: [r.location],
       });
+      this.projectOutlineFormGroup = this.formBuilder.group({
+        projectNameCtrl: [r.projectName],
+        projectBackgroundCtrl: [r.projectBackground],
+        skillsAndExperienceCtrl: [r.skillsAndExperience],
+        studentLevelCtrl: [r.studentLevel],
+        placementDetailsCtrl: [r.placementDetails],
+        deliverablesCtrl: [r.deliverables],
+        learningOutcomesCtrl: [r.learningOutcomes]
+      });
     });
+  }
+
+  submit() {
+
   }
 
   loadFile(url, callback) {
