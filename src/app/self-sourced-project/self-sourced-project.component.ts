@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from '../model/user-profile';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import * as JSZipUtils from 'jszip-utils';
@@ -9,6 +9,9 @@ import * as docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
+import { EventStoreService } from '../services/event-store.service';
+import { UniversityTodoService } from '../services/university-todo.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -31,9 +34,12 @@ export class SelfSourcedProjectComponent implements OnInit {
   projectOutlineFormGroup: FormGroup;
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private afs: AngularFirestore,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private universityTodoService: UniversityTodoService,
+    private eventStoreService: EventStoreService
   ) { }
 
   ngOnInit() {
@@ -128,7 +134,24 @@ export class SelfSourcedProjectComponent implements OnInit {
   }
 
   submit() {
-
+    this.eoiDoc.get()
+      .subscribe(selfSourcedSnapshot => {
+        const selfSourced = selfSourcedSnapshot.data() as SelfSourcedArrangement;
+        this.universityTodoService.setCollection('universities/uwa/todo');
+        this.universityTodoService
+          .add({ title: 'Self Sourced Placement Arrangement request received', selfSourced })
+          .then(() => this.openSnackBar('Thank you for applying'))
+          .catch(() => this.openSnackBar('ERROR: failed to submit application'));
+        this.eventStoreService
+          .add({
+            event: 'Student applied for self-sourced placement',
+            user: {
+              uid: this.user.uid,
+              displayName: this.user.displayName
+            }, eoiBusiness: selfSourced
+          });
+      });
+    this.router.navigateByUrl('student');
   }
 
   loadFile(url, callback) {
@@ -169,6 +192,12 @@ export class SelfSourcedProjectComponent implements OnInit {
 
         saveAs(out, `Student Placement Arrangement - ${data.studentName}.docx`);
       });
+    });
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000,
     });
   }
 }

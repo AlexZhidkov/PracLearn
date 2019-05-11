@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -41,7 +40,6 @@ export class EoiBusinessComponent implements OnInit {
   previouslySubmittedEois: Observable<EoiBusiness[]>;
 
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
     private breakpointObserver: BreakpointObserver,
