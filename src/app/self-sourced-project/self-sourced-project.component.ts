@@ -38,29 +38,30 @@ export class SelfSourcedProjectComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     const selfSourcedUrl = '/users/' + this.user.uid + '/selfSourced';
-    const eoiId = this.route.snapshot.paramMap.get('eoiId');
-    const isNewProject = (eoiId === 'new');
 
-    if (isNewProject) {
-      this.afs.collection<any>(selfSourcedUrl)
-        .add({
-          student: {
-            id: this.user.uid,
-            name: this.user.displayName,
-            email: this.user.email,
-            title: '',
-            studentId: '',
-            phone: '',
-          },
-        })
-        .then(r => {
-          this.eoiDoc = this.afs.doc<any>(selfSourcedUrl + '/' + r.id);
+    this.afs.collection<any>(selfSourcedUrl).ref.limit(1).get()
+      .then((documentSnapshot) => {
+        if (documentSnapshot.empty) {
+          this.afs.collection<any>(selfSourcedUrl)
+            .add({
+              student: {
+                id: this.user.uid,
+                name: this.user.displayName,
+                email: this.user.email,
+                title: '',
+                studentId: '',
+                phone: '',
+              },
+            })
+            .then(r => {
+              this.eoiDoc = this.afs.doc<any>(selfSourcedUrl + '/' + r.id);
+              this.bindFormControls();
+            });
+        } else {
+          this.eoiDoc = this.afs.doc<any>(selfSourcedUrl + '/' + documentSnapshot.docs[0].id);
           this.bindFormControls();
-        });
-    } else {
-      this.eoiDoc = this.afs.doc<any>(selfSourcedUrl + '/' + eoiId);
-      this.bindFormControls();
-    }
+        }
+      });
   }
 
   bindFormControls() {

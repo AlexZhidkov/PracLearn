@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'university', component: UniversityComponent },
   { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'student/self-sourced/:eoiId', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
+  { path: 'student/self-sourced', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
   { path: 'student', component: StudentComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
