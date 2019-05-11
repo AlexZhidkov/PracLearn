@@ -8,6 +8,7 @@ import * as JSZip from 'jszip';
 import * as docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 
 
 @Component({
@@ -39,26 +40,48 @@ export class SelfSourcedProjectComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     const selfSourcedUrl = '/users/' + this.user.uid + '/selfSourced';
 
-    this.afs.collection<any>(selfSourcedUrl).ref.limit(1).get()
+    this.afs.collection<SelfSourcedArrangement>(selfSourcedUrl).ref.limit(1).get()
       .then((documentSnapshot) => {
         if (documentSnapshot.empty) {
-          this.afs.collection<any>(selfSourcedUrl)
+          this.afs.collection<SelfSourcedArrangement>(selfSourcedUrl)
             .add({
-              student: {
-                id: this.user.uid,
-                name: this.user.displayName,
-                email: this.user.email,
-                title: '',
-                studentId: '',
-                phone: '',
-              },
+              userId: this.user.uid,
+              universityName: '',
+              universityAddress: '',
+              universityAbn: '',
+              placementOfficer: '',
+              placementOfficerPhone: '',
+              placementOfficerEmail: '',
+              hostName: '',
+              hostAddress: '',
+              hostAbn: '',
+              supervisorName: '',
+              supervisorTitle: '',
+              supervisorPhone: '',
+              studentName: this.user.displayName,
+              studentTitle: '',
+              studentId: '',
+              studentPhone: '',
+              studentEmail: this.user.email,
+              courseName: '',
+              majorDisciplineArea: '',
+              startDate: '',
+              endDate: '',
+              location: '',
+              projectName: '',
+              projectBackground: '',
+              skillsAndExperience: '',
+              studentLevel: '',
+              placementDetails: '',
+              deliverables: '',
+              learningOutcomes: ''
             })
             .then(r => {
-              this.eoiDoc = this.afs.doc<any>(selfSourcedUrl + '/' + r.id);
+              this.eoiDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl + '/' + r.id);
               this.bindFormControls();
             });
         } else {
-          this.eoiDoc = this.afs.doc<any>(selfSourcedUrl + '/' + documentSnapshot.docs[0].id);
+          this.eoiDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl + '/' + documentSnapshot.docs[0].id);
           this.bindFormControls();
         }
       });
@@ -66,7 +89,7 @@ export class SelfSourcedProjectComponent implements OnInit {
 
   bindFormControls() {
     this.eoi = this.eoiDoc.valueChanges();
-    this.eoi.subscribe(r => {
+    this.eoi.subscribe((r: SelfSourcedArrangement) => {
       this.isLoading = false;
       this.hostInstitutionFormGroup = this.formBuilder.group({
         hostNameCtrl: [r.hostName],
@@ -116,16 +139,15 @@ export class SelfSourcedProjectComponent implements OnInit {
   // https://docxtemplater.com/demo/#simple
   public generateDocument() {
     this.eoi = this.eoiDoc.valueChanges();
-    this.eoi.subscribe(data => {
+    this.eoi.subscribe((data: SelfSourcedArrangement) => {
 
       this.loadFile('./assets/Student Placement Arrangement.docx', (error, content) => {
         if (error) { throw new Error(error); }
 
         const zip = new JSZip(content);
         const doc = new docxtemplater().loadZip(zip);
-        doc.setData({
-          student_name: data.student.name,
-        });
+        console.log(data);
+        doc.setData(data);
         try {
           // render the document (replace all occurrences of {first_name} by John, {last_name} by Doe, ...)
           doc.render();
@@ -145,7 +167,7 @@ export class SelfSourcedProjectComponent implements OnInit {
           mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
 
-        saveAs(out, `Student Placement Arrangement - ${data.student.name}.docx`);
+        saveAs(out, `Student Placement Arrangement - ${data.studentName}.docx`);
       });
     });
   }
