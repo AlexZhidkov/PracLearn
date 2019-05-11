@@ -25,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -52,6 +54,7 @@ import { ReviewStudentEoiComponent } from './review-student-eoi/review-student-e
 import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
+import { SurveyComponent } from './survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,8 @@ import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced
     ReviewStudentEoiComponent,
     EventsViewerComponent,
     HomeComponent,
-    SelfSourcedProjectComponent
+    SelfSourcedProjectComponent,
+    SurveyComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
@@ -105,6 +109,7 @@ import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced
     MatSnackBarModule,
     MatExpansionModule,
     MatButtonToggleModule,
+    MatSliderModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

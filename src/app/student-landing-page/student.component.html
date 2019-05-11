@@ -11,6 +11,9 @@
     <mat-list-item routerLink="/student/self-sourced">
       Self sourced project
     </mat-list-item>
+    <mat-list-item routerLink="/student/survey">
+      Survey
+    </mat-list-item>
   </mat-nav-list>
   <mat-nav-list>
     <mat-list-item *ngFor="let project of projects | async" routerLink="/student/{{project.id}}">

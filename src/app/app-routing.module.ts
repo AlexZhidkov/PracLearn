@@ -10,7 +10,6 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
-import { ProfileStudentComponent } from './profile-student/profile-student.component';
 import { LoginComponent } from './login/login.component';
 import { UniversityComponent } from './university/university.component';
 import { UniversityTodoComponent } from './university-todo/university-todo.component';
@@ -18,12 +17,14 @@ import { ReviewStudentEoiComponent } from './review-student-eoi/review-student-e
 import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
+import { SurveyComponent } from './survey/survey.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
   { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/self-sourced', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
+  { path: 'student/survey', component: SurveyComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
