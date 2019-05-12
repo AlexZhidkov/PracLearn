@@ -169,7 +169,7 @@ export class SelfSourcedProjectComponent implements OnInit {
 
         const zip = new JSZip(content);
         const doc = new docxtemplater().loadZip(zip);
-        console.log(data);
+        doc.setOptions({ linebreaks: true });
         doc.setData(data);
         try {
           // render the document (replace all occurrences of {first_name} by John, {last_name} by Doe, ...)

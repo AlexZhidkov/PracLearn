@@ -33,7 +33,7 @@
           </mat-form-field>
         </div>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button type="button" mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -63,8 +63,8 @@
           </mat-form-field>
         </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -97,7 +97,7 @@
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="End Date" formControlName="endDateCtrl"
-              (ngModelChange)="eoiDoc.update({endDateCtrl: $event})">
+              (ngModelChange)="eoiDoc.update({endDate: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Location" formControlName="locationCtrl"
@@ -120,13 +120,13 @@
             <mat-hint>if any</mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Project Background" formControlName="projectBackgroundCtrl"
-              (ngModelChange)="eoiDoc.update({projectBackground: $event})">
+            <textarea matInput placeholder="Business Background" rows="5" formControlName="projectBackgroundCtrl"
+              (ngModelChange)="eoiDoc.update({projectBackground: $event})"></textarea>
             <mat-hint>information about the organisation, business and/or industry</mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Skills And Experience" formControlName="skillsAndExperienceCtrl"
-              (ngModelChange)="eoiDoc.update({location: $skillsAndExperience})">
+            <textarea matInput placeholder="Skills And Experience" rows="5" formControlName="skillsAndExperienceCtrl"
+              (ngModelChange)="eoiDoc.update({skillsAndExperience: $event})"></textarea>
             <mat-hint>e.g. organisational skills, marketing</mat-hint>
           </mat-form-field>
           <mat-form-field>
@@ -135,24 +135,24 @@
             <mat-hint>Undergraduate (2nd year onwards), Postgraduate students, or both</mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Placement/Project Details" formControlName="placementDetailsCtrl"
-              (ngModelChange)="eoiDoc.update({placementDetails: $event})">
+            <textarea matInput placeholder="Placement/Project Details" rows="5" formControlName="placementDetailsCtrl"
+              (ngModelChange)="eoiDoc.update({placementDetails: $event})"></textarea>
             <mat-hint>e.g., key tasks, description of the position, responsibilities etc</mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Deliverables" formControlName="deliverablesCtrl"
-              (ngModelChange)="eoiDoc.update({deliverables: $event})">
+            <textarea matInput placeholder="Deliverables" rows="5" formControlName="deliverablesCtrl"
+              (ngModelChange)="eoiDoc.update({deliverables: $event})"></textarea>
             <mat-hint>If applicable</mat-hint>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Learning Outcomes" formControlName="learningOutcomesCtrl"
-              (ngModelChange)="eoiDoc.update({learningOutcomes: $event})">
+            <textarea matInput placeholder="Learning Outcomes" rows="5" formControlName="learningOutcomesCtrl"
+              (ngModelChange)="eoiDoc.update({learningOutcomes: $event})"></textarea>
           </mat-form-field>
         </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="generateDocument()">Download Document</button>
-          <button mat-button (click)="submit()">Submit</button>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button (click)="generateDocument()">Download Document</button>
+          <button type="button" mat-button (click)="submit()">Submit</button>
         </div>
       </form>
     </mat-step>
