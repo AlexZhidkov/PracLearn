@@ -16,11 +16,11 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-list>
+  <mat-nav-list>
     <mat-list-item *ngFor="let projectGroup of projectGroups | async" routerLink="/business/{{projectGroup.id}}">
       {{ projectGroup.title }}
     </mat-list-item>
-  </mat-list>
+  </mat-nav-list>
   <button mat-fab>
     <mat-icon aria-label="Add" (click)="addNewProjectGroup()">add</mat-icon>
   </button>

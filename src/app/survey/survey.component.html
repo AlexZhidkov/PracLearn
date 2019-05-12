@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Survey</mat-card-title>
+    <mat-card-subtitle>For each item identified below, select the option that best fits your judgement
+    </mat-card-subtitle>
+    <mat-card-subtitle>0 = Not Applicable // 1 = Strongly Disagree // 2 = Disagree // 3 = Neutral // 4 = Agree // 5 =
+      Strongly Agree</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <section class="form-container" *ngFor="let key of objectKeys(surveyTemplate)">

@@ -28,10 +28,14 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit() {
     this.surveyTemplate = {
-      'First Question': 0,
-      'Second Question': 0,
-      Another: 0,
-      'Last One': 0
+      'I was happy with the supervision I received from my project supervisor': 0,
+      'I was happy with the support I received from my colleagues': 0,
+      'I was happy with the quality of my work placement': 0,
+      'I have developed new skills as a result of the placement': 0,
+      'I have developed existing skills as a result of the placement': 0,
+      'I am more confident that my skills are of value and use at the workplace': 0,
+      'I have a clearer sense of the direction I would like to go professionally': 0,
+      'I would recommend the placement to the fellow student': 0
     };
 
     this.user = JSON.parse(localStorage.getItem('user'));
