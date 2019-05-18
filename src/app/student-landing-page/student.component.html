@@ -1,6 +1,30 @@
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar>
+      <mat-icon>help</mat-icon>
+    </div>
+    <mat-card-title>Title here</mat-card-title>
+    <mat-card-subtitle>Some description here</mat-card-subtitle>
+  </mat-card-header>
+  <mat-list>
+    <mat-list-item>
+      <mat-icon>clear</mat-icon>
+      Previous project One
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon>done</mat-icon>
+      Previous project Two
+    </mat-list-item>
+  </mat-list>
+  <mat-card-actions>
+    <button mat-raised-button routerLink="/student/self-sourced">Setup self-sourced project</button>
+    <button mat-raised-button routerLink="/student/survey">Give feedback</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
       <mat-icon>build</mat-icon>
     </div>
     <mat-card-title>Projects</mat-card-title>
@@ -8,19 +32,8 @@
   </mat-card-header>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <mat-nav-list>
-    <mat-list-item routerLink="/student/self-sourced">
-      Self sourced project
-    </mat-list-item>
-    <mat-list-item routerLink="/student/survey">
-      Survey
-    </mat-list-item>
-  </mat-nav-list>
-  <mat-nav-list>
     <mat-list-item *ngFor="let project of projects | async" routerLink="/student/{{project.id}}">
       {{ project.title }}
     </mat-list-item>
   </mat-nav-list>
-  <button mat-fab>
-    <mat-icon aria-label="Add" (click)="addNewProject()">add</mat-icon>
-  </button>
 </mat-card>
