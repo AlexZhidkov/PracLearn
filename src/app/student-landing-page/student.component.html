@@ -1,39 +1,59 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon>help</mat-icon>
-    </div>
-    <mat-card-title>Title here</mat-card-title>
-    <mat-card-subtitle>Some description here</mat-card-subtitle>
-  </mat-card-header>
-  <mat-list>
-    <mat-list-item>
-      <mat-icon>clear</mat-icon>
-      Previous project One
-    </mat-list-item>
-    <mat-list-item>
-      <mat-icon>done</mat-icon>
-      Previous project Two
-    </mat-list-item>
-  </mat-list>
-  <mat-card-actions>
-    <button mat-raised-button routerLink="/student/self-sourced">Setup self-sourced project</button>
-    <button mat-raised-button routerLink="/student/survey">Give feedback</button>
-  </mat-card-actions>
-</mat-card>
-
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon>build</mat-icon>
-    </div>
-    <mat-card-title>Projects</mat-card-title>
-    <mat-card-subtitle>Show your interest in a project</mat-card-subtitle>
-  </mat-card-header>
-  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-  <mat-nav-list>
-    <mat-list-item *ngFor="let project of projects | async" routerLink="/student/{{project.id}}">
-      {{ project.title }}
-    </mat-list-item>
-  </mat-nav-list>
-</mat-card>
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Title here
+      </mat-panel-title>
+      <mat-panel-description>
+        Some description here
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon>clear</mat-icon>
+        Previous project One
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>done</mat-icon>
+        Previous project Two
+      </mat-list-item>
+    </mat-list>
+    <mat-action-row>
+      <button mat-raised-button routerLink="/student/self-sourced">Self-sourced project</button>
+      <button mat-raised-button routerLink="/student/self-sourced">EOI (bespoke)</button>
+      <button mat-raised-button routerLink="/student/survey">Give feedback</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Projects
+      </mat-panel-title>
+      <mat-panel-description>
+        Show your interest in a project
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <mat-form-field>
+      <mat-label>Faculty</mat-label>
+      <mat-select [(ngModel)]="faculty">
+        <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+          {{faculty}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Semester</mat-label>
+      <mat-select [(ngModel)]="semester">
+        <mat-option *ngFor="let semester of semesters" [value]="semester">
+          {{semester}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let project of projects | async" routerLink="/student/{{project.id}}">
+        {{ project.title }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</mat-accordion>

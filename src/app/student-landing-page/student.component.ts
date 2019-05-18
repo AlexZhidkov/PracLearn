@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ProjectService } from '../services/project.service';
 import { Project } from '../model/project';
 import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-student',
@@ -12,11 +13,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class StudentComponent implements OnInit {
   projects: Observable<Project[]>;
+  faculties: string[];
+  semesters: string[];
   isLoading: boolean;
 
   constructor(private router: Router,
               private projectService: ProjectService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private dataService: DataService) {
     this.auth.isStudent = true;
   }
 
@@ -35,6 +39,13 @@ export class StudentComponent implements OnInit {
     this.projects.subscribe(e => {
       this.isLoading = false;
     });
+    this.faculties = this.dataService.getFaculties();
+    this.semesters = [
+      'Semester 1. 25 February - 	24 May',
+      'Semester 2. 29 July - 25 October',
+      'Semester 3. ',
+      'Semester 4. '
+    ];
   }
 
   addNewProject(): void {
