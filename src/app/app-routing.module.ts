@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'student/self-sourced', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
   { path: 'student/survey', component: SurveyComponent },
-  { path: 'student/form', component: StudentProjectWizardComponent },
+  { path: 'student/form/:id', component: StudentProjectWizardComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },

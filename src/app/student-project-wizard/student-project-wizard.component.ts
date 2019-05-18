@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from '../model/user-profile';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -17,9 +17,9 @@ import { MatSnackBar } from '@angular/material';
 export class StudentProjectWizardComponent implements OnInit {
   smallScreen: boolean;
   user: UserProfile;
-  eoiDoc: AngularFirestoreDocument<any>;
-  eoi: Observable<any>;
-
+  projectId: string;
+  private projectDoc: AngularFirestoreDocument<SelfSourcedArrangement>;
+  project: Observable<SelfSourcedArrangement>;
   isLoading = true;
 
   hostInstitutionFormGroup: FormGroup;
@@ -29,6 +29,7 @@ export class StudentProjectWizardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private afs: AngularFirestore,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
@@ -37,91 +38,96 @@ export class StudentProjectWizardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.projectId = this.route.snapshot.paramMap.get('id');
     this.user = JSON.parse(localStorage.getItem('user'));
-    const selfSourcedUrl = '/users/' + this.user.uid + '/selfSourced';
+    let projectUrl = '';
+    switch (this.projectId) {
+      case 'self-sourced':
+        projectUrl = '/selfSourced/' + this.user.uid;
+        break;
+      case 'bespoke':
+        projectUrl = '/bespoke/' + this.user.uid;
+        break;
+      default:
+        projectUrl = `/projectEoi/${this.projectId}-${this.user.uid}`;
+        break;
+    }
 
-    this.afs.collection<SelfSourcedArrangement>(selfSourcedUrl).ref.limit(1).get()
-      .then((documentSnapshot) => {
-        if (documentSnapshot.empty) {
-          this.afs.collection<SelfSourcedArrangement>(selfSourcedUrl)
-            .add({
-              userId: this.user.uid,
-              universityName: '',
-              universityAddress: '',
-              universityAbn: '',
-              placementOfficer: '',
-              placementOfficerPhone: '',
-              placementOfficerEmail: '',
-              hostName: '',
-              hostAddress: '',
-              hostAbn: '',
-              supervisorName: '',
-              supervisorTitle: '',
-              supervisorPhone: '',
-              supervisorEmail: '',
-              studentName: this.user.displayName,
-              studentTitle: '',
-              studentId: '',
-              studentPhone: '',
-              studentEmail: this.user.email,
-              courseName: '',
-              majorDisciplineArea: '',
-              startDate: '',
-              endDate: '',
-              location: '',
-              projectName: '',
-              projectBackground: '',
-              skillsAndExperience: '',
-              studentLevel: '',
-              placementDetails: '',
-              deliverables: '',
-              learningOutcomes: ''
-            })
-            .then(r => {
-              this.eoiDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl + '/' + r.id);
-              this.bindFormControls();
-            });
-        } else {
-          this.eoiDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl + '/' + documentSnapshot.docs[0].id);
-          this.bindFormControls();
-        }
-      });
+    this.projectDoc = this.afs.doc<SelfSourcedArrangement>(projectUrl);
+    this.project = this.projectDoc.valueChanges();
+    this.project.subscribe(r => {
+      if (!r) {
+        r = {
+          userId: this.user.uid,
+          universityName: '',
+          universityAddress: '',
+          universityAbn: '',
+          placementOfficer: '',
+          placementOfficerPhone: '',
+          placementOfficerEmail: '',
+          hostName: '',
+          hostAddress: '',
+          hostAbn: '',
+          supervisorName: '',
+          supervisorTitle: '',
+          supervisorPhone: '',
+          supervisorEmail: '',
+          studentName: this.user.displayName,
+          studentTitle: '',
+          studentId: '',
+          studentPhone: '',
+          studentEmail: this.user.email,
+          courseName: '',
+          majorDisciplineArea: '',
+          startDate: '',
+          endDate: '',
+          location: '',
+          projectName: '',
+          projectBackground: '',
+          skillsAndExperience: '',
+          studentLevel: '',
+          placementDetails: '',
+          deliverables: '',
+          learningOutcomes: ''
+        };
+        this.projectDoc.set(r);
+      }
+      this.bindFormControls(r);
+      this.isLoading = false;
+    });
   }
 
-  bindFormControls() {
-    this.eoi = this.eoiDoc.valueChanges();
-    this.eoi.subscribe((r: SelfSourcedArrangement) => {
-      this.isLoading = false;
-      this.hostInstitutionFormGroup = this.formBuilder.group({
-        hostNameCtrl: [r.hostName],
-        hostAddressCtrl: [r.hostAddress],
-        hostAbnCtrl: [r.hostAbn],
-        supervisorNameCtrl: [r.supervisorName],
-        supervisorTitleCtrl: [r.supervisorTitle],
-        supervisorPhoneCtrl: [r.supervisorPhone],
-        supervisorEmailCtrl: [r.supervisorEmail],
-      });
-      this.studentFormGroup = this.formBuilder.group({
-        studentNameCtrl: [r.studentName],
-        studentTitleCtrl: [r.studentTitle],
-        studentIdCtrl: [r.studentId],
-        studentPhoneCtrl: [r.studentPhone],
-        studentEmailCtrl: [r.studentEmail],
-      });
-      this.courseFormGroup = this.formBuilder.group({
-        courseNameCtrl: [r.courseName],
-        majorDisciplineAreaCtrl: [r.majorDisciplineArea],
-      });
-      this.placementFormGroup = this.formBuilder.group({
-        startDateCtrl: [r.startDate],
-        endDateCtrl: [r.endDate],
-        locationCtrl: [r.location],
-      });
+  bindFormControls(r: SelfSourcedArrangement) {
+    this.isLoading = false;
+    this.hostInstitutionFormGroup = this.formBuilder.group({
+      hostNameCtrl: [r.hostName],
+      hostAddressCtrl: [r.hostAddress],
+      hostAbnCtrl: [r.hostAbn],
+      supervisorNameCtrl: [r.supervisorName],
+      supervisorTitleCtrl: [r.supervisorTitle],
+      supervisorPhoneCtrl: [r.supervisorPhone],
+      supervisorEmailCtrl: [r.supervisorEmail],
+    });
+    this.studentFormGroup = this.formBuilder.group({
+      studentNameCtrl: [r.studentName],
+      studentTitleCtrl: [r.studentTitle],
+      studentIdCtrl: [r.studentId],
+      studentPhoneCtrl: [r.studentPhone],
+      studentEmailCtrl: [r.studentEmail],
+    });
+    this.courseFormGroup = this.formBuilder.group({
+      courseNameCtrl: [r.courseName],
+      majorDisciplineAreaCtrl: [r.majorDisciplineArea],
+    });
+    this.placementFormGroup = this.formBuilder.group({
+      startDateCtrl: [r.startDate],
+      endDateCtrl: [r.endDate],
+      locationCtrl: [r.location],
     });
   }
 
   sendToBusiness() {
-    this.eoiDoc.get()
+    this.projectDoc.get()
       .subscribe(selfSourcedSnapshot => {
         const selfSourced = selfSourcedSnapshot.data() as SelfSourcedArrangement;
         this.universityTodoService.setCollection('universities/uwa/todo');

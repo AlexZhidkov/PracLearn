@@ -11,6 +11,18 @@ service cloud.firestore {
       allow read: if true;      
       allow write: if request.auth.uid != null;
     }
+		match /selfSourced/{document=**} {
+      allow read: if request.auth.uid != null;   
+      allow write: if request.auth.uid != null;
+    }
+		match /bespoke/{document=**} {
+      allow read: if request.auth.uid != null;   
+      allow write: if request.auth.uid != null;
+    }
+		match /projectEoi/{document=**} {
+      allow read: if request.auth.uid != null;   
+      allow write: if request.auth.uid != null;
+    }
     match /universities/{document=**} {
       allow read, write: if request.auth.uid != null;
     }
