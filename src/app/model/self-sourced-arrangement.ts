@@ -14,6 +14,7 @@ export interface SelfSourcedArrangement extends BaseEntity {
     supervisorName: string;
     supervisorTitle: string;
     supervisorPhone: string;
+    supervisorEmail: string;
     studentName: string;
     studentTitle: string;
     studentId: string;

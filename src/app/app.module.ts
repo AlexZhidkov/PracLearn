@@ -56,6 +56,7 @@ import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
 import { SurveyComponent } from './survey/survey.component';
+import { StudentProjectWizardComponent } from './student-project-wizard/student-project-wizard.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { SurveyComponent } from './survey/survey.component';
     EventsViewerComponent,
     HomeComponent,
     SelfSourcedProjectComponent,
-    SurveyComponent
+    SurveyComponent,
+    StudentProjectWizardComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

@@ -1,0 +1,99 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<div *ngIf="hostInstitutionFormGroup">
+  <h2>Student Placement Arrangement</h2>
+  <mat-vertical-stepper linear #stepper>
+    <mat-step [stepControl]="studentFormGroup">
+      <form [formGroup]="studentFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Student</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Student Name" formControlName="studentNameCtrl"
+              (ngModelChange)="eoiDoc.update({studentName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Student Title" formControlName="studentTitleCtrl"
+              (ngModelChange)="eoiDoc.update({studentTitle: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Student ID" formControlName="studentIdCtrl"
+              (ngModelChange)="eoiDoc.update({studentId: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Telephone" formControlName="studentPhoneCtrl"
+              (ngModelChange)="eoiDoc.update({studentPhone: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="studentEmailCtrl"
+              (ngModelChange)="eoiDoc.update({studentEmail: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="courseFormGroup">
+      <form [formGroup]="courseFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Course</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
+              (ngModelChange)="eoiDoc.update({courseName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
+              (ngModelChange)="eoiDoc.update({majorDisciplineArea: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="placementFormGroup">
+      <form [formGroup]="placementFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Dates</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Start Date" formControlName="startDateCtrl"
+              (ngModelChange)="eoiDoc.update({startDate: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="End Date" formControlName="endDateCtrl"
+              (ngModelChange)="eoiDoc.update({endDate: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="hostInstitutionFormGroup">
+      <form [formGroup]="hostInstitutionFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Host</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Company Name" formControlName="hostNameCtrl"
+              (ngModelChange)="eoiDoc.update({hostName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
+              (ngModelChange)="eoiDoc.update({supervisorEmail: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button (click)="sendToBusiness()">Send to Business</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
