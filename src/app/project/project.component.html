@@ -3,6 +3,9 @@
     <mat-card-title>
       <markdown [data]="(project | async)?.title"></markdown>
     </mat-card-title>
+    <mat-card-subtitle>
+      <markdown [data]="(project | async)?.subtitle"></markdown>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <markdown [data]="(project | async)?.description"></markdown>
