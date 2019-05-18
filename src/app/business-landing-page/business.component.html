@@ -1,27 +1,79 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon>folder_open</mat-icon>
-    </div>
-    <mat-card-title>Projects</mat-card-title>
-    <mat-card-subtitle>Choose one of the available projects</mat-card-subtitle>
-  </mat-card-header>
-  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-  <mat-form-field>
-    <mat-label>Area of interest</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let area of areas" [value]="area">
-        {{area}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Title here
+      </mat-panel-title>
+      <mat-panel-description>
+        Some description here
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon>build</mat-icon>
+        Finish self-sourced project here
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>done</mat-icon>
+        Previous project One
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-action-row>
+      <button mat-raised-button routerLink="/student/survey">Give feedback</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Applicants
+      </mat-panel-title>
+      <mat-panel-description>
+        Do something about them
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-action-list>
+      <button mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>done</mat-icon>
+        Chris Evans
+      </button>
+      <button mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>done</mat-icon>
+        Margarita Betancor
+      </button>
+      <button mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>clear</mat-icon>
+        Alex Zhidkov
+      </button>
+    </mat-action-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Projects
+      </mat-panel-title>
+      <mat-panel-description>
+        Choose one of the available projects
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <mat-form-field>
+      <mat-label>Area of interest</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let area of areas" [value]="area">
+          {{area}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let projectGroup of projectGroups | async" routerLink="/business/{{projectGroup.id}}">
+        {{ projectGroup.title }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</mat-accordion>
 
-  <mat-nav-list>
-    <mat-list-item *ngFor="let projectGroup of projectGroups | async" routerLink="/business/{{projectGroup.id}}">
-      {{ projectGroup.title }}
-    </mat-list-item>
-  </mat-nav-list>
-  <button mat-fab>
-    <mat-icon aria-label="Add" (click)="addNewProjectGroup()">add</mat-icon>
-  </button>
-</mat-card>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Invite for interview</button>
+  <button mat-menu-item>Shortlist</button>
+  <button mat-menu-item>Reject</button>
+</mat-menu>

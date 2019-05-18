@@ -26,6 +26,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatMenuModule } from '@angular/material/menu';
 import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -110,6 +111,7 @@ import { SurveyComponent } from './survey/survey.component';
     MatExpansionModule,
     MatButtonToggleModule,
     MatSliderModule,
+    MatMenuModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
