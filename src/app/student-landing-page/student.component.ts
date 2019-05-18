@@ -14,7 +14,9 @@ import { DataService } from '../services/data.service';
 export class StudentComponent implements OnInit {
   projects: Observable<Project[]>;
   faculties: string[];
+  faculty: string;
   semesters: string[];
+  semester: string;
   isLoading: boolean;
 
   constructor(private router: Router,
