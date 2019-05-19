@@ -9,6 +9,7 @@ export interface EoiBusiness extends BaseEntity {
     skills: string;
     clearance: string;
     name: string;
+    abn: string;
     website: string;
     primaryContact: string;
     address: string;

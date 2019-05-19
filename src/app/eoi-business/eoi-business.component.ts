@@ -90,6 +90,7 @@ export class EoiBusinessComponent implements OnInit {
           skills: '',
           clearance: '',
           name: '',
+          abn: '',
           website: '',
           primaryContact: '',
           address: '',
@@ -123,6 +124,7 @@ export class EoiBusinessComponent implements OnInit {
       });
       this.employerFormGroup = this.formBuilder.group({
         nameCtrl: [r.name, Validators.required],
+        abnCtrl: [r.abn],
         websiteCtrl: [r.website],
         primaryContactCtrl: [r.primaryContact, Validators.required],
         addressCtrl: [r.address],

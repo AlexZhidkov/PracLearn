@@ -24,7 +24,7 @@
           <button mat-button (click)="CloneFromEoi(eoiSelector.value)">Clone</button>
 
           <mat-form-field>
-            <input matInput placeholder="Job Title" formControlName="jobTitleCtrl" required
+            <input matInput placeholder="Project Title" formControlName="jobTitleCtrl" required
               (ngModelChange)="eoiDoc.update({title: $event})">
           </mat-form-field>
           <mat-form-field>
@@ -58,6 +58,9 @@
               (ngModelChange)="eoiDoc.update({name: $event})">
           </mat-form-field>
           <mat-form-field>
+            <input matInput placeholder="ABN" formControlName="abnCtrl" (ngModelChange)="eoiDoc.update({abn: $event})">
+          </mat-form-field>
+          <mat-form-field>
             <input matInput placeholder="Website" formControlName="websiteCtrl"
               (ngModelChange)="eoiDoc.update({website: $event})">
           </mat-form-field>
@@ -74,7 +77,8 @@
               formControlName="aboutCtrl" required (ngModelChange)="eoiDoc.update({about: $event})">
             </textarea>
             <mat-hint>
-              Please provide some brief background about the organization and its core business.
+              Please provide some brief background about the organization and its core business. It will help you get
+              better candidates.
             </mat-hint>
           </mat-form-field>
         </div>
@@ -165,7 +169,7 @@
           <button mat-button (click)="CloneFromEoi(eoiSelector.value)">Clone</button>
 
           <mat-form-field>
-            <input matInput placeholder="Job Title" formControlName="jobTitleCtrl" required
+            <input matInput placeholder="Project Title" formControlName="jobTitleCtrl" required
               (ngModelChange)="eoiDoc.update({title: $event})">
           </mat-form-field>
           <mat-form-field>
@@ -199,6 +203,9 @@
               (ngModelChange)="eoiDoc.update({name: $event})">
           </mat-form-field>
           <mat-form-field>
+            <input matInput placeholder="ABN" formControlName="abnCtrl" (ngModelChange)="eoiDoc.update({abn: $event})">
+          </mat-form-field>
+          <mat-form-field>
             <input matInput placeholder="Website" formControlName="websiteCtrl"
               (ngModelChange)="eoiDoc.update({website: $event})">
           </mat-form-field>
@@ -215,7 +222,8 @@
               formControlName="aboutCtrl" required (ngModelChange)="eoiDoc.update({about: $event})">
           </textarea>
             <mat-hint>
-              Please provide some brief background about the organization and its core business.
+              Please provide some brief background about the organization and its core business. It will help you get
+              better candidates.
             </mat-hint>
           </mat-form-field>
         </div>
