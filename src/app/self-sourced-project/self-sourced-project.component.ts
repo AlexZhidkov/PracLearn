@@ -11,8 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
-import { MatSnackBar } from '@angular/material';
-
+import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-self-sourced-project',
@@ -72,8 +71,8 @@ export class SelfSourcedProjectComponent implements OnInit {
               studentEmail: this.user.email,
               courseName: '',
               majorDisciplineArea: '',
-              startDate: '',
-              endDate: '',
+              startDate: new Date(),
+              endDate: new Date(),
               location: '',
               projectName: '',
               projectBackground: '',

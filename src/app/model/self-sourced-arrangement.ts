@@ -22,8 +22,8 @@ export interface SelfSourcedArrangement extends BaseEntity {
     studentEmail: string;
     courseName: string;
     majorDisciplineArea: string;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
     location: string;
     projectName: string;
     projectBackground: string;

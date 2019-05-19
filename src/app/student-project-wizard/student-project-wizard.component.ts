@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
-import { MatSnackBar } from '@angular/material';
+import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-student-project-wizard',
@@ -79,8 +79,8 @@ export class StudentProjectWizardComponent implements OnInit {
           studentEmail: this.user.email,
           courseName: '',
           majorDisciplineArea: '',
-          startDate: '',
-          endDate: '',
+          startDate: new Date(),
+          endDate: new Date(),
           location: '',
           projectName: '',
           projectBackground: '',
@@ -145,6 +145,18 @@ export class StudentProjectWizardComponent implements OnInit {
           });
       });
     this.router.navigateByUrl('student');
+  }
+
+  dateChanged(type: string, event: MatDatepickerInputEvent<Date>): void {
+    const date = new Date();
+    date.setDate(event.value.getDate());
+    date.setMonth(event.value.getMonth());
+    date.setFullYear(event.value.getFullYear());
+    if (type === 'start') {
+      this.projectDoc.update({ startDate: date });
+    } else {
+      this.projectDoc.update({ endDate: date });
+    }
   }
 
   openSnackBar(message: string) {

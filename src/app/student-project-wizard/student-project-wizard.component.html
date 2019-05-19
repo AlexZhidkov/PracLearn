@@ -1,8 +1,50 @@
 <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
 <div *ngIf="hostInstitutionFormGroup">
-  <h2>Student Placement Arrangement</h2>
+  <h2>Expression of Interest</h2>
   <mat-vertical-stepper linear #stepper>
+    <mat-step [stepControl]="courseFormGroup">
+      <form [formGroup]="courseFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Course</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
+              (ngModelChange)="projectDoc.update({courseName: $event})">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
+              (ngModelChange)="projectDoc.update({majorDisciplineArea: $event})">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="placementFormGroup">
+      <form [formGroup]="placementFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Dates</ng-template>
+          <mat-form-field>
+            <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date"
+              (dateChange)="dateChanged('start', $event)">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="endDatePicker" placeholder="End Date"
+              (ngModelChange)="projectDoc.update({endDate: $event})">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
     <mat-step [stepControl]="studentFormGroup">
       <form [formGroup]="studentFormGroup">
         <div class="form-container">
@@ -34,44 +76,6 @@
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="courseFormGroup">
-      <form [formGroup]="courseFormGroup">
-        <div class="form-container">
-          <ng-template matStepLabel>Course</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
-              (ngModelChange)="projectDoc.update({courseName: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
-              (ngModelChange)="projectDoc.update({majorDisciplineArea: $event})">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="placementFormGroup">
-      <form [formGroup]="placementFormGroup">
-        <div class="form-container">
-          <ng-template matStepLabel>Dates</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="Start Date" formControlName="startDateCtrl"
-              (ngModelChange)="projectDoc.update({startDate: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="End Date" formControlName="endDateCtrl"
-              (ngModelChange)="projectDoc.update({endDate: $event})">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
     <mat-step [stepControl]="hostInstitutionFormGroup">
       <form [formGroup]="hostInstitutionFormGroup">
         <div class="form-container">
@@ -88,6 +92,10 @@
             <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
               (ngModelChange)="projectDoc.update({supervisorEmail: $event})">
           </mat-form-field>
+          <mat-checkbox>I understand that I need to check my emails regularly, because the Experlio or the Practicum
+            Coordinator may send me project offerings.</mat-checkbox>
+          <mat-checkbox>I understand that by completing this form a project is not guaranteed. I am however expressing
+            my interest to be considered for a project.</mat-checkbox>
         </div>
         <div>
           <button type="button" mat-button matStepperPrevious>Back</button>
