@@ -15,4 +15,8 @@ export class DataService {
       'Human Resources'
     ];
   }
+
+  getTimestamp(d: Date): number {
+    return d.getTime();
+  }
 }

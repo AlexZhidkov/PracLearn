@@ -6,6 +6,7 @@ import { UniversityTodoService } from '../services/university-todo.service';
 import { EventStoreService } from '../services/event-store.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-survey',
@@ -23,6 +24,7 @@ export class SurveyComponent implements OnInit {
     private router: Router,
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
+    private dataService: DataService,
     private universityTodoService: UniversityTodoService,
     private eventStoreService: EventStoreService) { }
 
@@ -69,7 +71,10 @@ export class SurveyComponent implements OnInit {
         const survey = surveySnapshot.data();
         this.universityTodoService.setCollection('universities/uwa/todo');
         this.universityTodoService
-          .add({ title: 'Survey submitted by a student', survey })
+          .add({
+            created: this.dataService.getTimestamp(new Date()),
+            title: 'Survey submitted by a student', survey
+          })
           .then(() => this.openSnackBar('Thank you for submitting'))
           .catch(() => this.openSnackBar('ERROR: failed to submit'));
         this.eventStoreService

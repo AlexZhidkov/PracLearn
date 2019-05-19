@@ -10,6 +10,7 @@ import { EoiBusinessService } from '../services/eoi-business.service';
 import { UserProfile } from '../model/user-profile';
 import { UniversityTodoService } from '../services/university-todo.service';
 import { EventStoreService } from '../services/event-store.service';
+import { DataService } from '../services/data.service';
 
 export interface Semester {
   number: number;
@@ -46,6 +47,7 @@ export class EoiBusinessComponent implements OnInit {
     private formBuilder: FormBuilder,
     private afs: AngularFirestore,
     private snackBar: MatSnackBar,
+    private dataService: DataService,
     private eoiBusinessService: EoiBusinessService,
     private universityTodoService: UniversityTodoService,
     private eventStoreService: EventStoreService
@@ -149,7 +151,10 @@ export class EoiBusinessComponent implements OnInit {
         const eoiBusiness = eoiBusinessSnapshot.data() as EoiBusiness;
         this.universityTodoService.setCollection('universities/uwa/todo');
         this.universityTodoService
-          .add({ title: 'Placement request received', eoiBusiness })
+          .add({
+            created: this.dataService.getTimestamp(new Date()),
+            title: 'Placement request received', eoiBusiness
+          })
           .then(() => this.openSnackBar('Thank you for applying to your project'))
           .catch(() => this.openSnackBar('ERROR: failed to submit application'));
         this.eventStoreService

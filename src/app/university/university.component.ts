@@ -22,4 +22,9 @@ export class UniversityComponent implements OnInit {
     });
   }
 
+  timestampToString(ts: number): string {
+    if (!ts) { return ''; }
+    const d = new Date(ts);
+    return d.toLocaleString();
+  }
 }

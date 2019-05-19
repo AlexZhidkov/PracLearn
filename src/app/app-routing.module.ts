@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'university', component: UniversityComponent },
   { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'student/self-sourced', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
+  { path: 'project/self-sourced', component: SelfSourcedProjectComponent }, // canActivate: [AuthService] },
   { path: 'student/survey', component: SurveyComponent },
   { path: 'student/form/:id', component: StudentProjectWizardComponent },
   { path: 'student', component: StudentComponent },

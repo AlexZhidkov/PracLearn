@@ -8,6 +8,7 @@ import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-student-project-wizard',
@@ -33,6 +34,7 @@ export class StudentProjectWizardComponent implements OnInit {
     private afs: AngularFirestore,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
+    private dataService: DataService,
     private universityTodoService: UniversityTodoService,
     private eventStoreService: EventStoreService
   ) { }
@@ -98,7 +100,6 @@ export class StudentProjectWizardComponent implements OnInit {
   }
 
   bindFormControls(r: SelfSourcedArrangement) {
-    this.isLoading = false;
     this.hostInstitutionFormGroup = this.formBuilder.group({
       hostNameCtrl: [r.hostName],
       hostAddressCtrl: [r.hostAddress],
@@ -132,7 +133,10 @@ export class StudentProjectWizardComponent implements OnInit {
         const selfSourced = selfSourcedSnapshot.data() as SelfSourcedArrangement;
         this.universityTodoService.setCollection('universities/uwa/todo');
         this.universityTodoService
-          .add({ title: 'Student sent Self Sourced Placement Arrangement to Business', selfSourced })
+          .add({
+            created: this.dataService.getTimestamp(new Date()),
+            title: 'Student sent Self Sourced Placement Arrangement to Business', selfSourced
+          })
           .then(() => this.openSnackBar('Thank you for sending'))
           .catch(() => this.openSnackBar('ERROR: failed to send  application'));
         this.eventStoreService
