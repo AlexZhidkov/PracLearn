@@ -59,6 +59,7 @@ import { HomeComponent } from './home/home.component';
 import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
 import { SurveyComponent } from './survey/survey.component';
 import { StudentProjectWizardComponent } from './student-project-wizard/student-project-wizard.component';
+import { ProjectViewComponent } from './project-view/project-view.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { StudentProjectWizardComponent } from './student-project-wizard/student-
     HomeComponent,
     SelfSourcedProjectComponent,
     SurveyComponent,
-    StudentProjectWizardComponent
+    StudentProjectWizardComponent,
+    ProjectViewComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
