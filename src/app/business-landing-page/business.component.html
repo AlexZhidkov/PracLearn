@@ -9,9 +9,9 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-nav-list>
-      <mat-list-item routerLink="/project/self-sourced">
+      <mat-list-item routerLink="/project/self-sourced" *ngIf="selfSourcedProject">
         <mat-icon>build</mat-icon>
-        Finish self-sourced project here
+        Finish self-sourced project for {{selfSourcedProject.studentName}}
       </mat-list-item>
       <mat-list-item>
         <mat-icon>done</mat-icon>
