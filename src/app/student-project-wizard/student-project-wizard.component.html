@@ -92,14 +92,20 @@
             <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
               (ngModelChange)="projectDoc.update({supervisorEmail: $event})">
           </mat-form-field>
-          <mat-checkbox>I understand that I need to check my emails regularly, because the Experlio or the Practicum
-            Coordinator may send me project offerings.</mat-checkbox>
-          <mat-checkbox>I understand that by completing this form a project is not guaranteed. I am however expressing
-            my interest to be considered for a project.</mat-checkbox>
+          <mat-checkbox #check1>
+            I understand that I need to check my emails regularly, because the Experlio or the
+            Practicum Coordinator may send me project offerings.
+          </mat-checkbox>
+          <mat-checkbox #check2>
+            I understand that by completing this form a project is not guaranteed.
+            I am however expressing my interest to be considered for a project.
+          </mat-checkbox>
         </div>
         <div>
           <button type="button" mat-button matStepperPrevious>Back</button>
-          <button type="button" mat-button (click)="sendToBusiness()">Send to Business</button>
+          <button type="button" mat-button [disabled]="!(check1.checked && check2.checked)" (click)="sendToBusiness()">
+            Send to Business
+          </button>
         </div>
       </form>
     </mat-step>
