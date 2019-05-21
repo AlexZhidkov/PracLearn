@@ -8,7 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./project-view.component.scss']
 })
 export class ProjectViewComponent implements OnInit {
-  project: any;
+  p: any;
+
   constructor(
     private route: ActivatedRoute,
     private afs: AngularFirestore
@@ -20,7 +21,9 @@ export class ProjectViewComponent implements OnInit {
     const projectUrl = `/${projectType}/${projectId}`;
     const projectDoc = this.afs.doc<any>(projectUrl);
     const projectObservable = projectDoc.valueChanges();
-    projectObservable.subscribe(project => this.project = project);
+    projectObservable.subscribe(project => {
+      this.p = project;
+    });
   }
 
 }

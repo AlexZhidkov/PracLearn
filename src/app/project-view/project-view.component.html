@@ -1,1 +1,45 @@
-<pre>{{project | json}}</pre>
+<div *ngIf="p">
+  <h2>University</h2>
+  <p>
+    {{p.universityName}} {{p.universityAbn ? 'ABN: ' : ''}} {{p.universityAbn}} {{p.universityAddress}}
+    {{p.placementOfficer}} {{p.placementOfficerPhone}} {{p.placementOfficerEmail}}
+  </p>
+  <h2>Business</h2>
+  <p>
+    {{p.hostName}} {{p.hostAbn ? 'ABN: ' : ''}} {{p.hostAbn}} {{p.hostAddress}}
+  </p>
+  <h3>Supervisor</h3>
+  <p>
+    {{p.supervisorTitle}} {{p.supervisorName}} {{p.supervisorPhone}} {{p.supervisorEmail}}
+  </p>
+  <h2>Student</h2>
+  <p>
+    {{p.studentTitle}} {{p.studentName}} {{p.studentId}} {{p.studentPhone}} {{p.studentEmail}}
+    {{p.courseName}} {{p.majorDisciplineArea}}
+  </p>
+  <h2>Project</h2>
+  <h3>{{p.projectName}}</h3>
+  <p>
+    {{p.startDate}} {{p.endDate}} {{p.location}}
+  </p>
+  <p>
+    {{p.projectBackground}}
+  </p>
+  <p>
+    {{p.skillsAndExperience}}
+  </p>
+  <p>
+    {{p.studentLevel}}
+  </p>
+  <p>
+    {{p.placementDetails}}
+  </p>
+  <p>
+    {{p.deliverables}}
+  </p>
+  <p>
+    {{p.learningOutcomes}}
+  </p>
+</div>
+
+<pre>{{p | json}}</pre>

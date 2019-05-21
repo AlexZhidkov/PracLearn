@@ -5,6 +5,7 @@ import { ProjectService } from '../services/project.service';
 import { Project } from '../model/project';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
+import { UserProfile } from '../model/user-profile';
 
 @Component({
   selector: 'app-student',
@@ -13,6 +14,7 @@ import { DataService } from '../services/data.service';
 })
 export class StudentComponent implements OnInit {
   projects: Observable<Project[]>;
+  user: UserProfile;
   faculties: string[];
   faculty: string;
   semesters: string[];
@@ -20,9 +22,9 @@ export class StudentComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private router: Router,
-              private projectService: ProjectService,
-              private auth: AuthService,
-              private dataService: DataService) {
+    private projectService: ProjectService,
+    private auth: AuthService,
+    private dataService: DataService) {
     this.auth.isStudent = true;
   }
 
@@ -31,6 +33,7 @@ export class StudentComponent implements OnInit {
     if (!localStorage.getItem('userPrimaryRole')) {
       localStorage.setItem('userPrimaryRole', 'student');
     }
+    this.user = JSON.parse(localStorage.getItem('user'));
     const faculty = localStorage.getItem('faculty');
     if (faculty) {
       this.projectService.setCollection('projects', ref => ref.where('faculty', '==', faculty));
