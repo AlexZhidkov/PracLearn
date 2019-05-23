@@ -105,7 +105,7 @@
         </div>
         <div>
           <button type="button" mat-button matStepperPrevious>Back</button>
-          <button type="button" mat-button [disabled]="!(check1.checked && check2.checked)" (click)="sendToBusiness()">
+          <button type="button" mat-button [disabled]="!(check1.checked && check2.checked)" (click)="submit()">
             {{submitButtonText}}
           </button>
         </div>

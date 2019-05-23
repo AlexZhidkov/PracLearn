@@ -135,26 +135,27 @@ export class StudentProjectWizardComponent implements OnInit {
     });
   }
 
-  sendToBusiness() {
+  submit() {
     this.projectDoc.get()
       .subscribe(selfSourcedSnapshot => {
         const selfSourced = selfSourcedSnapshot.data() as SelfSourcedArrangement;
+        const event = {
+          created: this.dataService.getTimestamp(new Date()),
+          title: (this.isBespoke ? 'Student submitted bespoke EOI' : 'Student sent Self Sourced Placement Arrangement to Business'),
+          student: {
+            uid: this.user.uid,
+            displayName: this.user.displayName
+          },
+          project: selfSourced
+        };
+
         this.universityTodoService.setCollection('universities/uwa/todo');
         this.universityTodoService
-          .add({
-            created: this.dataService.getTimestamp(new Date()),
-            title: 'Student sent Self Sourced Placement Arrangement to Business', selfSourced
-          })
+          .add(event)
           .then(() => this.openSnackBar('Thank you for sending'))
           .catch(() => this.openSnackBar('ERROR: failed to send  application'));
         this.eventStoreService
-          .add({
-            event: 'Student sent self-sourced placement to business',
-            user: {
-              uid: this.user.uid,
-              displayName: this.user.displayName
-            }, eoiBusiness: selfSourced
-          });
+          .add(event);
       });
     this.router.navigateByUrl('student');
   }

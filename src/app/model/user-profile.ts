@@ -1,6 +1,6 @@
-export interface UserProfile {
-    uid?: string;
-    displayName: string;
+import { UserShort } from './user-short';
+
+export interface UserProfile extends UserShort {
     fcmToken?: string;
     email: string;
     photoURL: string;
