@@ -79,19 +79,21 @@
     <mat-step [stepControl]="hostInstitutionFormGroup">
       <form [formGroup]="hostInstitutionFormGroup">
         <div class="form-container">
-          <ng-template matStepLabel>Host</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="Company Name" formControlName="hostNameCtrl"
-              (ngModelChange)="projectDoc.update({hostName: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
-              (ngModelChange)="projectDoc.update({supervisorName: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
-              (ngModelChange)="projectDoc.update({supervisorEmail: $event})">
-          </mat-form-field>
+          <ng-template matStepLabel>{{submitStepLabel}}</ng-template>
+          <div *ngIf="isSelfSourced">
+            <mat-form-field>
+              <input matInput placeholder="Company Name" formControlName="hostNameCtrl"
+                (ngModelChange)="projectDoc.update({hostName: $event})">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
+                (ngModelChange)="projectDoc.update({supervisorName: $event})">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
+                (ngModelChange)="projectDoc.update({supervisorEmail: $event})">
+            </mat-form-field>
+          </div>
           <mat-checkbox #check1>
             I understand that I need to check my emails regularly, because the Experlio or the
             Practicum Coordinator may send me project offerings.
@@ -104,7 +106,7 @@
         <div>
           <button type="button" mat-button matStepperPrevious>Back</button>
           <button type="button" mat-button [disabled]="!(check1.checked && check2.checked)" (click)="sendToBusiness()">
-            Send to Business
+            {{submitButtonText}}
           </button>
         </div>
       </form>

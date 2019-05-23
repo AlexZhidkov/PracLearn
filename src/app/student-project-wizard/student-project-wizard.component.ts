@@ -22,6 +22,10 @@ export class StudentProjectWizardComponent implements OnInit {
   private projectDoc: AngularFirestoreDocument<SelfSourcedArrangement>;
   project: Observable<SelfSourcedArrangement>;
   isLoading = true;
+  isSelfSourced = false;
+  isBespoke = false;
+  submitStepLabel = 'Host';
+  submitButtonText = 'Submit';
 
   hostInstitutionFormGroup: FormGroup;
   studentFormGroup: FormGroup;
@@ -45,9 +49,13 @@ export class StudentProjectWizardComponent implements OnInit {
     let projectUrl = '';
     switch (this.projectId) {
       case 'self-sourced':
+        this.isSelfSourced = true;
+        this.submitButtonText = 'Send to Business';
         projectUrl = '/selfSourced/' + this.user.uid;
         break;
       case 'bespoke':
+        this.isBespoke = true;
+        this.submitStepLabel = 'Submit';
         projectUrl = '/bespoke/' + this.user.uid;
         break;
       default:
