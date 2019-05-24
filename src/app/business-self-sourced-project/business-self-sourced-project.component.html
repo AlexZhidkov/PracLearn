@@ -9,27 +9,27 @@
           <ng-template matStepLabel>Host Institution</ng-template>
           <mat-form-field>
             <input matInput placeholder="Institution Name" formControlName="hostNameCtrl"
-              (ngModelChange)="eoiDoc.update({hostName: $event})">
+              (ngModelChange)="projectDoc.update({hostName: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Address" formControlName="hostAddressCtrl"
-              (ngModelChange)="eoiDoc.update({hostAddress: $event})">
+              (ngModelChange)="projectDoc.update({hostAddress: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="ABN" formControlName="hostAbnCtrl"
-              (ngModelChange)="eoiDoc.update({hostAbn: $event})">
+              (ngModelChange)="projectDoc.update({hostAbn: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
-              (ngModelChange)="eoiDoc.update({supervisorName: $event})">
+              (ngModelChange)="projectDoc.update({supervisorName: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Supervisor Title" formControlName="supervisorTitleCtrl"
-              (ngModelChange)="eoiDoc.update({supervisorTitle: $event})">
+              (ngModelChange)="projectDoc.update({supervisorTitle: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Supervisor Phone" formControlName="supervisorPhoneCtrl"
-              (ngModelChange)="eoiDoc.update({supervisorPhone: $event})">
+              (ngModelChange)="projectDoc.update({supervisorPhone: $event})">
           </mat-form-field>
         </div>
         <div>
@@ -43,37 +43,37 @@
           <ng-template matStepLabel>Project Outline</ng-template>
           <mat-form-field>
             <input matInput placeholder="Project Name" formControlName="projectNameCtrl"
-              (ngModelChange)="eoiDoc.update({projectName: $event})">
+              (ngModelChange)="projectDoc.update({projectName: $event})">
             <mat-hint>if any</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <textarea matInput placeholder="Business Background" rows="5" formControlName="projectBackgroundCtrl"
-              (ngModelChange)="eoiDoc.update({projectBackground: $event})"></textarea>
+              (ngModelChange)="projectDoc.update({projectBackground: $event})"></textarea>
             <mat-hint>information about the organisation, business and/or industry</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <textarea matInput placeholder="Skills And Experience" rows="5" formControlName="skillsAndExperienceCtrl"
-              (ngModelChange)="eoiDoc.update({skillsAndExperience: $event})"></textarea>
+              (ngModelChange)="projectDoc.update({skillsAndExperience: $event})"></textarea>
             <mat-hint>e.g. organisational skills, marketing</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Student Level" formControlName="studentLevelCtrl"
-              (ngModelChange)="eoiDoc.update({studentLevel: $event})">
+              (ngModelChange)="projectDoc.update({studentLevel: $event})">
             <mat-hint>Undergraduate (2nd year onwards), Postgraduate students, or both</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <textarea matInput placeholder="Placement/Project Details" rows="5" formControlName="placementDetailsCtrl"
-              (ngModelChange)="eoiDoc.update({placementDetails: $event})"></textarea>
+              (ngModelChange)="projectDoc.update({placementDetails: $event})"></textarea>
             <mat-hint>e.g., key tasks, description of the position, responsibilities etc</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <textarea matInput placeholder="Deliverables" rows="5" formControlName="deliverablesCtrl"
-              (ngModelChange)="eoiDoc.update({deliverables: $event})"></textarea>
+              (ngModelChange)="projectDoc.update({deliverables: $event})"></textarea>
             <mat-hint>If applicable</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <textarea matInput placeholder="Learning Outcomes" rows="5" formControlName="learningOutcomesCtrl"
-              (ngModelChange)="eoiDoc.update({learningOutcomes: $event})"></textarea>
+              (ngModelChange)="projectDoc.update({learningOutcomes: $event})"></textarea>
           </mat-form-field>
         </div>
         <div>
@@ -88,15 +88,15 @@
           <ng-template matStepLabel>Placement</ng-template>
           <mat-form-field>
             <input matInput placeholder="Start Date" formControlName="startDateCtrl"
-              (ngModelChange)="eoiDoc.update({startDate: $event})">
+              (ngModelChange)="projectDoc.update({startDate: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="End Date" formControlName="endDateCtrl"
-              (ngModelChange)="eoiDoc.update({endDate: $event})">
+              (ngModelChange)="projectDoc.update({endDate: $event})">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Location" formControlName="locationCtrl"
-              (ngModelChange)="eoiDoc.update({location: $event})">
+              (ngModelChange)="projectDoc.update({location: $event})">
           </mat-form-field>
         </div>
         <div>
@@ -110,12 +110,12 @@
         <div class="form-container">
           <ng-template matStepLabel>Course</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
-              (ngModelChange)="eoiDoc.update({courseName: $event})">
+            <input matInput placeholder="Course Name" formControlName="courseNameCtrl" readonly
+              (ngModelChange)="projectDoc.update({courseName: $event})">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
-              (ngModelChange)="eoiDoc.update({majorDisciplineArea: $event})">
+            <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl" readonly
+              (ngModelChange)="projectDoc.update({majorDisciplineArea: $event})">
           </mat-form-field>
         </div>
         <div>
@@ -126,27 +126,27 @@
     </mat-step>
     <mat-step [stepControl]="studentFormGroup">
       <form [formGroup]="studentFormGroup">
-        <div class="form-container">
+        <div class="form-container" aria-readonly="true">
           <ng-template matStepLabel>Student</ng-template>
           <mat-form-field>
-            <input matInput placeholder="Student Name" formControlName="studentNameCtrl"
-              (ngModelChange)="eoiDoc.update({studentName: $event})">
+            <input matInput placeholder="Student Name" formControlName="studentNameCtrl" readonly
+              (ngModelChange)="projectDoc.update({studentName: $event})">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Student Title" formControlName="studentTitleCtrl"
-              (ngModelChange)="eoiDoc.update({studentTitle: $event})">
+            <input matInput placeholder="Student Title" formControlName="studentTitleCtrl" readonly
+              (ngModelChange)="projectDoc.update({studentTitle: $event})">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Student ID" formControlName="studentIdCtrl"
-              (ngModelChange)="eoiDoc.update({studentId: $event})">
+            <input matInput placeholder="Student ID" formControlName="studentIdCtrl" readonly
+              (ngModelChange)="projectDoc.update({studentId: $event})">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Telephone" formControlName="studentPhoneCtrl"
-              (ngModelChange)="eoiDoc.update({studentPhone: $event})">
+            <input matInput placeholder="Telephone" formControlName="studentPhoneCtrl" readonly
+              (ngModelChange)="projectDoc.update({studentPhone: $event})">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Email" formControlName="studentEmailCtrl"
-              (ngModelChange)="eoiDoc.update({studentEmail: $event})">
+            <input matInput placeholder="Email" formControlName="studentEmailCtrl" readonly
+              (ngModelChange)="projectDoc.update({studentEmail: $event})">
           </mat-form-field>
         </div>
         <div>
