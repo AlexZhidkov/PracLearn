@@ -1,18 +1,17 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon>list</mat-icon>
-    </div>
-    <mat-card-title>To Do</mat-card-title>
-    <mat-card-subtitle>New items to complete</mat-card-subtitle>
-  </mat-card-header>
-  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-  <mat-nav-list>
-    <mat-list-item *ngFor="let todo of todos | async" routerLink="/university/todo/{{todo.id}}">
-      <h4 mat-line>{{ todo.title }}</h4>
-      <p mat-line> {{timestampToString(todo.created)}} </p>
-      <p mat-line> {{todo.eoiBusiness?.title}} </p>
-      <p mat-line> {{todo.selfSourced?.studentName}} </p>
-    </mat-list-item>
-  </mat-nav-list>
-</mat-card>
+<mat-tab-group>
+  <mat-tab label="To Do">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let todo of todos | async" routerLink="/university/todo/{{todo.id}}">
+        <h4 mat-line>{{ todo.title }}</h4>
+        <p mat-line> {{timestampToString(todo.created)}} </p>
+        <p mat-line> {{todo.eoiBusiness?.title}} </p>
+        <p mat-line> {{todo.selfSourced?.studentName}} </p>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-tab>
+  <mat-tab label="Events Log">
+    <app-events-viewer></app-events-viewer>
+  </mat-tab>
+  <mat-tab label="Something Else"> Nothing here yet... </mat-tab>
+</mat-tab-group>

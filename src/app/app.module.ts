@@ -29,6 +29,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 import 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -123,6 +124,7 @@ import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-pro
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
