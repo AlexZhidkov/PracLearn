@@ -1,9 +1,33 @@
 <mat-tab-group>
   <mat-tab label="To Do">
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <!-- Sorting buttons (pc) -->
+    <div fxLayout="column" fxLayoutAlign=" end" fxHide.lt-md fxShow>
+      <div>
+        <mat-hint>Sort by &nbsp;</mat-hint>
+        <mat-button-toggle-group>
+          <div>
+            <mat-button-toggle-group>
+              <mat-button-toggle (click)="sortToDos('title')">Title</mat-button-toggle>
+              <mat-button-toggle (click)="sortToDos('created')">Time</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <!-- Sorting buttons (mobile) -->
+    <div fxLayout="column" fxLayoutAlign=" end" fxShow.lt-md fxHide>
+      <button mat-icon-button [matMenuTriggerFor]='sortMenu'>
+        <mat-icon>sort_by_alpha</mat-icon>
+      </button>
+      <mat-menu #sortMenu="matMenu">
+        <button mat-menu-item (click)="sortToDos('title')">Title</button>
+        <button mat-menu-item (click)="sortToDos('created')">Time</button>
+      </mat-menu>
+    </div>
     <mat-nav-list>
       <mat-list-item *ngFor="let todo of todos | async" routerLink="/university/todo/{{todo.id}}">
-        <h4 mat-line>{{ todo.title }}</h4>
+        <h4 mat-line>{{todo.title}}</h4>
         <p mat-line> {{timestampToString(todo.created)}} </p>
         <p mat-line> {{todo.eoiBusiness?.title}} </p>
         <p mat-line> {{todo.selfSourced?.studentName}} </p>

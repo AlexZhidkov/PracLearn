@@ -22,6 +22,11 @@ export class UniversityComponent implements OnInit {
     });
   }
 
+  sortToDos(sortBy: string) {
+    this.universityTodoService.setCollection('universities/uwa/todo', ref => ref.orderBy(sortBy));
+    this.todos = this.universityTodoService.list();
+  }
+
   timestampToString(ts: number): string {
     if (!ts) { return ''; }
     const d = new Date(ts);
