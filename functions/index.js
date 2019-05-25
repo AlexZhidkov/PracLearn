@@ -37,48 +37,49 @@ const mailTransport = nodemailer.createTransport({
 // TODO: Change this to your app or company name to customize the email sent.
 const APP_NAME = 'Experlio';
 
+/**
+ * Sends an email for each new document in firestore collection.
+ */
 exports.sendEmail = functions.firestore
     .document('emails/{emailId}')
     .onCreate((snap, context) => {
-        // Get an object representing the document
-        // e.g. {'name': 'Marie', 'age': 66}
-        const newValue = snap.data();
-
-        // access a particular field as you would any JS property
-        const name = newValue.name;
-
-        return sendWelcomeEmail('azhidkov@gmail.com', 'Alex');
+        return sendNotificationEmail(snap.data());
     });
 
-// [START sendWelcomeEmail]
 /**
  * Sends a welcome email to new user.
  */
-// [START onCreateTrigger]
 exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
-    // [END onCreateTrigger]
-    // [START eventAttributes]
     const email = user.email; // The email of the user.
     const displayName = user.displayName; // The display name of the user.
-    // [END eventAttributes]
 
     return sendWelcomeEmail(email, displayName);
 });
-// [END sendWelcomeEmail]
 
-// [START sendByeEmail]
 /**
  * Send an account deleted email confirmation to users who delete their accounts.
  */
-// [START onDeleteTrigger]
 exports.sendByeEmail = functions.auth.user().onDelete((user) => {
-    // [END onDeleteTrigger]
     const email = user.email;
     const displayName = user.displayName;
 
     return sendGoodbyeEmail(email, displayName);
 });
-// [END sendByeEmail]
+
+// Sends a notification email
+async function sendNotificationEmail(email) {
+    const mailOptions = {
+        from: `${APP_NAME}`,
+        to: email.to,
+    };
+
+    // The user subscribed to the newsletter.
+    mailOptions.subject = email.subject;
+    mailOptions.text = email.text;
+    await mailTransport.sendMail(mailOptions);
+    console.log('Notification email sent to:', email.to);
+    return null;
+}
 
 // Sends a welcome email to the given user.
 async function sendWelcomeEmail(email, displayName) {

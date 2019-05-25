@@ -138,26 +138,63 @@ export class StudentProjectWizardComponent implements OnInit {
   submit() {
     this.projectDoc.get()
       .subscribe(selfSourcedSnapshot => {
-        const selfSourced = selfSourcedSnapshot.data() as SelfSourcedArrangement;
-        const event = {
-          created: this.dataService.getTimestamp(new Date()),
-          title: (this.isBespoke ? 'Student submitted bespoke EOI' : 'Student sent Self Sourced Placement Arrangement to Business'),
-          student: {
-            uid: this.user.uid,
-            displayName: this.user.displayName
-          },
-          project: selfSourced
-        };
-
-        this.universityTodoService.setCollection('universities/uwa/todo');
-        this.universityTodoService
-          .add(event)
-          .then(() => this.openSnackBar('Thank you for sending'))
-          .catch(() => this.openSnackBar('ERROR: failed to send  application'));
-        this.eventStoreService
-          .add(event);
+        const project = selfSourcedSnapshot.data() as SelfSourcedArrangement;
+        if (this.isBespoke) {
+          this.submitBespoke(project);
+        } else if (this.isSelfSourced) {
+          this.sendEmailToBusiness(project);
+        } else {
+          this.openSnackBar('ERROR: unknown application type');
+        }
       });
     this.router.navigateByUrl('student');
+  }
+
+  submitBespoke(project) {
+    const event = {
+      created: this.dataService.getTimestamp(new Date()),
+      title: 'Student submitted bespoke EOI',
+      student: {
+        uid: this.user.uid,
+        displayName: this.user.displayName
+      },
+      project
+    };
+
+    this.universityTodoService.setCollection('universities/uwa/todo');
+    this.universityTodoService
+      .add(event)
+      .then(() => this.openSnackBar('Thank you for sending'))
+      .catch(() => this.openSnackBar('ERROR: failed to send application'));
+    this.eventStoreService
+      .add(event);
+  }
+
+  sendEmailToBusiness(project) {
+    const event = {
+      created: this.dataService.getTimestamp(new Date()),
+      title: 'Student sent Self Sourced Placement Arrangement to Business',
+      student: {
+        uid: this.user.uid,
+        displayName: this.user.displayName
+      },
+      project
+    };
+
+    const projectUrl = `https://wil-uwa.firebaseapp.com/project/self-sourced`;
+    const email = {
+      to: this.user.email,
+      subject: 'Self-sourced project submitted',
+      text: `Please complete self-sourced project application submitted by ${event.student.displayName} by clicking here: ${projectUrl}`
+    };
+
+    const emailsCollection = this.afs.collection<any>('emails');
+    emailsCollection.add(email)
+      .then(() => this.openSnackBar('Thank you for sending'))
+      .catch((err) => {
+        console.error(err);
+        this.openSnackBar('ERROR: failed to send email');
+      });
   }
 
   dateChanged(type: string, event: MatDatepickerInputEvent<Date>): void {

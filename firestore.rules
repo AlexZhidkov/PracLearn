@@ -26,6 +26,9 @@ service cloud.firestore {
     match /universities/{document=**} {
       allow read, write: if request.auth.uid != null;
     }
+		match /emails/{document=**} {
+      allow write: if request.auth.uid != null;
+    }
     match /users/{userId} {
       allow read, write: if request.auth.uid == userId
     }
