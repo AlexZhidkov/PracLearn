@@ -22,6 +22,7 @@ export class StudentProjectWizardComponent implements OnInit {
   private projectDoc: AngularFirestoreDocument<SelfSourcedArrangement>;
   project: Observable<SelfSourcedArrangement>;
   isLoading = true;
+  isMarketplace = false;
   isSelfSourced = false;
   isBespoke = false;
   projectTitle: string;
@@ -63,7 +64,11 @@ export class StudentProjectWizardComponent implements OnInit {
         this.submitButtonText = 'Submit';
         projectUrl = '/bespoke/' + this.user.uid;
         break;
-      default:
+      default: // application for a marketplace project
+        this.isMarketplace = true;
+        this.projectTitle = 'Expression of Interest';
+        this.submitStepLabel = 'Submit';
+        this.submitButtonText = 'Submit';
         projectUrl = `/projectEoi/${this.projectId}-${this.user.uid}`;
         break;
     }
@@ -144,7 +149,9 @@ export class StudentProjectWizardComponent implements OnInit {
     this.projectDoc.get()
       .subscribe(selfSourcedSnapshot => {
         const project = selfSourcedSnapshot.data() as SelfSourcedArrangement;
-        if (this.isBespoke) {
+        if (this.isMarketplace) {
+          this.submitMarketplace(project);
+        } else if (this.isBespoke) {
           this.submitBespoke(project);
         } else if (this.isSelfSourced) {
           this.sendEmailToBusiness(project);
@@ -153,6 +160,26 @@ export class StudentProjectWizardComponent implements OnInit {
         }
       });
     this.router.navigateByUrl('student');
+  }
+
+  submitMarketplace(project) {
+    const event = {
+      created: this.dataService.getTimestamp(new Date()),
+      title: 'Student submitted EOI for a project',
+      student: {
+        uid: this.user.uid,
+        displayName: this.user.displayName
+      },
+      project
+    };
+
+    this.universityTodoService.setCollection('universities/uwa/todo');
+    this.universityTodoService
+      .add(event)
+      .then(() => this.openSnackBar('Thank you for sending'))
+      .catch(() => this.openSnackBar('ERROR: failed to send application'));
+    this.eventStoreService
+      .add(event);
   }
 
   submitBespoke(project) {
