@@ -24,8 +24,9 @@ export class StudentProjectWizardComponent implements OnInit {
   isLoading = true;
   isSelfSourced = false;
   isBespoke = false;
-  submitStepLabel = 'Host';
-  submitButtonText = 'Submit';
+  projectTitle: string;
+  submitStepLabel: string;
+  submitButtonText: string;
 
   hostInstitutionFormGroup: FormGroup;
   studentFormGroup: FormGroup;
@@ -50,12 +51,16 @@ export class StudentProjectWizardComponent implements OnInit {
     switch (this.projectId) {
       case 'self-sourced':
         this.isSelfSourced = true;
+        this.projectTitle = 'Self-Sourced Project';
+        this.submitStepLabel = 'Host';
         this.submitButtonText = 'Send to Business';
         projectUrl = '/selfSourced/' + this.user.uid;
         break;
       case 'bespoke':
         this.isBespoke = true;
+        this.projectTitle = 'Expression of Interest';
         this.submitStepLabel = 'Submit';
+        this.submitButtonText = 'Submit';
         projectUrl = '/bespoke/' + this.user.uid;
         break;
       default:
