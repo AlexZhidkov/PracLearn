@@ -112,7 +112,7 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
             }, eoiBusiness: selfSourced
           });
       });
-    this.router.navigateByUrl('student');
+    this.router.navigateByUrl('business');
   }
 
   loadFile(url, callback) {
