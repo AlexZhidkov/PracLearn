@@ -20,6 +20,7 @@ import { SurveyComponent } from './survey/survey.component';
 import { StudentProjectWizardComponent } from './student-project-wizard/student-project-wizard.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
+import { ProjectsListComponent } from './projects-list/projects-list.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
-  { path: 'student/:id', component: ProjectComponent },
+  { path: 'project/:id', component: ProjectComponent },
+  { path: 'projects', component: ProjectsListComponent },
   { path: 'project/:type/:id', component: ProjectViewComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'business', component: BusinessComponent },

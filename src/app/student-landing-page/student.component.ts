@@ -22,9 +22,9 @@ export class StudentComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private router: Router,
-    private projectService: ProjectService,
-    private auth: AuthService,
-    private dataService: DataService) {
+              private projectService: ProjectService,
+              private auth: AuthService,
+              private dataService: DataService) {
     this.auth.isStudent = true;
   }
 
