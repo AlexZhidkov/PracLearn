@@ -21,6 +21,7 @@ import { StudentProjectWizardComponent } from './student-project-wizard/student-
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'student/survey', component: SurveyComponent },
   { path: 'student/form/:id', component: StudentProjectWizardComponent },
   { path: 'student', component: StudentComponent },
+  { path: 'student/start', component: StudentGetStartedComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'project/:id', component: ProjectComponent },

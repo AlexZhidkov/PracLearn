@@ -63,6 +63,7 @@ import { StudentProjectWizardComponent } from './student-project-wizard/student-
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { ProjectsListComponent } from './projects-list/projects-list.component';
     StudentProjectWizardComponent,
     ProjectViewComponent,
     BusinessSelfSourcedProjectComponent,
-    ProjectsListComponent
+    ProjectsListComponent,
+    StudentGetStartedComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
