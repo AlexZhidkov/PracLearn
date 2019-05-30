@@ -1,79 +1,103 @@
 <mat-card>
-  <button mat-button color="accent" style="font-size: 28px;">GET STARTED</button>
-  <button mat-mini-fab color="accent">
-    <mat-icon>play_arrow</mat-icon>
-  </button>
-  <p>
-    Before you start your project you must complete getting started section.
-  </p>
+  <mat-card-header>
+    <mat-icon mat-card-avatar>school</mat-icon>
+    <mat-card-title>Student Dashboard</mat-card-title>
+  </mat-card-header>
 </mat-card>
+
 <mat-accordion>
-  <mat-expansion-panel expanded="true">
+  <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Student Dashboard
+        <strong>How to get started</strong>
       </mat-panel-title>
-      <mat-panel-description>
-        Everything you need to do on projects you're applying for
+      <mat-panel-description fxShow.xs="false">
+        Complete this section before project start date
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <button mat-button color="accent" style="font-size: 28px;">GET STARTED</button>
+    <button mat-mini-fab color="accent">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <p>
+      Before you start your project you must complete getting started section.
+    </p>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <strong>My Projects</strong>
+      </mat-panel-title>
+      <mat-panel-description fxShow.xs="false">
+        All your project applications
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-nav-list>
       <mat-list-item routerLink="/project/selfSourced/{{user.uid}}">
-        <mat-icon>done</mat-icon>
-        Submitted self-sourced project
+        <h3 matLine>
+          <mat-icon>done</mat-icon> Submitted self-sourced project
+        </h3>
+        <p matLine> Description of my self-sourced project here ... </p>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item routerLink="/project/bespoke/{{user.uid}}">
         <mat-icon>done</mat-icon>
         Submitted bespoke EOI
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item routerLink="/project/projects/B5rn5WjvEmolkdbpjtgg">
         <mat-icon>clear</mat-icon>
         Web site
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item routerLink="/project/projects/lCXobWn1MMeOwBSiKdDr">
-        <mat-icon>done</mat-icon>
+        <mat-icon>pause</mat-icon>
         Market Research at Vistario
       </mat-list-item>
     </mat-nav-list>
     <mat-action-row>
-      <button mat-raised-button routerLink="/student/form/self-sourced">Self-sourced project</button>
-      <button mat-raised-button routerLink="/student/form/bespoke">EOI (bespoke)</button>
-      <button mat-raised-button routerLink="/student/survey">Give feedback</button>
+      <button mat-raised-button routerLink="/projects">Apply for Projects</button>
+      <button mat-raised-button routerLink="/student/form/self-sourced">Bring Your Own</button>
     </mat-action-row>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Current available projects
+        <strong>Project Feedback</strong>
       </mat-panel-title>
-      <mat-panel-description>
-        Show your interest in a project
+      <mat-panel-description fxShow.xs="false">
+        Complete at 30hrs & Finish
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-    <mat-form-field>
-      <mat-label>Faculty</mat-label>
-      <mat-select [(ngModel)]="faculty">
-        <mat-option *ngFor="let faculty of faculties" [value]="faculty">
-          {{faculty}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Semester</mat-label>
-      <mat-select [(ngModel)]="semester">
-        <mat-option *ngFor="let semester of semesters" [value]="semester">
-          {{semester}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
     <mat-nav-list>
-      <mat-list-item *ngFor="let project of projects | async" routerLink="/student/{{project.id}}">
-        {{ project.title }}
+      <mat-list-item>
+        <mat-icon>check_box</mat-icon>
+        30 hour feedback
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>check_box_outline_blank</mat-icon>
+        Final feedback
       </mat-list-item>
     </mat-nav-list>
-    <button mat-fab>
-      <mat-icon aria-label="Add" (click)="addNewProject()">add</mat-icon>
-    </button>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <strong>Project Updates</strong>
+      </mat-panel-title>
+      <mat-panel-description fxShow.xs="false">
+        Latest news on your projects
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <strong>Help Finding Projects?</strong>
+      </mat-panel-title>
+      <mat-panel-description fxShow.xs="false">
+        Easy start section
+      </mat-panel-description>
+    </mat-expansion-panel-header>
   </mat-expansion-panel>
 </mat-accordion>
