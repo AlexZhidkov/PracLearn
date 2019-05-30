@@ -6,7 +6,7 @@
 </mat-card>
 
 <mat-accordion>
-  <mat-expansion-panel>
+  <mat-expansion-panel expanded>
     <mat-expansion-panel-header>
       <mat-panel-title>
         <strong>How to get started</strong>
@@ -15,8 +15,8 @@
         Complete this section before project start date
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <button mat-button color="accent" style="font-size: 28px;">GET STARTED</button>
-    <button mat-mini-fab color="accent">
+    <button mat-button color="accent" style="font-size: 28px;" routerLink="/student/start">GET STARTED</button>
+    <button mat-mini-fab color="accent" routerLink="/student/start">
       <mat-icon>play_arrow</mat-icon>
     </button>
     <p>
@@ -89,6 +89,31 @@
         Latest news on your projects
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <mat-nav-list>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>
+          <mat-icon>info</mat-icon> Congratulations!
+        </h3>
+        <p matLine> Your project application was accepted by XYZ Business. Keep an eye on your updates/emails for
+          further actions. </p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>
+          <mat-icon>label</mat-icon> Pending Approval
+        </h3>
+        <p matLine>Your project application is currently being reviewed. Please be patient and check back in regularly
+          for updates.</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>
+          <mat-icon>done</mat-icon> 30 hr survey complete
+        </h3>
+        <p matLine> Congratulations, you've completed... </p>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -99,5 +124,12 @@
         Easy start section
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <p>
+      Can't find a project? Maybe you need some inspiration?
+    </p>
+    <button mat-button color="accent" style="font-size: 28px;">GET HELP</button>
+    <button mat-mini-fab color="accent">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
   </mat-expansion-panel>
 </mat-accordion>
