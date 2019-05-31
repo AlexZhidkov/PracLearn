@@ -22,6 +22,7 @@ import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
+import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
@@ -36,10 +37,12 @@ const routes: Routes = [
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projects', component: ProjectsListComponent },
+  { path: 'project-groups', component: ProjectGroupsListComponent },
   { path: 'project/:type/:id', component: ProjectViewComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'business', component: BusinessComponent },
   { path: 'business/profile', component: ProfileBusinessComponent }, // canActivate: [AuthService] },
+  { path: 'business/eoi/blank', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:id/:isNewProject', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/:id', component: ProjectGroupComponent },

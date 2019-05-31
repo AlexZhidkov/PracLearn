@@ -34,7 +34,7 @@ export class EoiBusinessComponent implements OnInit {
   eoiBusinessUrl: string;
   projectId: string;
   eoiId: string;
-  isNewProject: boolean;
+  isNewProject = true;
   eoiDoc: AngularFirestoreDocument<EoiBusiness>;
   eoi: Observable<EoiBusiness>;
   isLoading: boolean;
@@ -67,7 +67,8 @@ export class EoiBusinessComponent implements OnInit {
 
     this.projectId = this.route.snapshot.paramMap.get('id');
     this.eoiId = this.route.snapshot.paramMap.get('eoiId');
-    this.isNewProject = (this.route.snapshot.paramMap.get('isNewProject') === 'true');
+    if (this.projectId) { this.isNewProject = false; }
+    // (this.route.snapshot.paramMap.get('isNewProject') === 'true');
 
     this.semesters = [
       { number: 1, dates: 'Semester 1. 25 February - 	24 May' },

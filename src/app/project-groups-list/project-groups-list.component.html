@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Projects
+    </mat-card-title>
+    <mat-card-subtitle>
+      Choose one to view and apply
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let project of projects | async" routerLink="/business/eoi/blank">
+      <h3 matLine> {{project.title}} </h3>
+      <p matLine> {{project.description}} </p>
+    </mat-list-item>
+  </mat-nav-list>
+</mat-card>
