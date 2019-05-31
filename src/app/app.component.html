@@ -1,7 +1,10 @@
 <div class="center-div">
     <mat-toolbar color="primary">
-        <button mat-icon-button (click)="sidenav.toggle()">
+        <button mat-icon-button (click)="sidenav.toggle()" *ngIf="false">
             <mat-icon aria-label="Menu">menu</mat-icon>
+        </button>
+        <button mat-icon-button routerLink="/">
+            <mat-icon aria-label="Home">home</mat-icon>
         </button>
         <span>{{title}}</span>
         <span class="fill-space"></span>
