@@ -67,8 +67,11 @@ export class EoiBusinessComponent implements OnInit {
 
     this.projectId = this.route.snapshot.paramMap.get('id');
     this.eoiId = this.route.snapshot.paramMap.get('eoiId');
-    if (this.projectId) { this.isNewProject = false; }
-    // (this.route.snapshot.paramMap.get('isNewProject') === 'true');
+    if (this.route.snapshot.paramMap.get('isNewProject') === 'true') {
+      this.isNewProject = true;
+    } else if (this.projectId) {
+      this.isNewProject = false;
+    }
 
     this.semesters = [
       { number: 1, dates: 'Semester 1. 25 February - 	24 May' },

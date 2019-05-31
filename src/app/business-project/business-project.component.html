@@ -1,0 +1,30 @@
+<mat-tab-group>
+  <mat-tab label="Project">
+    <app-project-view pId="{{projectId}}"></app-project-view>
+  </mat-tab>
+  <mat-tab label="Applicants">
+    <mat-action-list>
+      <button mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>done</mat-icon>
+        Chris Evans
+      </button>
+      <button mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>done</mat-icon>
+        Margarita Betancor
+      </button>
+      <button mat-list-item [matMenuTriggerFor]="menu">
+        <mat-icon>clear</mat-icon>
+        Alex Zhidkov
+      </button>
+    </mat-action-list>
+  </mat-tab>
+  <mat-tab label="Events">
+    <app-events-viewer></app-events-viewer>
+  </mat-tab>
+</mat-tab-group>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Invite for interview</button>
+  <button mat-menu-item>Shortlist</button>
+  <button mat-menu-item>Reject</button>
+</mat-menu>

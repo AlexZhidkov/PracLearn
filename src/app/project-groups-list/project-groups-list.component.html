@@ -9,7 +9,7 @@
   </mat-card-header>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <mat-nav-list>
-    <mat-list-item *ngFor="let project of projects | async" routerLink="/business/eoi/blank">
+    <mat-list-item *ngFor="let project of projects | async" routerLink="/business/{{project.id}}">
       <h3 matLine> {{project.title}} </h3>
       <p matLine> {{project.description}} </p>
     </mat-list-item>

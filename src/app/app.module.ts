@@ -65,6 +65,7 @@ import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-pro
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
+import { BusinessProjectComponent } from './business-project/business-project.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { ProjectGroupsListComponent } from './project-groups-list/project-groups
     BusinessSelfSourcedProjectComponent,
     ProjectsListComponent,
     StudentGetStartedComponent,
-    ProjectGroupsListComponent
+    ProjectGroupsListComponent,
+    BusinessProjectComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

@@ -23,6 +23,7 @@ import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-pro
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
+import { BusinessProjectComponent } from './business-project/business-project.component';
 
 const routes: Routes = [
   { path: 'university', component: UniversityComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'business/eoi/blank', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:id/:isNewProject', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent }, // canActivate: [AuthService] },
+  { path: 'business/project/:id', component: BusinessProjectComponent },
   { path: 'business/:id', component: ProjectGroupComponent },
   { path: 'reviewStudentEoi/:uid/:id', component: ReviewStudentEoiComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
