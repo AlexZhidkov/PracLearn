@@ -1,11 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon mat-card-avatar>business</mat-icon>
+    <mat-card-title>Business Dashboard</mat-card-title>
+  </mat-card-header>
+</mat-card>
+
 <mat-accordion>
   <mat-expansion-panel expanded="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Title here
+        <strong>My Projects</strong>
       </mat-panel-title>
-      <mat-panel-description>
-        Some description here
+      <mat-panel-description fxShow.xs="false">
+        All your project applications
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-nav-list>
@@ -13,67 +20,69 @@
         <mat-icon>build</mat-icon>
         Finish self-sourced project for {{selfSourcedProject.studentName}}
       </mat-list-item>
-      <mat-list-item routerLink="/project/projects/lCXobWn1MMeOwBSiKdDr">
+      <mat-list-item routerLink="/business/project/lCXobWn1MMeOwBSiKdDr">
         <mat-icon>done</mat-icon>
         Market Research at Vistario
       </mat-list-item>
     </mat-nav-list>
     <mat-action-row>
-      <button mat-raised-button routerLink="/student/survey">Give feedback</button>
+      <button mat-raised-button routerLink="/business/eoi/blank">Create new project</button>
+      <button mat-raised-button routerLink="/project-groups">Find project</button>
     </mat-action-row>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Applicants
+        <strong>Project Feedback</strong>
       </mat-panel-title>
-      <mat-panel-description>
-        Do something about them
+      <mat-panel-description fxShow.xs="false">
+        Complete at 30hrs & Finish
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-action-list>
-      <button mat-list-item [matMenuTriggerFor]="menu">
-        <mat-icon>done</mat-icon>
-        Chris Evans
-      </button>
-      <button mat-list-item [matMenuTriggerFor]="menu">
-        <mat-icon>done</mat-icon>
-        Margarita Betancor
-      </button>
-      <button mat-list-item [matMenuTriggerFor]="menu">
-        <mat-icon>clear</mat-icon>
-        Alex Zhidkov
-      </button>
-    </mat-action-list>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon>check_box</mat-icon>
+        Provide feedback
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>check_box_outline_blank</mat-icon>
+        Final feedback
+      </mat-list-item>
+    </mat-nav-list>
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Projects
+        <strong>Project Updates</strong>
       </mat-panel-title>
-      <mat-panel-description>
-        Choose one of the available projects
+      <mat-panel-description fxShow.xs="false">
+        Latest news on your projects
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-    <mat-form-field>
-      <mat-label>Area of interest</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let area of areas" [value]="area">
-          {{area}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
     <mat-nav-list>
-      <mat-list-item *ngFor="let projectGroup of projectGroups | async" routerLink="/business/{{projectGroup.id}}">
-        {{ projectGroup.title }}
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>
+          <mat-icon>info</mat-icon> Congratulations!
+        </h3>
+        <p matLine> Your project application was accepted by XYZ Business. Keep an eye on your updates/emails for
+          further actions. </p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>
+          <mat-icon>label</mat-icon> Pending Approval
+        </h3>
+        <p matLine>Your project application is currently being reviewed. Please be patient and check back in regularly
+          for updates.</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <h3 matLine>
+          <mat-icon>done</mat-icon> 30 hr survey complete
+        </h3>
+        <p matLine> Congratulations, you've completed... </p>
       </mat-list-item>
     </mat-nav-list>
   </mat-expansion-panel>
 </mat-accordion>
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Invite for interview</button>
-  <button mat-menu-item>Shortlist</button>
-  <button mat-menu-item>Reject</button>
-</mat-menu>
