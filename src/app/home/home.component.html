@@ -1,17 +1,31 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      Welcome to the App
+      Welcome to UWA’s Professional Project Portal
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <p>
-      Here goes the app description.
+      Select what type of user you are and get started on a project that can help develop your skills,
+      propose a business solution or enhance your student's employability.
+    </p>
+    <p>
+      Are you a new user? Our app will guide you through everything you need to know inside.
+      Click on your button to be directed to information specific to your needs.
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="student()">Student</button>
-    <button mat-raised-button (click)="business()">Business</button>
-    <button mat-raised-button (click)="university()">University</button>
+    <button mat-raised-button (click)="student()">
+      <mat-icon>school</mat-icon>
+      Student
+    </button>
+    <button mat-raised-button (click)="business()">
+      <mat-icon>business</mat-icon>
+      Business
+    </button>
+    <button mat-raised-button (click)="university()">
+      <mat-icon>location_city</mat-icon>
+      University
+    </button>
   </mat-card-actions>
 </mat-card>
