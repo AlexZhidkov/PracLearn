@@ -1,4 +1,19 @@
 <mat-tab-group>
+  <mat-tab label="Home">
+    <mat-form-field>
+      <input matInput placeholder="Find Student">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Find Business">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Find Project">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button routerLink="/business/eoi/blank">Create new project</button>
+  </mat-tab>
   <mat-tab label="To Do">
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
     <!-- Sorting buttons (pc) -->
@@ -34,8 +49,9 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-tab>
+  <mat-tab label="Reports">
+  </mat-tab>
   <mat-tab label="Events Log">
     <app-events-viewer></app-events-viewer>
   </mat-tab>
-  <mat-tab label="Something Else"> Nothing here yet... </mat-tab>
 </mat-tab-group>
