@@ -1,88 +1,97 @@
-<mat-card>
-  <mat-card-header>
-    <mat-icon mat-card-avatar>business</mat-icon>
-    <mat-card-title>Business Dashboard</mat-card-title>
-  </mat-card-header>
-</mat-card>
+<mat-sidenav-container>
+  <mat-sidenav #helpSidenav mode="over" position="end">
+    <app-business-help (closeButtonClicked)="helpSidenav.close()"></app-business-help>
+  </mat-sidenav>
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>business</mat-icon>
+      <mat-card-title>Business Dashboard</mat-card-title>
+      <span class="fill-space"></span>
+      <button mat-icon-button aria-label="Help" (click)="helpSidenav.open()">
+        <mat-icon>help</mat-icon>
+      </button>
+    </mat-card-header>
+  </mat-card>
 
-<mat-accordion>
-  <mat-expansion-panel expanded="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <strong>My Projects</strong>
-      </mat-panel-title>
-      <mat-panel-description fxShow.xs="false">
-        All your project applications
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-nav-list>
-      <mat-list-item routerLink="/project/self-sourced" *ngIf="selfSourcedProject">
-        <mat-icon>build</mat-icon>
-        Finish self-sourced project for {{selfSourcedProject.studentName}}
-      </mat-list-item>
-      <mat-list-item routerLink="/business/project/lCXobWn1MMeOwBSiKdDr">
-        <mat-icon>done</mat-icon>
-        Market Research at Vistario
-      </mat-list-item>
-    </mat-nav-list>
-    <mat-action-row>
-      <button mat-raised-button routerLink="/business/eoi/blank">Create new project</button>
-      <button mat-raised-button routerLink="/project-groups">Find project</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <strong>Project Feedback</strong>
-      </mat-panel-title>
-      <mat-panel-description fxShow.xs="false">
-        Complete at 30hrs & Finish
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-nav-list>
-      <mat-list-item>
-        <mat-icon>check_box</mat-icon>
-        Provide feedback
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon>check_box_outline_blank</mat-icon>
-        Final feedback
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <strong>Project Updates</strong>
-      </mat-panel-title>
-      <mat-panel-description fxShow.xs="false">
-        Latest news on your projects
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-nav-list>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <h3 matLine>
-          <mat-icon>info</mat-icon> Congratulations!
-        </h3>
-        <p matLine> Your project application was accepted by XYZ Business. Keep an eye on your updates/emails for
-          further actions. </p>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <h3 matLine>
-          <mat-icon>label</mat-icon> Pending Approval
-        </h3>
-        <p matLine>Your project application is currently being reviewed. Please be patient and check back in regularly
-          for updates.</p>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>
-        <h3 matLine>
-          <mat-icon>done</mat-icon> 30 hr survey complete
-        </h3>
-        <p matLine> Congratulations, you've completed... </p>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-expansion-panel>
-</mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>My Projects</strong>
+        </mat-panel-title>
+        <mat-panel-description fxShow.xs="false">
+          All your project applications
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <mat-list-item routerLink="/project/self-sourced" *ngIf="selfSourcedProject">
+          <mat-icon>build</mat-icon>
+          Finish self-sourced project for {{selfSourcedProject.studentName}}
+        </mat-list-item>
+        <mat-list-item routerLink="/business/project/lCXobWn1MMeOwBSiKdDr">
+          <mat-icon>done</mat-icon>
+          Market Research at Vistario
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-action-row>
+        <button mat-raised-button routerLink="/business/eoi/blank">Create new project</button>
+        <button mat-raised-button routerLink="/project-groups">Find project</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>Project Feedback</strong>
+        </mat-panel-title>
+        <mat-panel-description fxShow.xs="false">
+          Complete at 30hrs & Finish
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon>check_box</mat-icon>
+          Provide feedback
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>check_box_outline_blank</mat-icon>
+          Final feedback
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>Project Updates</strong>
+        </mat-panel-title>
+        <mat-panel-description fxShow.xs="false">
+          Latest news on your projects
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h3 matLine>
+            <mat-icon>info</mat-icon> Congratulations!
+          </h3>
+          <p matLine> Your project application was accepted by XYZ Business. Keep an eye on your updates/emails for
+            further actions. </p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h3 matLine>
+            <mat-icon>label</mat-icon> Pending Approval
+          </h3>
+          <p matLine>Your project application is currently being reviewed. Please be patient and check back in regularly
+            for updates.</p>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h3 matLine>
+            <mat-icon>done</mat-icon> 30 hr survey complete
+          </h3>
+          <p matLine> Congratulations, you've completed... </p>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-sidenav-container>
