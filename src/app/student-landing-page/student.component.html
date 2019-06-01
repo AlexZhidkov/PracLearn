@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #helpSidenav mode="over" position="end">
+  <mat-sidenav #helpSidenav mode="over" position="end" [fixedInViewport]="true">
     <app-student-help (closeButtonClicked)="helpSidenav.close()"></app-student-help>
   </mat-sidenav>
 

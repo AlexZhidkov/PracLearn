@@ -67,6 +67,8 @@ import { StudentGetStartedComponent } from './student-get-started/student-get-st
 import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
 import { BusinessProjectComponent } from './business-project/business-project.component';
 import { StudentHelpComponent } from './student-help/student-help.component';
+import { BusinessHelpComponent } from './business-help/business-help.component';
+import { UniversityHelpComponent } from './university-help/university-help.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,9 @@ import { StudentHelpComponent } from './student-help/student-help.component';
     StudentGetStartedComponent,
     ProjectGroupsListComponent,
     BusinessProjectComponent,
-    StudentHelpComponent
+    StudentHelpComponent,
+    BusinessHelpComponent,
+    UniversityHelpComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
