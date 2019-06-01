@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  title: 'Experlio',
+  title: 'PracLearn',
   homeUrl: 'https://github.com/AlexZhidkov/PracLearn',
   firebase: {
     apiKey: 'AIzaSyB_iMsjabkPAPjBotsvqLyXBToJl0t40YY',
