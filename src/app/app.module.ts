@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -111,7 +111,20 @@ import { BusinessProjectComponent } from './business-project/business-project.co
     AngularFireAuthModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          tables: true,
+          breaks: true,
+          pedantic: false,
+          sanitize: false,
+          smartLists: true,
+          smartypants: false,
+        }
+      }
+    }),
     MatToolbarModule,
     MatSidenavModule,
     MatCardModule,
