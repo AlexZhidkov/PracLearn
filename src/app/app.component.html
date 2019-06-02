@@ -1,19 +1,18 @@
 <div class="center-div">
-    <mat-toolbar color="primary">
-        <button mat-icon-button (click)="sidenav.toggle()" *ngIf="false">
-            <mat-icon aria-label="Menu">menu</mat-icon>
+    <mat-toolbar color="primary" style="border-bottom: 5px solid #e1b600">
+        <button mat-button routerLink="/">
+            <img style="height: 40px;" src="./assets/uwa-logo-full.svg" alt="The University of Western Australia Logo">
         </button>
-        <button mat-icon-button routerLink="/">
-            <mat-icon aria-label="Home">home</mat-icon>
-        </button>
-        <span>{{title}}</span>
         <span class="fill-space"></span>
         <a *ngIf="!login" style="float: left;" mat-button routerLink="/login">Sign In</a>
-        <button *ngIf="login" style="float: left;" (click)='logout()' mat-button>Sign Out</button>
-        <button mat-icon-button (click)="navigateToProfilePage()" *ngIf="login">
+        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="login">
             <img class="toolbar-photo" src={{photoURL}}>
         </button>
     </mat-toolbar>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="navigateToProfilePage()">Profile</button>
+        <button mat-menu-item (click)='logout()'>Sign Out</button>
+    </mat-menu>
 
     <mat-sidenav-container>
         <mat-sidenav #sidenav fixedInViewport=true mode="over" (click)="sidenav.toggle()">
