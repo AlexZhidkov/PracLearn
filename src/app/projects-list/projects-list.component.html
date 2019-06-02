@@ -8,6 +8,18 @@
     </mat-card-subtitle>
   </mat-card-header>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <div fxLayout="column" fxLayoutAlign=" end">
+    <button mat-raised-button [matMenuTriggerFor]='filterMenu'>
+      Filter
+    </button>
+    <mat-menu #filterMenu="matMenu">
+      <button mat-menu-item>Semester 1</button>
+      <button mat-menu-item>Semester 2</button>
+      <button mat-menu-item>Semester 3</button>
+      <button mat-menu-item>Semester 4</button>
+    </mat-menu>
+  </div>
+
   <mat-nav-list>
     <mat-list-item *ngFor="let project of projects | async" routerLink="/project/{{project.id}}">
       <h3 matLine> {{project.title}} </h3>
