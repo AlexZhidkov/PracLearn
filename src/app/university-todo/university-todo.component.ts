@@ -38,6 +38,43 @@ export class UniversityTodoComponent implements OnInit {
     });
   }
 
+
+  approveProject() {
+    this.todo.project.faculty = this.faculty;
+    this.todo.project.approvedByUniOn = new Date();
+    this.afs.collection<any>('projects')
+      .add(this.todo.project)
+      .then(() => this.todoDoc.delete());
+    this.eventStoreService
+      .add({
+        event: 'University approved business application',
+        user: {
+          uid: this.user.uid,
+          displayName: this.user.displayName
+        },
+        project: this.todo.project
+      });
+    this.router.navigateByUrl('/university');
+  }
+
+  rejectProject() {
+    this.todo.rejectedOn = new Date();
+    this.afs.collection<any>('universities/uwa/rejectedproject')
+      .add(this.todo)
+      .then(() => this.todoDoc.delete());
+    this.eventStoreService
+      .add({
+        event: 'University rejected business application',
+        user: {
+          uid: this.user.uid,
+          displayName: this.user.displayName
+        },
+        project: this.todo.project
+      });
+    this.router.navigateByUrl('/university');
+  }
+
+  // ToDo delete this
   approveEoiBusiness() {
     this.todo.eoiBusiness.faculty = this.faculty;
     this.todo.eoiBusiness.approvedByUniOn = new Date();
@@ -56,6 +93,7 @@ export class UniversityTodoComponent implements OnInit {
     this.router.navigateByUrl('/university');
   }
 
+  // ToDo delete this
   rejectEoiBusiness() {
     this.todo.rejectedOn = new Date();
     this.afs.collection<any>('universities/uwa/rejectedEoiBusiness')
