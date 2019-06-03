@@ -23,7 +23,7 @@
   <mat-nav-list>
     <mat-list-item *ngFor="let project of projects | async" routerLink="/project/{{project.id}}">
       <h3 matLine> {{project.title}} </h3>
-      <p matLine> {{project.description}} </p>
+      <p matLine> {{project.subtitle}} </p>
     </mat-list-item>
   </mat-nav-list>
 </mat-card>
