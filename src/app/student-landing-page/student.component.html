@@ -18,35 +18,37 @@
     <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong>How to get started</strong>
+          <strong>Academic Requirements</strong>
         </mat-panel-title>
         <mat-panel-description fxShow.xs="false">
-          Complete this section before project start date
+          Complete this section before internship start date
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <button mat-button color="accent" style="font-size: 28px;" routerLink="/student/start">GET STARTED</button>
+      <button mat-button color="accent" style="font-size: 28px;" routerLink="/student/start">
+        ACCESS HERE
+      </button>
       <button mat-mini-fab color="accent" routerLink="/student/start">
         <mat-icon>play_arrow</mat-icon>
       </button>
       <p>
-        Before you start your project you must complete getting started section.
+        Before you start your internship you must complete getting started section.
       </p>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong>My Projects</strong>
+          <strong>My Internships</strong>
         </mat-panel-title>
         <mat-panel-description fxShow.xs="false">
-          All your project applications
+          All your internship applications
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-nav-list>
         <mat-list-item routerLink="/project/selfSourced/{{user.uid}}">
           <h3 matLine>
-            <mat-icon>clear</mat-icon> Submitted self-sourced project
+            <mat-icon>clear</mat-icon> Submitted self-sourced internship
           </h3>
-          <p matLine> Description of my self-sourced project here ... </p>
+          <p matLine> Description of my self-sourced internship here ... </p>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item routerLink="/project/bespoke/{{user.uid}}">
@@ -60,14 +62,14 @@
         </mat-list-item>
       </mat-nav-list>
       <mat-action-row>
-        <button mat-raised-button routerLink="/projects">Apply for Projects</button>
+        <button mat-raised-button routerLink="/projects">Apply for Internship</button>
         <button mat-raised-button routerLink="/student/form/self-sourced">Bring Your Own</button>
       </mat-action-row>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong>Project Feedback</strong>
+          <strong>Internship Feedback</strong>
         </mat-panel-title>
         <mat-panel-description fxShow.xs="false">
           Complete at 30hrs & Finish
@@ -87,10 +89,10 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong>Project Updates</strong>
+          <strong>Internship Updates</strong>
         </mat-panel-title>
         <mat-panel-description fxShow.xs="false">
-          Latest news on your projects
+          Latest news on your internship
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-nav-list>
@@ -99,7 +101,7 @@
           <h3 matLine>
             <mat-icon>info</mat-icon> Congratulations!
           </h3>
-          <p matLine> Your project application was accepted by XYZ Business. Keep an eye on your updates/emails for
+          <p matLine> Your internship application was accepted by XYZ Business. Keep an eye on your updates/emails for
             further actions. </p>
         </mat-list-item>
         <mat-divider></mat-divider>
@@ -107,7 +109,8 @@
           <h3 matLine>
             <mat-icon>label</mat-icon> Pending Approval
           </h3>
-          <p matLine>Your project application is currently being reviewed. Please be patient and check back in regularly
+          <p matLine>Your internship application is currently being reviewed. Please be patient and check back in
+            regularly
             for updates.</p>
         </mat-list-item>
         <mat-divider></mat-divider>
@@ -122,17 +125,17 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <strong>Help Finding Projects?</strong>
+          <strong>Help Finding Internship</strong>
         </mat-panel-title>
         <mat-panel-description fxShow.xs="false">
           Easy start section
         </mat-panel-description>
       </mat-expansion-panel-header>
       <p>
-        Can't find a project? Maybe you need some inspiration?
+        Can't find a internship? Maybe you need some inspiration? Complete expression of interest form here.
       </p>
       <button mat-button color="accent" style="font-size: 28px;" routerLink="/student/form/bespoke">
-        GET HELP
+        GET STARTED
       </button>
       <button mat-mini-fab color="accent" routerLink="/student/form/bespoke">
         <mat-icon>play_arrow</mat-icon>
