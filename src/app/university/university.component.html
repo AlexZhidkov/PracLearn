@@ -34,17 +34,19 @@
         Sort
       </button>
       <mat-menu #sortMenu="matMenu">
-        <button mat-menu-item (click)="sortToDos('title')">By Title</button>
-        <button mat-menu-item (click)="sortToDos('created')">By Time</button>
+        <button mat-menu-item (click)="sortToDosByTitle()">By Title</button>
+        <button mat-menu-item (click)="sortToDosByTime()">By Time</button>
       </mat-menu>
     </div>
 
     <mat-nav-list>
       <mat-list-item *ngFor="let todo of todos | async" routerLink="/university/todo/{{todo.id}}">
         <h4 mat-line>{{todo.title}}</h4>
-        <p mat-line> {{timestampToString(todo.created)}} </p>
-        <p mat-line> {{todo.eoiBusiness?.title}} </p>
-        <p mat-line> {{todo.selfSourced?.studentName}} </p>
+        <p mat-line>
+          {{timestampToString(todo.created) | date: 'd LLL yy, h:mm a'}}.
+          {{todo.eoiBusiness?.title}} {{todo.project?.hostName}}
+          {{todo.student?.displayName}} {{todo.selfSourced?.studentName}}
+        </p>
       </mat-list-item>
     </mat-nav-list>
   </mat-tab>

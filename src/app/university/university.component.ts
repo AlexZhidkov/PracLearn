@@ -22,8 +22,13 @@ export class UniversityComponent implements OnInit {
     });
   }
 
-  sortToDos(sortBy: string) {
-    this.universityTodoService.setCollection('universities/uwa/todo', ref => ref.orderBy(sortBy));
+  sortToDosByTitle() {
+    this.universityTodoService.setCollection('universities/uwa/todo', ref => ref.orderBy('title'));
+    this.todos = this.universityTodoService.list();
+  }
+
+  sortToDosByTime() {
+    this.universityTodoService.setCollection('universities/uwa/todo', ref => ref.orderBy('created', 'desc'));
     this.todos = this.universityTodoService.list();
   }
 
