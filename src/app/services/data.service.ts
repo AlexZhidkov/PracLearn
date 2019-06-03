@@ -9,7 +9,7 @@ export class DataService {
 
   getFaculties(): string[] {
     return [
-      'FABL',
+      'FABLE',
       'Science',
       'Engineering'
     ];
