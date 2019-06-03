@@ -9,10 +9,9 @@ export class DataService {
 
   getFaculties(): string[] {
     return [
-      'Business, Operations/Consulting',
-      'Marketing',
-      'Accounting',
-      'Human Resources'
+      'FABL',
+      'Science',
+      'Engineering'
     ];
   }
 
