@@ -52,9 +52,9 @@ export class StudentProjectWizardComponent implements OnInit {
     switch (this.projectId) {
       case 'self-sourced':
         this.isSelfSourced = true;
-        this.projectTitle = 'Self-Sourced Project';
+        this.projectTitle = 'Self-Sourced Internship';
         this.submitStepLabel = 'Host';
-        this.submitButtonText = 'Send to Business';
+        this.submitButtonText = 'Submit';
         projectUrl = '/selfSourced/' + this.user.uid;
         break;
       case 'bespoke':
@@ -205,13 +205,21 @@ export class StudentProjectWizardComponent implements OnInit {
   sendEmailToBusiness(project) {
     const event = {
       created: this.dataService.getTimestamp(new Date()),
-      title: 'Student sent Self Sourced Placement Arrangement to Business',
+      title: 'Student submitted Self Sourced Placement Arrangement',
       student: {
         uid: this.user.uid,
         displayName: this.user.displayName
       },
       project
     };
+
+    this.universityTodoService.setCollection('universities/uwa/todo');
+    this.universityTodoService
+      .add(event)
+      .then(() => this.openSnackBar('Thank you for submitting'))
+      .catch(() => this.openSnackBar('ERROR: failed to send application'));
+    this.eventStoreService
+      .add(event);
 
     const projectUrl = `https://wil-uwa.firebaseapp.com/project/self-sourced`;
     const email = {
@@ -222,7 +230,6 @@ export class StudentProjectWizardComponent implements OnInit {
 
     const emailsCollection = this.afs.collection<any>('emails');
     emailsCollection.add(email)
-      .then(() => this.openSnackBar('Thank you for sending'))
       .catch((err) => {
         console.error(err);
         this.openSnackBar('ERROR: failed to send email');

@@ -17,10 +17,9 @@
   <mat-expansion-panel *ngFor="let event of events | async">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ event.event }}
+        {{ event.event }} {{event.title}}
       </mat-panel-title>
     </mat-expansion-panel-header>
-
     <pre>{{event | json}}</pre>
   </mat-expansion-panel>
 </mat-accordion>
