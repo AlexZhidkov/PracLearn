@@ -44,7 +44,7 @@
       <mat-nav-list>
         <mat-list-item routerLink="/project/selfSourced/{{user.uid}}">
           <h3 matLine>
-            <mat-icon>done</mat-icon> Submitted self-sourced project
+            <mat-icon>clear</mat-icon> Submitted self-sourced project
           </h3>
           <p matLine> Description of my self-sourced project here ... </p>
         </mat-list-item>
@@ -52,11 +52,6 @@
         <mat-list-item routerLink="/project/bespoke/{{user.uid}}">
           <mat-icon>done</mat-icon>
           Submitted bespoke EOI
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item routerLink="/project/projects/B5rn5WjvEmolkdbpjtgg">
-          <mat-icon>clear</mat-icon>
-          Web site
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item routerLink="/project/projects/lCXobWn1MMeOwBSiKdDr">
@@ -79,11 +74,11 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-nav-list>
-        <mat-list-item>
+        <mat-list-item routerLink="/survey">
           <mat-icon>check_box</mat-icon>
           30 hour feedback
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item routerLink="/survey">
           <mat-icon>check_box_outline_blank</mat-icon>
           Final feedback
         </mat-list-item>
