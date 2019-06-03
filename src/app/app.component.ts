@@ -33,12 +33,4 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   }
-
-  navigateToProfilePage() {
-    if (this.authService.isStudent) {
-      this.router.navigateByUrl('/student/profile');
-    } else if (this.authService.isBusiness) {
-      this.router.navigateByUrl('/business/profile');
-    }
-  }
 }

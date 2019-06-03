@@ -69,6 +69,7 @@ import { BusinessProjectComponent } from './business-project/business-project.co
 import { StudentHelpComponent } from './student-help/student-help.component';
 import { BusinessHelpComponent } from './business-help/business-help.component';
 import { UniversityHelpComponent } from './university-help/university-help.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { UniversityHelpComponent } from './university-help/university-help.compo
     BusinessProjectComponent,
     StudentHelpComponent,
     BusinessHelpComponent,
-    UniversityHelpComponent
+    UniversityHelpComponent,
+    UserProfileComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

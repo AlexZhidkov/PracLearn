@@ -24,8 +24,10 @@ import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
 import { BusinessProjectComponent } from './business-project/business-project.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
+  { path: 'profile', component: UserProfileComponent },
   { path: 'university', component: UniversityComponent },
   { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: StudentComponent },
