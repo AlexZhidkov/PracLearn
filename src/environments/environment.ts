@@ -4,15 +4,16 @@
 
 export const environment = {
   production: false,
-  title: 'Experlio',
+  title: 'PracLearn',
   homeUrl: 'https://github.com/AlexZhidkov/PracLearn',
   firebase: {
-    apiKey: 'AIzaSyB_iMsjabkPAPjBotsvqLyXBToJl0t40YY',
-    authDomain: 'wil-uwa.firebaseapp.com',
-    databaseURL: 'https://wil-uwa.firebaseio.com',
-    projectId: 'wil-uwa',
-    storageBucket: 'wil-uwa.appspot.com',
-    messagingSenderId: '21053293550'
+    apiKey: 'AIzaSyAz_8iTzgPuQ5Zub_6w4MPg1VZ3TV8XO5Q',
+    authDomain: 'praclearn-dev.firebaseapp.com',
+    databaseURL: 'https://praclearn-dev.firebaseio.com',
+    projectId: 'praclearn-dev',
+    storageBucket: 'praclearn-dev.appspot.com',
+    messagingSenderId: '24038578347',
+    appId: '1:24038578347:web:4d8650e83d76f054'
   }
 };
 

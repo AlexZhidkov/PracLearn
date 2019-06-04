@@ -16,7 +16,7 @@ export class UniversityComponent implements OnInit {
     { school: 'School of Design', students: 34, hosts: 34 },
     { school: 'School of Humanities', students: 62, hosts: 14 },
     { school: 'Law School', students: 24, hosts: 23 },
-    { school: 'UWA Conservatorium of Music', students: 11, hosts: 14 },
+    { school: 'Conservatorium of Music', students: 11, hosts: 14 },
     { school: 'School of Social Sciences', students: 17, hosts: 21 },
   ];
   displayedColumns: string[] = ['school', 'students', 'hosts'];

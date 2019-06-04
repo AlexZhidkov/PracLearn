@@ -221,7 +221,7 @@ export class StudentProjectWizardComponent implements OnInit {
     this.eventStoreService
       .add(event);
 
-    const projectUrl = `https://wil-uwa.firebaseapp.com/project/self-sourced`;
+    const projectUrl = `https://praclearn-dev.firebaseapp.com/project/self-sourced`;
     const email = {
       to: this.user.email,
       subject: 'Self-sourced project submitted',
