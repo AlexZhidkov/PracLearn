@@ -88,7 +88,6 @@ export class EoiBusinessComponent implements OnInit {
         .add({
           businessId: this.user.uid,
           projectGroupId: this.projectId,
-          isNew: false,
           title: '',
           description: '',
           skills: '',
@@ -100,11 +99,13 @@ export class EoiBusinessComponent implements OnInit {
           address: '',
           about: '',
           dates: '',
-          supervisor: '',
-          supervisorRole: '',
-          supervisorExperience: '',
-          supervisorPhone: '',
-          supervisorEmail: '',
+          supervisor: {
+            name: '',
+            role: '',
+            experience: '',
+            phone: '',
+            email: '',
+          }
         })
         .then(r => {
           this.eoiDoc = this.afs.doc<EoiBusiness>(this.eoiBusinessUrl + '/' + r.id);
@@ -138,11 +139,11 @@ export class EoiBusinessComponent implements OnInit {
         datesCtrl: [r.dates]
       });
       this.supervisorFormGroup = this.formBuilder.group({
-        supervisorCtrl: [r.supervisor, Validators.required],
-        supervisorRoleCtrl: [r.supervisorRole],
-        supervisorExperienceCtrl: [r.supervisorExperience],
-        supervisorPhoneCtrl: [r.supervisorPhone, Validators.required],
-        supervisorEmailCtrl: [r.supervisorEmail, Validators.required]
+        supervisorNameCtrl: [r.supervisor.name, Validators.required],
+        supervisorRoleCtrl: [r.supervisor.role],
+        supervisorExperienceCtrl: [r.supervisor.experience],
+        supervisorPhoneCtrl: [r.supervisor.phone, Validators.required],
+        supervisorEmailCtrl: [r.supervisor.email, Validators.required]
       });
     });
   }

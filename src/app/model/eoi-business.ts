@@ -3,7 +3,6 @@ import { BaseEntity } from './base-entity';
 export interface EoiBusiness extends BaseEntity {
     businessId: string;
     projectGroupId: string;
-    isNew: boolean;
     title: string;
     description: string;
     skills: string;
@@ -15,9 +14,11 @@ export interface EoiBusiness extends BaseEntity {
     address: string;
     about: string;
     dates: string;
-    supervisor: string;
-    supervisorRole: string;
-    supervisorExperience: string;
-    supervisorPhone: string;
-    supervisorEmail: string;
+    supervisor: {
+        name: string;
+        role: string;
+        experience: string;
+        phone: string;
+        email: string;
+    };
 }

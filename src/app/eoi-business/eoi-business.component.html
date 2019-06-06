@@ -260,25 +260,25 @@
         <ng-template matStepLabel>Supervisor</ng-template>
         <div class="form-container">
           <mat-form-field>
-            <input matInput placeholder="Name" formControlName="supervisorCtrl" required
-              (ngModelChange)="eoiDoc.update({supervisor: $event})">
+            <input matInput placeholder="Name" formControlName="supervisorNameCtrl" required
+              (ngModelChange)="eoiDoc.set({supervisor: { name: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Title / Role in organisation" formControlName="supervisorRoleCtrl"
-              (ngModelChange)="eoiDoc.update({supervisorRole: $event})">
+              (ngModelChange)="eoiDoc.set({supervisor: { role: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <textarea matInput rows="10" placeholder="Experience" formControlName="supervisorExperienceCtrl"
-              (ngModelChange)="eoiDoc.update({supervisorExperience: $event})">
+              (ngModelChange)="eoiDoc.set({supervisor: { experience: $event}}, { merge: true })">
           </textarea>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Phone" formControlName="supervisorPhoneCtrl" required
-              (ngModelChange)="eoiDoc.update({supervisorPhone: $event})">
+              (ngModelChange)="eoiDoc.set({supervisor: { phone: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Email" formControlName="supervisorEmailCtrl" required
-              (ngModelChange)="eoiDoc.update({supervisorEmail: $event})">
+              (ngModelChange)="eoiDoc.set({supervisor: { email: $event}}, { merge: true })">
           </mat-form-field>
         </div>
         <div>
