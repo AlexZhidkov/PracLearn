@@ -9,11 +9,11 @@
           <ng-template matStepLabel>Course</ng-template>
           <mat-form-field>
             <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
-              (ngModelChange)="projectDoc.update({courseName: $event})">
+              (ngModelChange)="projectDoc.set({student: {courseName: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
-              (ngModelChange)="projectDoc.update({majorDisciplineArea: $event})">
+              (ngModelChange)="projectDoc.set({student: {majorDisciplineArea: $event}}, { merge: true })">
           </mat-form-field>
         </div>
         <div>
@@ -28,13 +28,13 @@
           <ng-template matStepLabel>Dates</ng-template>
           <mat-form-field>
             <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date"
-              (dateChange)="dateChanged('start', $event)">
+              (ngModelChange)="projectDoc.set({startDate: $event}, { merge: true })">
             <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #startDatePicker></mat-datepicker>
           </mat-form-field>
           <mat-form-field>
             <input matInput [matDatepicker]="endDatePicker" placeholder="End Date"
-              (ngModelChange)="projectDoc.update({endDate: $event})">
+              (ngModelChange)="projectDoc.set({endDate: $event}, { merge: true })">
             <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #endDatePicker></mat-datepicker>
           </mat-form-field>
@@ -51,23 +51,23 @@
           <ng-template matStepLabel>Student</ng-template>
           <mat-form-field>
             <input matInput placeholder="Student Name" formControlName="studentNameCtrl"
-              (ngModelChange)="projectDoc.update({studentName: $event})">
+              (ngModelChange)="projectDoc.set({student: {name: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Student Title" formControlName="studentTitleCtrl"
-              (ngModelChange)="projectDoc.update({studentTitle: $event})">
+              (ngModelChange)="projectDoc.set({student: {title: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Student ID" formControlName="studentIdCtrl"
-              (ngModelChange)="projectDoc.update({studentId: $event})">
+              (ngModelChange)="projectDoc.set({student: {studentId: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Telephone" formControlName="studentPhoneCtrl"
-              (ngModelChange)="projectDoc.update({studentPhone: $event})">
+              (ngModelChange)="projectDoc.set({student: {phone: $event}}, { merge: true })">
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Email" formControlName="studentEmailCtrl"
-              (ngModelChange)="projectDoc.update({studentEmail: $event})">
+              (ngModelChange)="projectDoc.set({student: {email: $event}}, { merge: true })">
           </mat-form-field>
         </div>
         <div>
@@ -83,15 +83,15 @@
           <div *ngIf="isSelfSourced">
             <mat-form-field>
               <input matInput placeholder="Company Name" formControlName="hostNameCtrl"
-                (ngModelChange)="projectDoc.update({hostName: $event})">
+                (ngModelChange)="projectDoc.set({business: {name: $event}}, { merge: true })">
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
-                (ngModelChange)="projectDoc.update({supervisorName: $event})">
+                (ngModelChange)="projectDoc.set({supervisor: {name: $event}}, { merge: true })">
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
-                (ngModelChange)="projectDoc.update({supervisorEmail: $event})">
+                (ngModelChange)="projectDoc.set({supervisor: {email: $event}}, { merge: true })">
             </mat-form-field>
           </div>
           <mat-checkbox #check1>

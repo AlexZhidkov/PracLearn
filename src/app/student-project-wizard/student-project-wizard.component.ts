@@ -4,11 +4,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { DataService } from '../services/data.service';
+import { Project } from '../model/project';
+import { ProjectOriginType } from '../model/projectOriginType';
 
 @Component({
   selector: 'app-student-project-wizard',
@@ -19,8 +20,8 @@ export class StudentProjectWizardComponent implements OnInit {
   smallScreen: boolean;
   user: UserProfile;
   projectId: string;
-  private projectDoc: AngularFirestoreDocument<SelfSourcedArrangement>;
-  project: Observable<SelfSourcedArrangement>;
+  private projectDoc: AngularFirestoreDocument<Project>;
+  project: Observable<Project>;
   isLoading = true;
   isMarketplace = false;
   isSelfSourced = false;
@@ -73,37 +74,50 @@ export class StudentProjectWizardComponent implements OnInit {
         break;
     }
 
-    this.projectDoc = this.afs.doc<SelfSourcedArrangement>(projectUrl);
+    this.projectDoc = this.afs.doc<Project>(projectUrl);
     this.project = this.projectDoc.valueChanges();
     this.project.subscribe(r => {
       if (!r) {
         r = {
-          userId: this.user.uid,
-          universityName: '',
-          universityAddress: '',
-          universityAbn: '',
-          placementOfficer: '',
-          placementOfficerPhone: '',
-          placementOfficerEmail: '',
-          hostName: '',
-          hostAddress: '',
-          hostAbn: '',
-          supervisorName: '',
-          supervisorTitle: '',
-          supervisorPhone: '',
-          supervisorEmail: '',
-          studentName: this.user.displayName,
-          studentTitle: '',
-          studentId: '',
-          studentPhone: '',
-          studentEmail: this.user.email,
-          courseName: '',
-          majorDisciplineArea: '',
+          originType: ProjectOriginType.selfSourced,
+          university: {
+            name: '',
+            address: '',
+            abn: '',
+          },
+          placementOfficer: {
+            name: '',
+            phone: '',
+            email: '',
+          },
+          business: {
+            userId: '',
+            name: '',
+            address: '',
+            abn: '',
+          },
+          supervisor: {
+            name: '',
+            title: '',
+            phone: '',
+            email: '',
+          },
+          student: {
+            userId: this.user.uid,
+            name: this.user.displayName,
+            title: '',
+            studentId: '',
+            phone: '',
+            email: this.user.email,
+            courseName: '',
+            majorDisciplineArea: '',
+          },
           startDate: new Date(),
           endDate: new Date(),
           location: '',
-          projectName: '',
-          projectBackground: '',
+          title: '',
+          subtitle: '',
+          description: '',
           skillsAndExperience: '',
           studentLevel: '',
           placementDetails: '',
@@ -117,26 +131,26 @@ export class StudentProjectWizardComponent implements OnInit {
     });
   }
 
-  bindFormControls(r: SelfSourcedArrangement) {
+  bindFormControls(r: Project) {
     this.hostInstitutionFormGroup = this.formBuilder.group({
-      hostNameCtrl: [r.hostName],
-      hostAddressCtrl: [r.hostAddress],
-      hostAbnCtrl: [r.hostAbn],
-      supervisorNameCtrl: [r.supervisorName],
-      supervisorTitleCtrl: [r.supervisorTitle],
-      supervisorPhoneCtrl: [r.supervisorPhone],
-      supervisorEmailCtrl: [r.supervisorEmail],
+      hostNameCtrl: [r.business.name],
+      hostAddressCtrl: [r.business.address],
+      hostAbnCtrl: [r.business.abn],
+      supervisorNameCtrl: [r.supervisor.name],
+      supervisorTitleCtrl: [r.supervisor.title],
+      supervisorPhoneCtrl: [r.supervisor.phone],
+      supervisorEmailCtrl: [r.supervisor.email],
     });
     this.studentFormGroup = this.formBuilder.group({
-      studentNameCtrl: [r.studentName],
-      studentTitleCtrl: [r.studentTitle],
-      studentIdCtrl: [r.studentId],
-      studentPhoneCtrl: [r.studentPhone],
-      studentEmailCtrl: [r.studentEmail],
+      studentNameCtrl: [r.student.name],
+      studentTitleCtrl: [r.student.title],
+      studentIdCtrl: [r.student.studentId],
+      studentPhoneCtrl: [r.student.phone],
+      studentEmailCtrl: [r.student.email],
     });
     this.courseFormGroup = this.formBuilder.group({
-      courseNameCtrl: [r.courseName],
-      majorDisciplineAreaCtrl: [r.majorDisciplineArea],
+      courseNameCtrl: [r.student.courseName],
+      majorDisciplineAreaCtrl: [r.student.majorDisciplineArea],
     });
     this.placementFormGroup = this.formBuilder.group({
       startDateCtrl: [r.startDate],
@@ -147,8 +161,8 @@ export class StudentProjectWizardComponent implements OnInit {
 
   submit() {
     this.projectDoc.get()
-      .subscribe(selfSourcedSnapshot => {
-        const project = selfSourcedSnapshot.data() as SelfSourcedArrangement;
+      .subscribe(projectSnapshot => {
+        const project = projectSnapshot.data() as Project;
         if (this.isMarketplace) {
           this.submitMarketplace(project);
         } else if (this.isBespoke) {
