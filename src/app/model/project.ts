@@ -1,11 +1,13 @@
-import { BaseEntity } from './base-entity';
 import { ProjectOriginType } from './projectOriginType';
+import { BaseEntity } from './base-entity';
+import { ProjectStudent } from './project-student';
 
 export interface Project extends BaseEntity {
     title: string;
     subtitle: string;
     description: string;
     originType: ProjectOriginType;
+    student: ProjectStudent;
     university: {
         name: string;
         address: string;
@@ -28,16 +30,7 @@ export interface Project extends BaseEntity {
         phone: string;
         email: string;
     };
-    student: {
-        userId: string;
-        studentId: string;
-        name: string;
-        title: string;
-        phone: string;
-        email: string;
-        courseName: string;
-        majorDisciplineArea: string;
-    };
+
     startDate: Date;
     endDate: Date;
     location: string;

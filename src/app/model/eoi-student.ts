@@ -1,17 +1,9 @@
 import { BaseEntity } from './base-entity';
+import { ProjectStudent } from './project-student';
 
 export interface EoiStudent extends BaseEntity {
-    student: {
-        id: string;
-        name: string;
-        email: string;
-    };
+    student: ProjectStudent;
     projectId: string;
     businessId: string;
-    studyArea: string;
-    why: string;
-    commitment: string;
-    resumeUrl: string;
-    transcriptUrl: string;
     submittedOn?: Date;
 }
