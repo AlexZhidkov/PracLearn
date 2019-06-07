@@ -65,7 +65,6 @@ export class EoiStudentComponent implements OnInit {
           },
           projectId: this.projectId,
           businessId: this.businessId,
-          isNew: false,
           studyArea: '',
           why: '',
           commitment: '',

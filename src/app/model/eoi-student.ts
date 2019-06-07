@@ -8,7 +8,6 @@ export interface EoiStudent extends BaseEntity {
     };
     projectId: string;
     businessId: string;
-    isNew: boolean;
     studyArea: string;
     why: string;
     commitment: string;

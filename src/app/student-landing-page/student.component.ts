@@ -53,8 +53,4 @@ export class StudentComponent implements OnInit {
     ];
   }
 
-  addNewProject(): void {
-    this.projectService.add({ title: '', description: '' })
-      .then(r => this.router.navigate(['/projectEdit/' + r.id]));
-  }
 }

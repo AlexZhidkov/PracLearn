@@ -52,8 +52,4 @@ export class BusinessComponent implements OnInit {
     });
   }
 
-  addNewProjectGroup(): void {
-    this.projectService.add({ title: '', description: '' })
-      .then(r => this.router.navigate(['/projectGroupEdit/' + r.id]));
-  }
 }
