@@ -1,4 +1,5 @@
 import { BaseEntity } from './base-entity';
+import { Supervisor } from './supervisor';
 
 export interface EoiBusiness extends BaseEntity {
     businessId: string;
@@ -14,11 +15,6 @@ export interface EoiBusiness extends BaseEntity {
     address: string;
     about: string;
     dates: string;
-    supervisor: {
-        name: string;
-        role: string;
-        experience: string;
-        phone: string;
-        email: string;
-    };
+    supervisor: Supervisor;
+    submittedOn?: Date;
 }

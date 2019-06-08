@@ -101,6 +101,7 @@ export class EoiBusinessComponent implements OnInit {
           dates: '',
           supervisor: {
             name: '',
+            title: '',
             role: '',
             experience: '',
             phone: '',

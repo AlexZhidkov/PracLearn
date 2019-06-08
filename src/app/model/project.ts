@@ -1,6 +1,7 @@
 import { ProjectOriginType } from './projectOriginType';
 import { BaseEntity } from './base-entity';
 import { ProjectStudent } from './project-student';
+import { Person } from './person';
 
 export interface Project extends BaseEntity {
     title: string;
@@ -13,24 +14,14 @@ export interface Project extends BaseEntity {
         address: string;
         abn: string;
     };
-    placementOfficer: {
-        name: string;
-        phone: string;
-        email: string;
-    };
+    placementOfficer: Person;
     business: {
         userId: string;
         name: string;
         address: string;
         abn: string;
     };
-    supervisor: {
-        name: string;
-        title: string;
-        phone: string;
-        email: string;
-    };
-
+    supervisor: Person;
     startDate: Date;
     endDate: Date;
     location: string;
