@@ -8,8 +8,8 @@ import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
 import { MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { DataService } from '../services/data.service';
-import { Project } from '../model/project';
 import { ProjectOriginType } from '../model/projectOriginType';
+import { EoiStudent } from '../model/eoi-student';
 
 @Component({
   selector: 'app-student-project-wizard',
@@ -19,13 +19,11 @@ import { ProjectOriginType } from '../model/projectOriginType';
 export class StudentProjectWizardComponent implements OnInit {
   smallScreen: boolean;
   user: UserProfile;
-  projectId: string;
-  private projectDoc: AngularFirestoreDocument<Project>;
-  project: Observable<Project>;
+  eoiId: string;
+  private projectDoc: AngularFirestoreDocument<EoiStudent>;
+  project: Observable<EoiStudent>;
   isLoading = true;
-  isMarketplace = false;
-  isSelfSourced = false;
-  isBespoke = false;
+  originType: ProjectOriginType;
   projectTitle: string;
   submitStepLabel: string;
   submitButtonText: string;
@@ -47,59 +45,43 @@ export class StudentProjectWizardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projectId = this.route.snapshot.paramMap.get('id');
+    this.eoiId = this.route.snapshot.paramMap.get('eoiId');
     this.user = JSON.parse(localStorage.getItem('user'));
     let projectUrl = '';
-    switch (this.projectId) {
+    projectUrl = `/users/${this.user.uid}/eoi`;
+    this.submitButtonText = 'Submit';
+    switch (this.eoiId) {
       case 'self-sourced':
-        this.isSelfSourced = true;
+        this.originType = ProjectOriginType.selfSourced;
         this.projectTitle = 'Self-Sourced Internship';
         this.submitStepLabel = 'Host';
-        this.submitButtonText = 'Submit';
-        projectUrl = '/selfSourced/' + this.user.uid;
         break;
       case 'bespoke':
-        this.isBespoke = true;
+        this.originType = ProjectOriginType.bespoke;
         this.projectTitle = 'Expression of Interest';
         this.submitStepLabel = 'Submit';
-        this.submitButtonText = 'Submit';
-        projectUrl = '/bespoke/' + this.user.uid;
         break;
       default: // application for a marketplace project
-        this.isMarketplace = true;
+        this.originType = ProjectOriginType.marketplace;
         this.projectTitle = 'Expression of Interest';
         this.submitStepLabel = 'Submit';
-        this.submitButtonText = 'Submit';
-        projectUrl = `/projectEoi/${this.projectId}-${this.user.uid}`;
         break;
     }
 
-    this.projectDoc = this.afs.doc<Project>(projectUrl);
+    this.projectDoc = this.afs.doc<EoiStudent>(projectUrl);
     this.project = this.projectDoc.valueChanges();
     this.project.subscribe(r => {
       if (!r) {
         r = {
-          originType: ProjectOriginType.selfSourced,
-          university: {
-            name: '',
-            address: '',
-            abn: '',
-          },
-          placementOfficer: {
-            name: '',
-            phone: '',
-            email: '',
-          },
+          originType: this.originType,
+          university: 'UWA',
+          projectId: '',
           business: {
             userId: '',
             name: '',
-            address: '',
-            abn: '',
           },
           supervisor: {
             name: '',
-            title: '',
-            phone: '',
             email: '',
           },
           student: {
@@ -116,17 +98,6 @@ export class StudentProjectWizardComponent implements OnInit {
             resumeUrl: '',
             transcriptUrl: '',
           },
-          startDate: new Date(),
-          endDate: new Date(),
-          location: '',
-          title: '',
-          subtitle: '',
-          description: '',
-          skillsAndExperience: '',
-          studentLevel: '',
-          placementDetails: '',
-          deliverables: '',
-          learningOutcomes: ''
         };
         this.projectDoc.set(r);
       }
@@ -135,14 +106,10 @@ export class StudentProjectWizardComponent implements OnInit {
     });
   }
 
-  bindFormControls(r: Project) {
+  bindFormControls(r: EoiStudent) {
     this.hostInstitutionFormGroup = this.formBuilder.group({
       hostNameCtrl: [r.business.name],
-      hostAddressCtrl: [r.business.address],
-      hostAbnCtrl: [r.business.abn],
       supervisorNameCtrl: [r.supervisor.name],
-      supervisorTitleCtrl: [r.supervisor.title],
-      supervisorPhoneCtrl: [r.supervisor.phone],
       supervisorEmailCtrl: [r.supervisor.email],
     });
     this.studentFormGroup = this.formBuilder.group({
@@ -156,49 +123,29 @@ export class StudentProjectWizardComponent implements OnInit {
       courseNameCtrl: [r.student.courseName],
       majorDisciplineAreaCtrl: [r.student.majorDisciplineArea],
     });
-    this.placementFormGroup = this.formBuilder.group({
-      startDateCtrl: [r.startDate],
-      endDateCtrl: [r.endDate],
-      locationCtrl: [r.location],
-    });
   }
 
   submit() {
     this.projectDoc.get()
       .subscribe(projectSnapshot => {
-        const project = projectSnapshot.data() as Project;
-        if (this.isMarketplace) {
-          this.submitMarketplace(project);
-        } else if (this.isBespoke) {
-          this.submitBespoke(project);
-        } else if (this.isSelfSourced) {
-          this.sendEmailToBusiness(project);
-        } else {
-          this.openSnackBar('ERROR: unknown application type');
-        }
+        const eoi = projectSnapshot.data() as EoiStudent;
+        const event = {
+          created: this.dataService.getTimestamp(new Date()),
+          title: 'Student submitted EOI',
+          eoi
+        };
+
+        this.universityTodoService.setCollection('universities/uwa/todo');
+        this.universityTodoService
+          .add(event)
+          .then(() => this.openSnackBar('Thank you for submitting'))
+          .catch(() => this.openSnackBar('ERROR: failed to submit application'));
+        this.eventStoreService
+          .add(event);
       });
     this.router.navigateByUrl('student');
   }
 
-  submitMarketplace(project) {
-    const event = {
-      created: this.dataService.getTimestamp(new Date()),
-      title: 'Student submitted EOI for a project',
-      student: {
-        uid: this.user.uid,
-        displayName: this.user.displayName
-      },
-      project
-    };
-
-    this.universityTodoService.setCollection('universities/uwa/todo');
-    this.universityTodoService
-      .add(event)
-      .then(() => this.openSnackBar('Thank you for sending'))
-      .catch(() => this.openSnackBar('ERROR: failed to send application'));
-    this.eventStoreService
-      .add(event);
-  }
 
   submitBespoke(project) {
     const event = {
@@ -254,17 +201,17 @@ export class StudentProjectWizardComponent implements OnInit {
       });
   }
 
-  dateChanged(type: string, event: MatDatepickerInputEvent<Date>): void {
-    const date = new Date();
-    date.setDate(event.value.getDate());
-    date.setMonth(event.value.getMonth());
-    date.setFullYear(event.value.getFullYear());
-    if (type === 'start') {
-      this.projectDoc.update({ startDate: date });
-    } else {
-      this.projectDoc.update({ endDate: date });
-    }
-  }
+  // dateChanged(type: string, event: MatDatepickerInputEvent<Date>): void {
+  //   const date = new Date();
+  //   date.setDate(event.value.getDate());
+  //   date.setMonth(event.value.getMonth());
+  //   date.setFullYear(event.value.getFullYear());
+  //   if (type === 'start') {
+  //     this.projectDoc.update({ startDate: date });
+  //   } else {
+  //     this.projectDoc.update({ endDate: date });
+  //   }
+  // }
 
   openSnackBar(message: string) {
     this.snackBar.open(message, null, {

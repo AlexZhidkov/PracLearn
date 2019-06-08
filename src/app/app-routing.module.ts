@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'student/start', component: StudentGetStartedComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
-  { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
+  { path: 'student/eoi/:eoiId', component: StudentProjectWizardComponent }, // canActivate: [AuthService] },
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projects', component: ProjectsListComponent },
   { path: 'project-groups', component: ProjectGroupsListComponent },
