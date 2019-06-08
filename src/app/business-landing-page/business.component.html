@@ -33,6 +33,12 @@
           Market Research at Vistario
         </mat-list-item>
       </mat-nav-list>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let preEoi of preEois | async" routerLink="/business/eoi/{{preEoi.id}}">
+          <mat-icon>edit</mat-icon>
+          {{preEoi.title}}
+        </mat-list-item>
+      </mat-nav-list>
       <mat-action-row>
         <button mat-raised-button routerLink="/business/eoi/blank">Create new project</button>
         <button mat-raised-button routerLink="/project-groups">Find project</button>

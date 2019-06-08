@@ -61,7 +61,6 @@ export class EoiBusinessComponent implements OnInit {
     ]).subscribe(result => {
       this.smallScreen = result.matches;
     });
-
     this.user = JSON.parse(localStorage.getItem('user'));
     this.eoiBusinessUrl = '/users/' + this.user.uid + '/eoiBusiness';
 
@@ -69,7 +68,7 @@ export class EoiBusinessComponent implements OnInit {
     this.eoiId = this.route.snapshot.paramMap.get('eoiId');
     if (this.route.snapshot.paramMap.get('isNewProject') === 'true') {
       this.isNewProject = true;
-    } else if (this.projectId) {
+    } else if (this.eoiId) {
       this.isNewProject = false;
     }
 

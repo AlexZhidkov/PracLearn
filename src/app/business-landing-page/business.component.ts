@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserProfile } from '../model/user-profile';
+import { Project } from '../model/project';
 
 @Component({
   selector: 'app-business',
@@ -14,6 +15,7 @@ import { UserProfile } from '../model/user-profile';
   styleUrls: ['./business.component.scss']
 })
 export class BusinessComponent implements OnInit {
+  preEois: Observable<Project[]>;
   projectGroups: Observable<ProjectGroup[]>;
   selfSourcedProject: SelfSourcedArrangement;
   user: UserProfile;
@@ -29,6 +31,7 @@ export class BusinessComponent implements OnInit {
 
   constructor(private router: Router,
               private projectService: ProjectService,
+              private preEoisService: ProjectService,
               private afs: AngularFirestore,
               private auth: AuthService) {
     this.auth.isBusiness = true;
@@ -44,6 +47,9 @@ export class BusinessComponent implements OnInit {
     const selfSourcedProjectDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl);
     const selfSourcedProjectObservable = selfSourcedProjectDoc.valueChanges();
     selfSourcedProjectObservable.subscribe(project => this.selfSourcedProject = project);
+
+    this.preEoisService.setCollection(`/users/${this.user.uid}/eoiBusiness`);
+    this.preEois = this.preEoisService.list();
 
     this.projectService.setCollection('projectGroups');
     this.projectGroups = this.projectService.list();
