@@ -48,7 +48,7 @@ export class StudentProjectWizardComponent implements OnInit {
     this.eoiId = this.route.snapshot.paramMap.get('eoiId');
     this.user = JSON.parse(localStorage.getItem('user'));
     let projectUrl = '';
-    projectUrl = `/users/${this.user.uid}/eoi`;
+    projectUrl = `/users/${this.user.uid}/data/eoi-student`;
     this.submitButtonText = 'Submit';
     switch (this.eoiId) {
       case 'self-sourced':
@@ -95,6 +95,8 @@ export class StudentProjectWizardComponent implements OnInit {
             majorDisciplineArea: '',
             why: '',
             commitment: '',
+            startDate: null,
+            endDate: null,
             resumeUrl: '',
             transcriptUrl: '',
           },
@@ -122,6 +124,10 @@ export class StudentProjectWizardComponent implements OnInit {
     this.courseFormGroup = this.formBuilder.group({
       courseNameCtrl: [r.student.courseName],
       majorDisciplineAreaCtrl: [r.student.majorDisciplineArea],
+    });
+    this.placementFormGroup = this.formBuilder.group({
+      startDateCtrl: [r.student.startDate],
+      endDateCtrl: [r.student.endDate],
     });
   }
 

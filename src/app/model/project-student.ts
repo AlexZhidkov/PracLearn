@@ -11,6 +11,8 @@ export interface ProjectStudent extends BaseEntity {
     majorDisciplineArea: string;
     why: string;
     commitment: string;
+    startDate: Date;
+    endDate: Date;
     resumeUrl: string;
     transcriptUrl: string;
 }
