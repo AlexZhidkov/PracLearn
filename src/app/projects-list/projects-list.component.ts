@@ -17,7 +17,7 @@ export class ProjectsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projectService.setCollection('projects');
+    this.projectService.setCollection('marketplace');
     this.projects = this.projectService.list();
     this.projects.subscribe(e => {
       this.isLoading = false;

@@ -29,7 +29,7 @@ export class ProjectComponent implements OnInit {
     }
 
     this.projectId = this.route.snapshot.paramMap.get('id');
-    this.projectDoc = this.afs.doc<Project>('projects/' + this.projectId);
+    this.projectDoc = this.afs.doc<Project>('marketplace/' + this.projectId);
     this.project = this.projectDoc.valueChanges();
     this.project.subscribe(() => this.isLoading = false);
   }

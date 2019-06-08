@@ -20,6 +20,7 @@ export class StudentProjectWizardComponent implements OnInit {
   smallScreen: boolean;
   user: UserProfile;
   eoiId: string;
+  projectId = '';
   private projectDoc: AngularFirestoreDocument<EoiStudent>;
   project: Observable<EoiStudent>;
   isLoading = true;
@@ -65,6 +66,7 @@ export class StudentProjectWizardComponent implements OnInit {
         this.originType = ProjectOriginType.marketplace;
         this.projectTitle = 'Expression of Interest';
         this.submitStepLabel = 'Submit';
+        this.projectId = this.eoiId;
         break;
     }
 
@@ -75,7 +77,7 @@ export class StudentProjectWizardComponent implements OnInit {
         r = {
           originType: this.originType,
           university: 'UWA',
-          projectId: '',
+          projectId: this.projectId,
           business: {
             userId: '',
             name: '',
@@ -135,6 +137,8 @@ export class StudentProjectWizardComponent implements OnInit {
     this.projectDoc.get()
       .subscribe(projectSnapshot => {
         const eoi = projectSnapshot.data() as EoiStudent;
+        eoi.projectId = this.projectId;
+        eoi.originType = this.originType;
         const event = {
           created: this.dataService.getTimestamp(new Date()),
           title: 'Student submitted EOI',
