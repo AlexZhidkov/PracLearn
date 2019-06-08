@@ -17,7 +17,6 @@ import { ReviewStudentEoiComponent } from './review-student-eoi/review-student-e
 import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SurveyComponent } from './survey/survey.component';
-import { StudentProjectWizardComponent } from './student-project-wizard/student-project-wizard.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
@@ -33,11 +32,10 @@ const routes: Routes = [
   { path: 'student', component: StudentComponent },
   { path: 'project/self-sourced', component: BusinessSelfSourcedProjectComponent }, // canActivate: [AuthService] },
   { path: 'survey', component: SurveyComponent },
-  { path: 'student/form/:id', component: StudentProjectWizardComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/start', component: StudentGetStartedComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
-  { path: 'student/eoi/:eoiId', component: StudentProjectWizardComponent }, // canActivate: [AuthService] },
+  { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projects', component: ProjectsListComponent },
   { path: 'project-groups', component: ProjectGroupsListComponent },

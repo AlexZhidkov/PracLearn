@@ -60,7 +60,6 @@ import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SelfSourcedProjectComponent } from './self-sourced-project/self-sourced-project.component';
 import { SurveyComponent } from './survey/survey.component';
-import { StudentProjectWizardComponent } from './student-project-wizard/student-project-wizard.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
@@ -94,7 +93,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HomeComponent,
     SelfSourcedProjectComponent,
     SurveyComponent,
-    StudentProjectWizardComponent,
     ProjectViewComponent,
     BusinessSelfSourcedProjectComponent,
     ProjectsListComponent,

@@ -1,152 +1,115 @@
-<!-- 
 <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
-<ng-template [ngIf]="smallScreen" [ngIfElse]="bigScreen">
-  <mat-vertical-stepper linear #stepper *ngIf="!isLoading">
-    <mat-step [stepControl]="studyAreaFormGroup">
-      <form [formGroup]="studyAreaFormGroup">
+<div *ngIf="hostInstitutionFormGroup">
+  <h2>{{projectTitle}}</h2>
+  <mat-vertical-stepper linear #stepper>
+    <mat-step [stepControl]="courseFormGroup">
+      <form [formGroup]="courseFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Course</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
+              (ngModelChange)="projectDoc.set({student: {courseName: $event}}, { merge: true })">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Major Discipline Area" formControlName="majorDisciplineAreaCtrl"
+              (ngModelChange)="projectDoc.set({student: {majorDisciplineArea: $event}}, { merge: true })">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="placementFormGroup">
+      <form [formGroup]="placementFormGroup">
+        <div class="form-container">
+          <ng-template matStepLabel>Dates</ng-template>
+          <mat-form-field>
+            <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date"
+              (ngModelChange)="projectDoc.set({startDate: $event}, { merge: true })">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="endDatePicker" placeholder="End Date"
+              (ngModelChange)="projectDoc.set({endDate: $event}, { merge: true })">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="studentFormGroup">
+      <form [formGroup]="studentFormGroup">
         <div class="form-container">
           <ng-template matStepLabel>Student</ng-template>
           <mat-form-field>
-            <p>What is your area of study/course?</p>
-            <textarea matInput rows="10" formControlName="studyAreaCtrl" required
-              (ngModelChange)="eoiDoc.update({studyArea: $event})">
-            </textarea>
+            <input matInput placeholder="Student Name" formControlName="studentNameCtrl"
+              (ngModelChange)="projectDoc.set({student: {name: $event}}, { merge: true })">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Student Title" formControlName="studentTitleCtrl"
+              (ngModelChange)="projectDoc.set({student: {title: $event}}, { merge: true })">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Student ID" formControlName="studentIdCtrl"
+              (ngModelChange)="projectDoc.set({student: {studentId: $event}}, { merge: true })">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Telephone" formControlName="studentPhoneCtrl"
+              (ngModelChange)="projectDoc.set({student: {phone: $event}}, { merge: true })">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="studentEmailCtrl"
+              (ngModelChange)="projectDoc.set({student: {email: $event}}, { merge: true })">
           </mat-form-field>
         </div>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="whyFormGroup">
-      <form [formGroup]="whyFormGroup">
-        <ng-template matStepLabel>Passion</ng-template>
+    <mat-step [stepControl]="hostInstitutionFormGroup">
+      <form [formGroup]="hostInstitutionFormGroup">
         <div class="form-container">
-          <p>In 50 words or less, why do you want to take part in work a project?</p>
-          <mat-form-field>
-            <textarea matInput rows="10" formControlName="whyCtrl" required
-              (ngModelChange)="eoiDoc.update({why: $event})">
-              </textarea>
-          </mat-form-field>
+          <ng-template matStepLabel>{{submitStepLabel}}</ng-template>
+          <div *ngIf="isSelfSourced">
+            <mat-form-field>
+              <input matInput placeholder="Company Name" formControlName="hostNameCtrl"
+                (ngModelChange)="projectDoc.set({business: {name: $event}}, { merge: true })">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Supervisor Name" formControlName="supervisorNameCtrl"
+                (ngModelChange)="projectDoc.set({supervisor: {name: $event}}, { merge: true })">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Supervisor Email" formControlName="supervisorEmailCtrl"
+                (ngModelChange)="projectDoc.set({supervisor: {email: $event}}, { merge: true })">
+            </mat-form-field>
+          </div>
+          <mat-checkbox #check1>
+            I understand that I need to check my emails regularly,
+            because the Practicum Coordinator may send me project offerings.
+          </mat-checkbox>
+          <mat-checkbox #check2>
+            I understand that by completing this form a project is not guaranteed.
+            I am however expressing my interest to be considered for a project.
+          </mat-checkbox>
         </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-
-    <mat-step [stepControl]="commitmentFormGroup">
-      <form [formGroup]="commitmentFormGroup">
-        <ng-template matStepLabel>Values</ng-template>
-        <div class="form-container">
-          <p>When is a time when you have demonstrated commitment and dependability?</p>
-          <mat-form-field>
-            <textarea matInput rows="10" formControlName="commitmentCtrl" required
-              (ngModelChange)="eoiDoc.update({commitment: $event})">
-            </textarea>
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="attachmentsFormGroup">
-      <form [formGroup]="attachmentsFormGroup">
-        <ng-template matStepLabel>Project</ng-template>
-        <div class="form-container">
-          <mat-form-field>
-            <input matInput placeholder="Link to Resume" formControlName="resumeUrlCtrl" required
-              (ngModelChange)="eoiDoc.update({resumeUrl: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Link to Academic Transcript" formControlName="transcriptUrlCtrl" required
-              (ngModelChange)="eoiDoc.update({transcriptUrl: $event})">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="submitEoi()">Submit</button>
+          <button type="button" mat-button matStepperPrevious>Back</button>
+          <button type="button" mat-button [disabled]="!(check1.checked && check2.checked)" (click)="submit()">
+            {{submitButtonText}}
+          </button>
         </div>
       </form>
     </mat-step>
   </mat-vertical-stepper>
-</ng-template>
-
-<ng-template #bigScreen>
-  <mat-horizontal-stepper #stepper *ngIf="!isLoading">
-    <mat-step [stepControl]="studyAreaFormGroup">
-      <form [formGroup]="studyAreaFormGroup">
-        <ng-template matStepLabel>Student</ng-template>
-        <div class="form-container">
-          <mat-form-field>
-            <textarea matInput rows="10" placeholder="What is your area of study/course?"
-              formControlName="studyAreaCtrl" required (ngModelChange)="eoiDoc.update({studyArea: $event})">
-            </textarea>
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="whyFormGroup">
-      <form [formGroup]="whyFormGroup">
-        <ng-template matStepLabel>Passion</ng-template>
-        <div class="form-container">
-          <mat-form-field>
-            <textarea matInput rows="10" formControlName="whyCtrl"
-              placeholder="In 50 words or less, why do you want to take part in work a project?" required
-              (ngModelChange)="eoiDoc.update({why: $event})">
-            </textarea>
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-
-    <mat-step [stepControl]="commitmentFormGroup">
-      <form [formGroup]="commitmentFormGroup">
-        <ng-template matStepLabel>Values</ng-template>
-        <div class="form-container">
-          <mat-form-field>
-            <textarea matInput rows="10" formControlName="commitmentCtrl"
-              placeholder="When is a time when you have demonstrated commitment and dependability?" required
-              (ngModelChange)="eoiDoc.update({commitment: $event})">
-            </textarea>
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="attachmentsFormGroup">
-      <form [formGroup]="attachmentsFormGroup">
-        <ng-template matStepLabel>Project</ng-template>
-        <div class="form-container">
-          <mat-form-field>
-            <input matInput placeholder="Link to Resume" formControlName="resumeUrlCtrl" required
-              (ngModelChange)="eoiDoc.update({resumeUrl: $event})">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Link to Academic Transcript" formControlName="transcriptUrlCtrl" required
-              (ngModelChange)="eoiDoc.update({transcriptUrl: $event})">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="submitEoi()">Submit</button>
-        </div>
-      </form>
-    </mat-step>
-  </mat-horizontal-stepper>
-</ng-template>
- -->
+</div>
