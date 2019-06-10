@@ -65,12 +65,12 @@ import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
-import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
 import { BusinessProjectComponent } from './business-project/business-project.component';
 import { StudentHelpComponent } from './student-help/student-help.component';
 import { BusinessHelpComponent } from './business-help/business-help.component';
 import { UniversityHelpComponent } from './university-help/university-help.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TemplatesListComponent } from './templates-list/templates-list.component';
 
 @NgModule({
   declarations: [
@@ -98,12 +98,12 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     BusinessSelfSourcedProjectComponent,
     ProjectsListComponent,
     StudentGetStartedComponent,
-    ProjectGroupsListComponent,
     BusinessProjectComponent,
     StudentHelpComponent,
     BusinessHelpComponent,
     UniversityHelpComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TemplatesListComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

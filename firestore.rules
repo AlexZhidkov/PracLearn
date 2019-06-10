@@ -3,7 +3,7 @@ service cloud.firestore {
     match /events/{document=**} {
       allow read, write: if request.auth.uid != null;
     }
-    match /projectGroups/{document=**} {
+    match /templates/{document=**} {
       allow read: if true;      
       allow write: if request.auth.uid != null;
     }

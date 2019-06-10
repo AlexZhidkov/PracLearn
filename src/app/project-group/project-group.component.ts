@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ProjectEditDialogComponent } from '../project-edit-dialog/project-edit-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { ProjectGroup } from '../model/project-group';
+import { Template } from '../model/template';
 import { EoiBusinessService } from '../services/eoi-business.service';
 
 @Component({
@@ -15,8 +14,8 @@ import { EoiBusinessService } from '../services/eoi-business.service';
 export class ProjectGroupComponent implements OnInit {
   projectGroupId: string;
   isLoading: boolean;
-  private projectGroupDoc: AngularFirestoreDocument<ProjectGroup>;
-  projectGroup: Observable<ProjectGroup>;
+  private projectGroupDoc: AngularFirestoreDocument<Template>;
+  projectGroup: Observable<Template>;
 
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
@@ -26,7 +25,7 @@ export class ProjectGroupComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.projectGroupId = this.route.snapshot.paramMap.get('id');
-    this.projectGroupDoc = this.afs.doc<ProjectGroup>('projectGroups/' + this.projectGroupId);
+    this.projectGroupDoc = this.afs.doc<Template>('templates/' + this.projectGroupId);
     this.projectGroup = this.projectGroupDoc.valueChanges();
     this.projectGroup.subscribe(() => this.isLoading = false);
   }

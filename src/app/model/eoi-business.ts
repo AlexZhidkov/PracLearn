@@ -3,7 +3,7 @@ import { Supervisor } from './supervisor';
 
 export interface EoiBusiness extends BaseEntity {
     businessId: string;
-    projectGroupId: string;
+    templateId: string;
     title: string;
     description: string;
     skills: string;

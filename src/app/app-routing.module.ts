@@ -21,9 +21,9 @@ import { ProjectViewComponent } from './project-view/project-view.component';
 import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
-import { ProjectGroupsListComponent } from './project-groups-list/project-groups-list.component';
 import { BusinessProjectComponent } from './business-project/business-project.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TemplatesListComponent } from './templates-list/templates-list.component';
 
 const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
@@ -38,7 +38,8 @@ const routes: Routes = [
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projects', component: ProjectsListComponent },
-  { path: 'project-groups', component: ProjectGroupsListComponent },
+  { path: 'templates', component: TemplatesListComponent },
+  { path: 'template/:id', component: ProjectGroupComponent },
   { path: 'project/:type/:id', component: ProjectViewComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'business', component: BusinessComponent },
@@ -47,7 +48,6 @@ const routes: Routes = [
   { path: 'business/eoi/:id/:isNewProject', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/project/:id', component: BusinessProjectComponent },
-  { path: 'business/:id', component: ProjectGroupComponent },
   { path: 'reviewStudentEoi/:uid/:id', component: ReviewStudentEoiComponent },
   { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
   { path: 'events', component: EventsViewerComponent },

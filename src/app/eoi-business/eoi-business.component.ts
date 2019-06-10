@@ -86,7 +86,7 @@ export class EoiBusinessComponent implements OnInit {
       this.afs.collection<EoiBusiness>(this.eoiBusinessUrl)
         .add({
           businessId: this.user.uid,
-          projectGroupId: this.projectId,
+          templateId: this.projectId,
           title: '',
           description: '',
           skills: '',

@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      Projects
+      Templates
     </mat-card-title>
     <mat-card-subtitle>
       Choose one to view and apply
@@ -9,9 +9,9 @@
   </mat-card-header>
   <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <mat-nav-list>
-    <mat-list-item *ngFor="let project of projects | async" routerLink="/business/{{project.id}}">
-      <h3 matLine> {{project.title}} </h3>
-      <p matLine> {{project.description}} </p>
+    <mat-list-item *ngFor="let template of templates | async" routerLink="/template/{{template.id}}">
+      <h3 matLine> {{template.title}} </h3>
+      <p matLine> {{template.description}} </p>
     </mat-list-item>
   </mat-nav-list>
 </mat-card>

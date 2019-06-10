@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjectService } from '../services/project.service';
-import { ProjectGroup } from '../model/project-group';
 import { AuthService } from '../services/auth.service';
 import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -16,7 +15,6 @@ import { Project } from '../model/project';
 })
 export class BusinessComponent implements OnInit {
   preEois: Observable<Project[]>;
-  projectGroups: Observable<ProjectGroup[]>;
   selfSourcedProject: SelfSourcedArrangement;
   user: UserProfile;
   isLoading: boolean;
@@ -50,12 +48,6 @@ export class BusinessComponent implements OnInit {
 
     this.preEoisService.setCollection(`/users/${this.user.uid}/eoiBusiness`);
     this.preEois = this.preEoisService.list();
-
-    this.projectService.setCollection('projectGroups');
-    this.projectGroups = this.projectService.list();
-    this.projectGroups.subscribe(e => {
-      this.isLoading = false;
-    });
   }
 
 }

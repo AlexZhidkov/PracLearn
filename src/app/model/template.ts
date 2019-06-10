@@ -1,6 +1,6 @@
 import { BaseEntity } from './base-entity';
 
-export interface ProjectGroup extends BaseEntity {
+export interface Template extends BaseEntity {
     title: string;
     description: string;
 }

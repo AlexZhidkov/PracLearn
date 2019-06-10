@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { ProjectGroup } from '../model/project-group';
+import { Template } from '../model/template';
 
 @Component({
   selector: 'app-project-group-edit',
@@ -11,8 +11,8 @@ import { ProjectGroup } from '../model/project-group';
 })
 export class ProjectGroupEditComponent implements OnInit {
   projectGroupId: string;
-  projectGroupDoc: AngularFirestoreDocument<ProjectGroup>;
-  projectGroup: Observable<ProjectGroup>;
+  projectGroupDoc: AngularFirestoreDocument<Template>;
+  projectGroup: Observable<Template>;
   isLoading: boolean;
 
   constructor(
@@ -23,7 +23,7 @@ export class ProjectGroupEditComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.projectGroupId = this.route.snapshot.paramMap.get('id');
-    this.projectGroupDoc = this.afs.doc<ProjectGroup>('projectGroups/' + this.projectGroupId);
+    this.projectGroupDoc = this.afs.doc<Template>('templates/' + this.projectGroupId);
     this.projectGroup = this.projectGroupDoc.valueChanges();
 
     this.projectGroup.subscribe(e => {
