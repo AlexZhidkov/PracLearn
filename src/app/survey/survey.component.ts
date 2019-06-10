@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { UniversityTodoService } from '../services/university-todo.service';
 import { EventStoreService } from '../services/event-store.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '../services/data.service';
 
 @Component({

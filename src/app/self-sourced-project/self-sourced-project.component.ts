@@ -11,7 +11,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
-import { MatSnackBar, MatDatepickerInputEvent } from '@angular/material';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '../services/data.service';
 
 @Component({

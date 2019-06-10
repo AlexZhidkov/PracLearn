@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ProjectEditDialogComponent } from '../project-edit-dialog/project-edit-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
