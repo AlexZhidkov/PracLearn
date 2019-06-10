@@ -6,7 +6,6 @@ import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { BusinessComponent } from './business-landing-page/business.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
-import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +23,7 @@ import { BusinessProjectComponent } from './business-project/business-project.co
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
 import { TemplateComponent } from './template/template.component';
+import { TemplateEditComponent } from './template-edit/template-edit.component';
 
 const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsListComponent },
   { path: 'templates', component: TemplatesListComponent },
   { path: 'template/:id', component: TemplateComponent },
+  { path: 'templateEdit/:id', component: TemplateEditComponent },
   { path: 'project/:type/:id', component: ProjectViewComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'business', component: BusinessComponent },
@@ -49,7 +50,6 @@ const routes: Routes = [
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/project/:id', component: BusinessProjectComponent },
   { path: 'reviewStudentEoi/:uid/:id', component: ReviewStudentEoiComponent },
-  { path: 'projectGroupEdit/:id', component: ProjectGroupEditComponent },
   { path: 'events', component: EventsViewerComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }

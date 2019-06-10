@@ -44,7 +44,6 @@ import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { BusinessComponent } from './business-landing-page/business.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
-import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 import { EoiBusinessService } from './services/eoi-business.service';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { EoiStudentComponent } from './eoi-student/eoi-student.component';
@@ -71,6 +70,7 @@ import { UniversityHelpComponent } from './university-help/university-help.compo
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
 import { TemplateComponent } from './template/template.component';
+import { TemplateEditComponent } from './template-edit/template-edit.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,6 @@ import { TemplateComponent } from './template/template.component';
     EoiBusinessComponent,
     BusinessComponent,
     ProjectEditComponent,
-    ProjectGroupEditComponent,
     ProfileBusinessComponent,
     EoiStudentComponent,
     ProfileStudentComponent,
@@ -103,7 +102,8 @@ import { TemplateComponent } from './template/template.component';
     UniversityHelpComponent,
     UserProfileComponent,
     TemplatesListComponent,
-    TemplateComponent
+    TemplateComponent,
+    TemplateEditComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent
