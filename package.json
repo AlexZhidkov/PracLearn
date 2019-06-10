@@ -60,6 +60,11 @@
     "ts-node": "^8.2.0",
     "tslint": "~5.17.0",
     "typescript": "3.4.5",
-    "webpack": "^4.33.0"
+    "webpack": "^4.33.0",
+    "@angular-devkit/architect": "<0.900 || ^0.900.0-0 || ^9.0.0-0",
+    "firebase-tools": "^6.10.0",
+    "fuzzy": "^0.1.3",
+    "inquirer": "^6.2.2",
+    "inquirer-autocomplete-prompt": "^1.0.1"
   }
 }

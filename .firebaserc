@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "praclearn-dev"
+  },
+  "targets": {
+    "praclearn-dev": {
+      "hosting": {
+        "prac-learn": [
+          "praclearn-dev"
+        ]
+      }
+    }
   }
 }

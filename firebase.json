@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "target": "prac-learn",
     "public": "dist",
     "ignore": [
       "firebase.json",

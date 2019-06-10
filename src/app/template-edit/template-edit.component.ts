@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
-import { Template } from '@angular/compiler/src/render3/r3_ast';
+import { Template } from '../model/template';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
