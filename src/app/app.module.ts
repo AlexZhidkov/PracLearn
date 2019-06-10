@@ -43,7 +43,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { BusinessComponent } from './business-landing-page/business.component';
-import { ProjectGroupComponent } from './project-group/project-group.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 import { EoiBusinessService } from './services/eoi-business.service';
@@ -71,6 +70,7 @@ import { BusinessHelpComponent } from './business-help/business-help.component';
 import { UniversityHelpComponent } from './university-help/university-help.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
+import { TemplateComponent } from './template/template.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +80,6 @@ import { TemplatesListComponent } from './templates-list/templates-list.componen
     ProjectComponent,
     EoiBusinessComponent,
     BusinessComponent,
-    ProjectGroupComponent,
     ProjectEditComponent,
     ProjectGroupEditComponent,
     ProfileBusinessComponent,
@@ -103,7 +102,8 @@ import { TemplatesListComponent } from './templates-list/templates-list.componen
     BusinessHelpComponent,
     UniversityHelpComponent,
     UserProfileComponent,
-    TemplatesListComponent
+    TemplatesListComponent,
+    TemplateComponent
   ],
   entryComponents: [
     ProjectEditDialogComponent

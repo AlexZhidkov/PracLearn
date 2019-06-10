@@ -5,7 +5,6 @@ import { StudentComponent } from './student-landing-page/student.component';
 import { ProjectComponent } from './project/project.component';
 import { EoiBusinessComponent } from './eoi-business/eoi-business.component';
 import { BusinessComponent } from './business-landing-page/business.component';
-import { ProjectGroupComponent } from './project-group/project-group.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { ProjectGroupEditComponent } from './project-group-edit/project-group-edit.component';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
@@ -24,6 +23,7 @@ import { StudentGetStartedComponent } from './student-get-started/student-get-st
 import { BusinessProjectComponent } from './business-project/business-project.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
+import { TemplateComponent } from './template/template.component';
 
 const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'project/:id', component: ProjectComponent },
   { path: 'projects', component: ProjectsListComponent },
   { path: 'templates', component: TemplatesListComponent },
-  { path: 'template/:id', component: ProjectGroupComponent },
+  { path: 'template/:id', component: TemplateComponent },
   { path: 'project/:type/:id', component: ProjectViewComponent },
   { path: 'projectEdit/:id', component: ProjectEditComponent },
   { path: 'business', component: BusinessComponent },

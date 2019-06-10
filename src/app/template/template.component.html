@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <markdown [data]="(template | async)?.title"></markdown>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <markdown [data]="(template | async)?.description"></markdown>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="storeTemplateId(templateId)"
+      routerLink="/business/eoi/{{templateId}}/true">Apply</button>
+    <button mat-icon-button>
+      <mat-icon aria-label="Edit" routerLink="/templateEdit/{{templateId}}">edit</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
