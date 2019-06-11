@@ -59,7 +59,6 @@ import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SurveyComponent } from './survey/survey.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
-import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 import { BusinessProjectComponent } from './business-project/business-project.component';
@@ -92,7 +91,6 @@ import { ProjectWizardComponent } from './project-wizard/project-wizard.componen
     HomeComponent,
     SurveyComponent,
     ProjectViewComponent,
-    BusinessSelfSourcedProjectComponent,
     ProjectsListComponent,
     StudentGetStartedComponent,
     BusinessProjectComponent,

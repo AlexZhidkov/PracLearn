@@ -16,7 +16,6 @@ import { EventsViewerComponent } from './events-viewer/events-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { SurveyComponent } from './survey/survey.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
-import { BusinessSelfSourcedProjectComponent } from './business-self-sourced-project/business-self-sourced-project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { StudentGetStartedComponent } from './student-get-started/student-get-started.component';
 import { BusinessProjectComponent } from './business-project/business-project.component';
@@ -31,7 +30,7 @@ const routes: Routes = [
   { path: 'university', component: UniversityComponent },
   { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'student', component: StudentComponent },
-  { path: 'project/self-sourced', component: BusinessSelfSourcedProjectComponent }, // canActivate: [AuthService] },
+  { path: 'project/self-sourced', component: ProjectWizardComponent }, // canActivate: [AuthService] },
   { path: 'survey', component: SurveyComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/start', component: StudentGetStartedComponent },
