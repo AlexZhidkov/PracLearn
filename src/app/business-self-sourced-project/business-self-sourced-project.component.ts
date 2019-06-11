@@ -8,12 +8,11 @@ import * as JSZip from 'jszip';
 import * as docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { EventStoreService } from '../services/event-store.service';
 import { UniversityTodoService } from '../services/university-todo.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from '../services/data.service';
+import { Project } from '../model/project';
 
 @Component({
   selector: 'app-business-self-sourced-project',
@@ -47,7 +46,7 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     const selfSourcedUrl = '/selfSourced/' + this.user.uid;
-    this.projectDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl);
+    this.projectDoc = this.afs.doc<Project>(selfSourcedUrl);
     this.project = this.projectDoc.valueChanges();
     this.project.subscribe(r => {
       this.bindFormControls(r);
@@ -55,25 +54,25 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
     });
   }
 
-  bindFormControls(r: SelfSourcedArrangement) {
+  bindFormControls(r: Project) {
     this.hostInstitutionFormGroup = this.formBuilder.group({
-      hostNameCtrl: [r.hostName],
-      hostAddressCtrl: [r.hostAddress],
-      hostAbnCtrl: [r.hostAbn],
-      supervisorNameCtrl: [r.supervisorName],
-      supervisorTitleCtrl: [r.supervisorTitle],
-      supervisorPhoneCtrl: [r.supervisorPhone],
+      hostNameCtrl: [r.business.name],
+      hostAddressCtrl: [r.business.address],
+      hostAbnCtrl: [r.business.abn],
+      supervisorNameCtrl: [r.supervisor.name],
+      supervisorTitleCtrl: [r.supervisor.title],
+      supervisorPhoneCtrl: [r.supervisor.phone],
     });
     this.studentFormGroup = this.formBuilder.group({
-      studentNameCtrl: [r.studentName],
-      studentTitleCtrl: [r.studentTitle],
-      studentIdCtrl: [r.studentId],
-      studentPhoneCtrl: [r.studentPhone],
-      studentEmailCtrl: [r.studentEmail],
+      studentNameCtrl: [r.student.name],
+      studentTitleCtrl: [r.student.title],
+      studentIdCtrl: [r.student.studentId],
+      studentPhoneCtrl: [r.student.phone],
+      studentEmailCtrl: [r.student.email],
     });
     this.courseFormGroup = this.formBuilder.group({
-      courseNameCtrl: [r.courseName],
-      majorDisciplineAreaCtrl: [r.majorDisciplineArea],
+      courseNameCtrl: [r.student.courseName],
+      majorDisciplineAreaCtrl: [r.student.majorDisciplineArea],
     });
     this.placementFormGroup = this.formBuilder.group({
       startDateCtrl: [r.startDate],
@@ -81,8 +80,8 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
       locationCtrl: [r.location],
     });
     this.projectOutlineFormGroup = this.formBuilder.group({
-      projectNameCtrl: [r.projectName],
-      projectBackgroundCtrl: [r.projectBackground],
+      projectNameCtrl: [r.title],
+      projectBackgroundCtrl: [r.description],
       skillsAndExperienceCtrl: [r.skillsAndExperience],
       studentLevelCtrl: [r.studentLevel],
       placementDetailsCtrl: [r.placementDetails],
@@ -93,24 +92,24 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
 
   submit() {
     this.projectDoc.get()
-      .subscribe(selfSourcedSnapshot => {
-        const selfSourced = selfSourcedSnapshot.data() as SelfSourcedArrangement;
+      .subscribe(projectSnapshot => {
+        const project = projectSnapshot.data() as Project;
         this.universityTodoService.setCollection('universities/uwa/todo');
         this.universityTodoService
           .add({
             created: this.dataService.getTimestamp(new Date()),
-            title: 'Self Sourced Placement Arrangement request received',
-            selfSourced
+            title: 'Student Placement Arrangement request received',
+            project
           })
           .then(() => this.openSnackBar('Thank you for applying'))
           .catch(() => this.openSnackBar('ERROR: failed to submit application'));
         this.eventStoreService
           .add({
-            event: 'Student/Business applied for self-sourced placement',
+            event: 'Placement application',
             user: {
               uid: this.user.uid,
               displayName: this.user.displayName
-            }, eoiBusiness: selfSourced
+            }, eoiBusiness: project
           });
       });
     this.router.navigateByUrl('business');
@@ -124,7 +123,7 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
   // https://docxtemplater.com/demo/#simple
   public generateDocument() {
     this.project = this.projectDoc.valueChanges();
-    this.project.subscribe((data: SelfSourcedArrangement) => {
+    this.project.subscribe((data: Project) => {
 
       this.loadFile('./assets/Student Placement Arrangement.docx', (error, content) => {
         if (error) { throw new Error(error); }
@@ -152,7 +151,7 @@ export class BusinessSelfSourcedProjectComponent implements OnInit {
           mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
 
-        saveAs(out, `Student Placement Arrangement - ${data.studentName}.docx`);
+        saveAs(out, `Student Placement Arrangement - ${data.student.name}.docx`);
       });
     });
   }

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjectService } from '../services/project.service';
 import { AuthService } from '../services/auth.service';
-import { SelfSourcedArrangement } from '../model/self-sourced-arrangement';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserProfile } from '../model/user-profile';
 import { Project } from '../model/project';
@@ -15,7 +14,7 @@ import { Project } from '../model/project';
 })
 export class BusinessComponent implements OnInit {
   preEois: Observable<Project[]>;
-  selfSourcedProject: SelfSourcedArrangement;
+  selfSourcedProject: Project;
   user: UserProfile;
   isLoading: boolean;
   areas = [
@@ -42,7 +41,7 @@ export class BusinessComponent implements OnInit {
     }
     this.user = JSON.parse(localStorage.getItem('user'));
     const selfSourcedUrl = '/selfSourced/' + this.user.uid;
-    const selfSourcedProjectDoc = this.afs.doc<SelfSourcedArrangement>(selfSourcedUrl);
+    const selfSourcedProjectDoc = this.afs.doc<Project>(selfSourcedUrl);
     const selfSourcedProjectObservable = selfSourcedProjectDoc.valueChanges();
     selfSourcedProjectObservable.subscribe(project => this.selfSourcedProject = project);
 
