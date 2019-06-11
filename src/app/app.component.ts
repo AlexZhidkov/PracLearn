@@ -21,10 +21,7 @@ export class AppComponent {
               private router: Router,
               private titleService: Title) {
     this.title = environment.title;
-    
-    // Issue #3 Resolved: Set Title using environment.title
     this.titleService.setTitle(this.title);
-
     this.homeUrl = environment.homeUrl;
     this.authService.initialDetails.subscribe(obj => {
       this.login = obj.isLogin;
