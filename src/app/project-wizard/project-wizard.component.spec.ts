@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelfSourcedProjectComponent } from './self-sourced-project.component';
+import { ProjectWizardComponent } from './project-wizard.component';
 
-describe('SelfSourcedProjectComponent', () => {
-  let component: SelfSourcedProjectComponent;
-  let fixture: ComponentFixture<SelfSourcedProjectComponent>;
+describe('ProjectWizardComponent', () => {
+  let component: ProjectWizardComponent;
+  let fixture: ComponentFixture<ProjectWizardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelfSourcedProjectComponent ]
+      declarations: [ ProjectWizardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelfSourcedProjectComponent);
+    fixture = TestBed.createComponent(ProjectWizardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

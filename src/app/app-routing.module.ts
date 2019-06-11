@@ -24,6 +24,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TemplatesListComponent } from './templates-list/templates-list.component';
 import { TemplateComponent } from './template/template.component';
 import { TemplateEditComponent } from './template-edit/template-edit.component';
+import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
 
 const routes: Routes = [
   { path: 'profile', component: UserProfileComponent },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/project/:id', component: BusinessProjectComponent },
   { path: 'reviewStudentEoi/:uid/:id', component: ReviewStudentEoiComponent },
+  { path: 'wizard', component: ProjectWizardComponent },
   { path: 'events', component: EventsViewerComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }

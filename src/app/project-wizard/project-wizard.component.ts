@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from '../model/user-profile';
-import { Router } from '@angular/router';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
+import { Project } from '../model/project';
 import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataService } from '../services/data.service';
+import { UniversityTodoService } from '../services/university-todo.service';
+import { EventStoreService } from '../services/event-store.service';
 import * as JSZipUtils from 'jszip-utils';
 import * as JSZip from 'jszip';
 import * as docxtemplater from 'docxtemplater';
 import { saveAs } from 'file-saver';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { EventStoreService } from '../services/event-store.service';
-import { UniversityTodoService } from '../services/university-todo.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataService } from '../services/data.service';
-import { Project } from '../model/project';
 
 @Component({
-  selector: 'app-self-sourced-project',
-  templateUrl: './self-sourced-project.component.html',
-  styleUrls: ['./self-sourced-project.component.scss']
+  selector: 'app-project-wizard',
+  templateUrl: './project-wizard.component.html',
+  styleUrls: ['./project-wizard.component.scss']
 })
-export class SelfSourcedProjectComponent implements OnInit {
+export class ProjectWizardComponent implements OnInit {
   smallScreen: boolean;
   user: UserProfile;
   projectDoc: AngularFirestoreDocument<Project>;
