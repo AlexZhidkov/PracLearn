@@ -5,7 +5,7 @@
   <mat-vertical-stepper linear #stepper>
     <mat-step [stepControl]="courseFormGroup">
       <form [formGroup]="courseFormGroup">
-        <div class="form-container">
+        <div class="full-width">
           <ng-template matStepLabel>Course</ng-template>
           <mat-form-field>
             <input matInput placeholder="Course Name" formControlName="courseNameCtrl"
@@ -24,7 +24,7 @@
     </mat-step>
     <mat-step [stepControl]="placementFormGroup">
       <form [formGroup]="placementFormGroup">
-        <div class="form-container">
+        <div class="full-width">
           <ng-template matStepLabel>Dates</ng-template>
           <mat-form-field>
             <input matInput [matDatepicker]="startDatePicker" placeholder="Start Date"
@@ -47,7 +47,7 @@
     </mat-step>
     <mat-step [stepControl]="studentFormGroup">
       <form [formGroup]="studentFormGroup">
-        <div class="form-container">
+        <div class="full-width">
           <ng-template matStepLabel>Student</ng-template>
           <mat-form-field>
             <input matInput placeholder="Student Name" formControlName="studentNameCtrl"
@@ -78,9 +78,9 @@
     </mat-step>
     <mat-step [stepControl]="hostInstitutionFormGroup">
       <form [formGroup]="hostInstitutionFormGroup">
-        <div class="form-container">
+        <div class="full-width">
           <ng-template matStepLabel>{{submitStepLabel}}</ng-template>
-          <div *ngIf="isSelfSourced">
+          <div class="full-width" *ngIf="originType === 'Self-Sourced'">
             <mat-form-field>
               <input matInput placeholder="Company Name" formControlName="hostNameCtrl"
                 (ngModelChange)="projectDoc.set({business: {name: $event}}, { merge: true })">
