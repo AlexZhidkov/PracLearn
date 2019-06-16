@@ -26,31 +26,35 @@ import { TemplateEditComponent } from './template-edit/template-edit.component';
 import { ProjectWizardComponent } from './project-wizard/project-wizard.component';
 
 const routes: Routes = [
-  { path: 'profile', component: UserProfileComponent },
-  { path: 'university', component: UniversityComponent },
-  { path: 'university/todo/:id', component: UniversityTodoComponent },
-  { path: 'student', component: StudentComponent },
-  { path: 'project/self-sourced', component: ProjectWizardComponent }, // canActivate: [AuthService] },
-  { path: 'survey', component: SurveyComponent },
   { path: 'student', component: StudentComponent },
   { path: 'student/start', component: StudentGetStartedComponent },
   { path: 'student/eoi/:id/:businessId/:isNewProject', component: EoiStudentComponent }, // canActivate: [AuthService] },
   { path: 'student/eoi/:eoiId', component: EoiStudentComponent }, // canActivate: [AuthService] },
-  { path: 'project/:id', component: ProjectComponent },
-  { path: 'projects', component: ProjectsListComponent },
-  { path: 'templates', component: TemplatesListComponent },
-  { path: 'template/:id', component: TemplateComponent },
-  { path: 'templateEdit/:id', component: TemplateEditComponent },
-  { path: 'project/:type/:id', component: ProjectViewComponent },
-  { path: 'projectEdit/:id', component: ProjectEditComponent },
+
   { path: 'business', component: BusinessComponent },
   { path: 'business/profile', component: ProfileBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/blank', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:id/:isNewProject', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/eoi/:eoiId', component: EoiBusinessComponent }, // canActivate: [AuthService] },
   { path: 'business/project/:id', component: BusinessProjectComponent },
+
+  { path: 'university', component: UniversityComponent },
+  { path: 'university/todo/:id', component: UniversityTodoComponent },
   { path: 'reviewStudentEoi/:uid/:id', component: ReviewStudentEoiComponent },
+
+  { path: 'templates', component: TemplatesListComponent },
+  { path: 'template/:id', component: TemplateComponent },
+  { path: 'templateEdit/:id', component: TemplateEditComponent },
+
+  { path: 'project/:id', component: ProjectComponent },
+  { path: 'project/self-sourced', component: ProjectWizardComponent }, // canActivate: [AuthService] },
+  { path: 'project/:type/:id', component: ProjectViewComponent },
+  { path: 'projectEdit/:id', component: ProjectEditComponent },
+  { path: 'projects', component: ProjectsListComponent },
   { path: 'wizard', component: ProjectWizardComponent },
+
+  { path: 'profile', component: UserProfileComponent },
+  { path: 'survey', component: SurveyComponent },
   { path: 'events', component: EventsViewerComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
