@@ -160,13 +160,13 @@ export class EoiBusinessComponent implements OnInit {
         this.universityTodoService
           .add({
             created: this.dataService.getTimestamp(new Date()),
-            title: 'Placement request received', eoiBusiness
+            title: 'Business submitted EOI', eoiBusiness
           })
           .then(() => this.openSnackBar('Thank you for applying to your project'))
           .catch(() => this.openSnackBar('ERROR: failed to submit application'));
         this.eventStoreService
           .add({
-            event: 'Business applied for placement',
+            event: 'Business submitted EOI for placement',
             user: {
               uid: this.user.uid,
               displayName: this.user.displayName
